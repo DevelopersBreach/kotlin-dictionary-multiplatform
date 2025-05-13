@@ -77,6 +77,8 @@ kotlin {
             implementation(libs.ktor.client.logging)
             implementation(libs.ktor.client.mock)
             implementation(libs.ktor.client.serialization)
+
+            implementation("androidx.navigation:navigation-compose:2.9.0")
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
