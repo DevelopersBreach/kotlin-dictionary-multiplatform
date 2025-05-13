@@ -1,35 +1,34 @@
 package com.developersbreach.kotlindictionarymultiplatform
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
-
-import kotlindictionarymultiplatform.composeapp.generated.resources.Res
-import kotlindictionarymultiplatform.composeapp.generated.resources.compose_multiplatform
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 
 @Composable
-@Preview
 fun App() {
+    val navController = rememberNavController()
+
     MaterialTheme {
-        var showContent by remember { mutableStateOf(false) }
-        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-            Button(onClick = { showContent = !showContent }) {
-                Text("Click me!")
+        NavHost(navController = navController, startDestination = "list") {
+
+            composable("list") {
+                TopicListScreen { selectedTopic ->
+                    navController.navigate("detail/$selectedTopic")
+                }
             }
-            AnimatedVisibility(showContent) {
-                val greeting = remember { Greeting().greet() }
-                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(painterResource(Res.drawable.compose_multiplatform), null)
-                    Text("Compose: $greeting")
+
+            composable(
+                "detail/{topicId}",
+                arguments = listOf(navArgument("topicId") { type = NavType.StringType })
+            ) { navBackStackEntry ->
+                val topicId = navBackStackEntry.savedStateHandle.get<String>("topicId")
+                println("Navigating to DetailScreen with topicId: $topicId")
+                if (topicId != null) {
+                    DetailScreen(viewModel = DetailViewModel(API_KEY), topicId = topicId)
                 }
             }
         }

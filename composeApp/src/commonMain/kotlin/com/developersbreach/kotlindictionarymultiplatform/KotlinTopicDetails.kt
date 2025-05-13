@@ -71,7 +71,7 @@ data class ChatCompletionResponseMessage(
 
 @Serializable
 data class ChatCompletionResponse(
-    val choices: List<ChatCompletionChoice>
+    val choices: List<ChatCompletionChoice>?
 )
 
 @Serializable
