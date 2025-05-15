@@ -1,4 +1,4 @@
-package com.developersbreach.kotlindictionarymultiplatform
+package com.developersbreach.kotlindictionarymultiplatform.ui.screens
 
 import androidx.compose.runtime.*
 import androidx.compose.material.*
@@ -9,16 +9,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun DetailScreen(viewModel: DetailViewModel, topicId: String?) {
+fun DetailScreen(viewModel: DetailViewModel) {
     val topicState by viewModel.state.collectAsState()
     println("check topicState: $topicState")
 
-    //I suspect the issue is here
-    LaunchedEffect(topicId) {
-        if (!topicId.isNullOrEmpty() && topicState != null) {
-            viewModel.fetchTopic(topicId)
-        }
-    }
 
     topicState?.let { topic ->
         println("Topic data fetched: $topic")

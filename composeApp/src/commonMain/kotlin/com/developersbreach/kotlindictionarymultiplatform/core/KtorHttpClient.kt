@@ -1,4 +1,4 @@
-package com.developersbreach.kotlindictionarymultiplatform
+package com.developersbreach.kotlindictionarymultiplatform.core
 
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation

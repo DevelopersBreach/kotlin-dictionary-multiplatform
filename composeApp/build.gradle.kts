@@ -59,6 +59,7 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation("io.insert-koin:koin-android:3.5.3")
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -79,6 +80,8 @@ kotlin {
             implementation(libs.ktor.client.serialization)
 
             implementation("androidx.navigation:navigation-compose:2.9.0")
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:<version>")
+            implementation("io.insert-koin:koin-core:3.5.3")
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

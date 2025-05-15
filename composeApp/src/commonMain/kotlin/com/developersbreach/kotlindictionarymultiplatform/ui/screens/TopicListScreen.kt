@@ -1,4 +1,4 @@
-package com.developersbreach.kotlindictionarymultiplatform
+package com.developersbreach.kotlindictionarymultiplatform.ui.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,10 +12,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-fun TopicListScreen(onTopicClick: (String) -> Unit) {
+fun TopicListScreen(
+    onTopicClick: (String) -> Unit
+) {
+
     val topics = listOf(
         "Variables", "Strings", "Functions", "Coroutines",
         "Classes", "Interfaces", "Objects", "Collections",
@@ -23,14 +25,18 @@ fun TopicListScreen(onTopicClick: (String) -> Unit) {
         "Delegation", "Sealed Classes", "Generics", "Annotations"
     )
 
-    LazyColumn(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
         items(topics) { topic ->
             Card(
                 elevation = 4.dp,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 8.dp)
-                    .clickable { onTopicClick(topic) }
+                    .clickable { onTopicClick(topic)}
             ) {
                 Text(
                     text = topic,
@@ -39,13 +45,5 @@ fun TopicListScreen(onTopicClick: (String) -> Unit) {
                 )
             }
         }
-    }
-}
-
-@Preview
-@Composable
-fun ListScreenPreview(){
-    MaterialTheme { 
-        TopicListScreen(onTopicClick = {})
     }
 }
