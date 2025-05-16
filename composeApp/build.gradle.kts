@@ -59,7 +59,9 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
-            implementation("io.insert-koin:koin-android:3.5.3")
+            implementation(libs.koin.android)
+            implementation(libs.koin.androidx.compose)
+            implementation(compose.components.uiToolingPreview)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -67,9 +69,9 @@ kotlin {
             implementation(compose.material)
             implementation(compose.ui)
             implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(libs.androidx.navigation.compose)
 
             implementation(project.dependencies.platform(libs.ktor.bom))
             implementation(libs.ktor.client.android)
@@ -78,10 +80,12 @@ kotlin {
             implementation(libs.ktor.client.logging)
             implementation(libs.ktor.client.mock)
             implementation(libs.ktor.client.serialization)
+            implementation(libs.kotlinx.serialization.json)
 
-            implementation("androidx.navigation:navigation-compose:2.9.0")
-            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:<version>")
-            implementation("io.insert-koin:koin-core:3.5.3")
+            implementation(project.dependencies.platform(libs.koin.bom))
+            api(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
