@@ -5,7 +5,10 @@ import androidx.compose.runtime.remember
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.developersbreach.kotlindictionarymultiplatform.ui.screens.DetailScreen
+import com.developersbreach.kotlindictionarymultiplatform.ui.screens.DetailViewModel
 import com.developersbreach.kotlindictionarymultiplatform.ui.screens.TopicListScreen
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun AppNavigation(
@@ -27,9 +30,9 @@ fun AppNavigation(
             )
         }
 
-//        composable<AppDestinations.Detail> { backStackEntry ->
-//            val viewModel = hiltViewModel<DetailViewModel>()
-//            DetailScreen(viewModel = viewModel)
-//        }
+        composable<AppDestinations.Detail> {
+            val viewModel: DetailViewModel = koinViewModel()
+            DetailScreen(viewModel = viewModel)
+        }
     }
 }
