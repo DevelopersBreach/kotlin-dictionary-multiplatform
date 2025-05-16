@@ -1,4 +1,4 @@
-package com.developersbreach.kotlindictionarymultiplatform
+package com.developersbreach.kotlindictionarymultiplatform.core
 
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -112,7 +112,8 @@ object KtorHttpClient {
 
         // Parse response
         val chatResp = json.decodeFromString(ChatCompletionResponse.serializer(), text)
-        val funcCall = chatResp.choices.first().message.functionCall ?: error("No function call in response")
+        println(chatResp)
+        val funcCall = chatResp.choices?.first()?.message?.functionCall ?: error("No function call in response")
 
         // The arguments field is a JSON string: parse and decode into our DTO
         val argsJson = json.parseToJsonElement(funcCall.arguments)

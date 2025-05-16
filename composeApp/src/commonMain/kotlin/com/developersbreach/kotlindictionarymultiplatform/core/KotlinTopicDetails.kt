@@ -1,4 +1,4 @@
-package com.developersbreach.kotlindictionarymultiplatform
+package com.developersbreach.kotlindictionarymultiplatform.core
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
@@ -71,7 +71,7 @@ data class ChatCompletionResponseMessage(
 
 @Serializable
 data class ChatCompletionResponse(
-    val choices: List<ChatCompletionChoice>
+    val choices: List<ChatCompletionChoice>?
 )
 
 @Serializable
