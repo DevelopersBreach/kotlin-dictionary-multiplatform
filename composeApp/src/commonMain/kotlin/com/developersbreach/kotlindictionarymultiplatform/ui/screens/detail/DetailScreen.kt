@@ -1,4 +1,4 @@
-package com.developersbreach.kotlindictionarymultiplatform.ui.screens
+package com.developersbreach.kotlindictionarymultiplatform.ui.screens.detail
 
 import androidx.compose.runtime.*
 import androidx.compose.material.*

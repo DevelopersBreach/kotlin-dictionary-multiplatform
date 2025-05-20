@@ -1,10 +1,10 @@
-package com.developersbreach.kotlindictionarymultiplatform.ui.screens
+package com.developersbreach.kotlindictionarymultiplatform.ui.screens.detail
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
-import com.developersbreach.kotlindictionarymultiplatform.core.KotlinTopicDetails
+import com.developersbreach.kotlindictionarymultiplatform.data.detail.KotlinTopicDetails
 import com.developersbreach.kotlindictionarymultiplatform.core.KtorHttpClient
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
