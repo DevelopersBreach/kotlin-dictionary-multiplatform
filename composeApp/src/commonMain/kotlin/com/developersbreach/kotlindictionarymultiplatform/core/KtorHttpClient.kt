@@ -1,5 +1,10 @@
 package com.developersbreach.kotlindictionarymultiplatform.core
 
+import com.developersbreach.kotlindictionarymultiplatform.data.detail.ChatCompletionRequest
+import com.developersbreach.kotlindictionarymultiplatform.data.detail.ChatCompletionResponse
+import com.developersbreach.kotlindictionarymultiplatform.data.detail.ChatMessage
+import com.developersbreach.kotlindictionarymultiplatform.data.detail.FunctionDefinition
+import com.developersbreach.kotlindictionarymultiplatform.data.detail.KotlinTopicDetails
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.header
