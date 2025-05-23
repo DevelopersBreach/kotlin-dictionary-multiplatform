@@ -20,7 +20,6 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromJsonElement
 import kotlinx.serialization.json.jsonObject
 
-
 object KtorHttpClient {
     private val json = Json { ignoreUnknownKeys = true }
 
@@ -76,13 +75,13 @@ object KtorHttpClient {
           },
           "required": ["topicId","topicName","intro","syntax","sections"]
         }
-        """.trimIndent()
+        """.trimIndent(),
     )
 
     private val functionDef = FunctionDefinition(
         name = "generate_kotlin_topic_details",
         description = "Return a fully-featured Kotlin documentation object for a given topic",
-        parameters = functionSchema
+        parameters = functionSchema,
     )
 
     /**
@@ -90,11 +89,14 @@ object KtorHttpClient {
      * @param topicId the topic identifier, e.g. "variables".
      * @param apiKey your OpenAI API key.
      */
-    suspend fun generateTopicDetails(topicId: String, apiKey: String): KotlinTopicDetails {
+    suspend fun generateTopicDetails(
+        topicId: String,
+        apiKey: String,
+    ): KotlinTopicDetails {
         // Prepare messages
         val messages = listOf(
             ChatMessage("system", "You are a Kotlin documentation generator."),
-            ChatMessage("user", "Generate full Kotlin documentation for topic \"$topicId\".")
+            ChatMessage("user", "Generate full Kotlin documentation for topic \"$topicId\"."),
         )
 
         // Build request body
@@ -102,7 +104,7 @@ object KtorHttpClient {
             model = "gpt-4o-mini",
             messages = messages,
             functions = listOf(functionDef),
-            functionCall = mapOf("name" to functionDef.name)
+            functionCall = mapOf("name" to functionDef.name),
         )
 
         // Execute HTTP request

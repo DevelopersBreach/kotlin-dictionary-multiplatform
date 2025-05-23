@@ -13,52 +13,52 @@ data class KotlinTopicDetails(
     val sections: List<Section>,
     val pitfalls: List<String> = emptyList(),
     val relatedTopics: List<String> = emptyList(),
-    val metadata: Map<String, JsonElement> = emptyMap()
+    val metadata: Map<String, JsonElement> = emptyMap(),
 )
 
 @Serializable
 data class Syntax(
     val signature: String,
-    val notes: String? = null
+    val notes: String? = null,
 )
 
 @Serializable
 data class Section(
     val heading: String? = null,
     val content: String? = null,
-    val codeExamples: List<CodeExample> = emptyList()
+    val codeExamples: List<CodeExample> = emptyList(),
 )
 
 @Serializable
 data class CodeExample(
     val description: String? = null,
     val code: String,
-    val language: String = "kotlin"
+    val language: String = "kotlin",
 )
 
 // --- Request/Response schema for OpenAI Chat Completion ---
 @Serializable
 data class ChatMessage(
     val role: String,
-    val content: String
+    val content: String,
 )
 
 @Serializable
 data class FunctionDefinition(
     val name: String,
     val description: String,
-    val parameters: JsonElement
+    val parameters: JsonElement,
 )
 
 @Serializable
 data class FunctionCall(
     val name: String,
-    val arguments: String
+    val arguments: String,
 )
 
 @Serializable
 data class ChatCompletionChoice(
-    val message: ChatCompletionResponseMessage
+    val message: ChatCompletionResponseMessage,
 )
 
 @Serializable
@@ -66,12 +66,12 @@ data class ChatCompletionResponseMessage(
     val role: String,
     val content: String? = null,
     @SerialName("function_call")
-    val functionCall: FunctionCall? = null
+    val functionCall: FunctionCall? = null,
 )
 
 @Serializable
 data class ChatCompletionResponse(
-    val choices: List<ChatCompletionChoice>?
+    val choices: List<ChatCompletionChoice>?,
 )
 
 @Serializable
@@ -80,5 +80,5 @@ data class ChatCompletionRequest(
     val messages: List<ChatMessage>,
     val functions: List<FunctionDefinition>,
     @SerialName("function_call")
-    val functionCall: Map<String, String>
+    val functionCall: Map<String, String>,
 )

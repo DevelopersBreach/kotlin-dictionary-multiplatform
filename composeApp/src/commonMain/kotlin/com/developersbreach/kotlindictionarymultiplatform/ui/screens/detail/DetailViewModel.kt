@@ -13,7 +13,7 @@ import com.developersbreach.kotlindictionarymultiplatform.core.API_KEY
 import com.developersbreach.kotlindictionarymultiplatform.ui.navigation.AppDestinations
 
 class DetailViewModel(
-    savedStateHandle: SavedStateHandle
+    savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
     private val topicId = savedStateHandle.toRoute<AppDestinations.Detail>().topicId

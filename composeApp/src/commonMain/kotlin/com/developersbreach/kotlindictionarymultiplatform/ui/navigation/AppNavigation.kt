@@ -16,7 +16,7 @@ fun AppNavigation(
     startDestination: AppDestinations = AppDestinations.TopicList,
 ) {
     val navController = rememberNavController()
-    val actions = remember(navController) { NavigationActions(navController) }
+    val actions = remember(navController) { NavigationAction(navController) }
 
     NavHost(
         navController = navController,
@@ -28,7 +28,7 @@ fun AppNavigation(
                 onTopicClick = { selectedTopicId ->
                     actions.navigateToDetail(selectedTopicId)
                 },
-                viewModel = viewModel
+                viewModel = viewModel,
             )
         }
 

@@ -19,14 +19,14 @@ import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
 @Composable
 fun TopicScreen(
     onTopicClick: (String) -> Unit,
-    viewModel: TopicViewModel
+    viewModel: TopicViewModel,
 ) {
     val topics by viewModel.topics.collectAsState()
 
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(16.dp),
     ) {
         items(topics) { topic ->
             TopicItem(topic = topic, onClick = {
@@ -37,9 +37,11 @@ fun TopicScreen(
     }
 }
 
-
 @Composable
-fun TopicItem(topic: Topic, onClick: () -> Unit) {
+fun TopicItem(
+    topic: Topic,
+    onClick: () -> Unit,
+) {
     println("Rendering topic item: ${topic.name}")
 
     Card(
@@ -47,12 +49,12 @@ fun TopicItem(topic: Topic, onClick: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp)
-            .clickable { onClick() }
+            .clickable { onClick() },
     ) {
         Text(
             text = topic.name,
             style = MaterialTheme.typography.h6,
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp),
         )
     }
 }
