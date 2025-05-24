@@ -18,6 +18,6 @@ object TopicRepository {
         Topic("Delegation"),
         Topic("Sealed Classes"),
         Topic("Generics"),
-        Topic("Annotations")
+        Topic("Annotations"),
     )
 }
