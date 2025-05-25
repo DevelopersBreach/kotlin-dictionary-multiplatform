@@ -98,7 +98,7 @@ kotlin {
             api(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
-            implementation("co.touchlab:kermit:2.0.4")
+            implementation(libs.kermit)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
