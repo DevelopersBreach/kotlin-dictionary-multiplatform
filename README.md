@@ -24,7 +24,7 @@ You can open the web application by running the `:composeApp:wasmJsBrowserDevelo
 
 ## 🎢 Roadmap
 
-- [ ] Add `ktlint` configuration for code style enforcement.
+- [x] Add `ktlint` configuration for code style enforcement.
 - [ ] Integrate `Arrow Core` for exception handling.
 - [ ] Add a centralized logger.
 - [ ] Create a separate module for reusable UI components.
