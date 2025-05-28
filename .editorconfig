@@ -14,3 +14,12 @@ ktlint_standard_no-empty-first-line-in-class-body = disabled
 ktlint_standard_annotation = disabled
 ktlint_standard_multiline-expression-wrapping = disabled
 ktlint_standard_string-template-indent = disabled
+
+[composeApp/build/generated/compose/resourceGenerator/kotlin/commonResClass/kotlindictionarymultiplatform/composeapp/generated/resources/Res.kt]
+ktlint = disabled
+
+[composeApp/src/wasmJsMain/kotlin/com/developersbreach/kotlindictionarymultiplatform/main.kt]
+ktlint = disabled
+
+[composeApp/build/generated/compose/resourceGenerator/kotlin/commonMainResourceAccessors/kotlindictionarymultiplatform/composeapp/generated/resources/Drawable0.commonMain.kt]
+ktlint = disabled

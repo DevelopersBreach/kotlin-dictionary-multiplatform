@@ -1,3 +1,4 @@
+@file:Suppress("ktlint")
 package com.developersbreach.kotlindictionarymultiplatform
 
 import androidx.compose.ui.window.Window
