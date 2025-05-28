@@ -69,11 +69,10 @@ kotlin {
         val desktopMain by getting
 
         androidMain.dependencies {
-            implementation(compose.preview)
+            implementation("androidx.compose.ui:ui:1.8.2")
             implementation(libs.androidx.activity.compose)
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
-            implementation(compose.components.uiToolingPreview)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
