@@ -1,6 +1,6 @@
 package com.developersbreach.kotlindictionarymultiplatform.core
 
-import co.touchlab.kermit.Logger
+import com.developersbreach.kotlindictionarymultiplatform.Log
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.ChatCompletionRequest
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.ChatCompletionResponse
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.ChatMessage
@@ -116,11 +116,11 @@ object KtorHttpClient {
         }
 
         val text = response.bodyAsText()
-        Logger.i("RawResponse") { "RAW RESPONSE:\n$text" }
+        Log.i("RawResponse", "RAW RESPONSE:\n$text")
 
         // Parse response
         val chatResp = json.decodeFromString(ChatCompletionResponse.serializer(), text)
-        Logger.i("ChatResponse") { "$chatResp" }
+        Log.i("ChatResponse", "$chatResp")
         val funcCall = chatResp.choices?.first()?.message?.functionCall ?: error("No function call in response")
 
         // The arguments field is a JSON string: parse and decode into our DTO
