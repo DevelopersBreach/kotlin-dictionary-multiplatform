@@ -11,6 +11,7 @@ androidx-espresso-core = "3.6.1"
 androidx-lifecycle = "2.8.4"
 androidx-material = "1.12.0"
 androidx-test-junit = "1.2.1"
+arrowFxCoroutines = "2.1.0"
 compose-multiplatform = "1.7.3"
 junit = "4.13.2"
 kermit = "2.0.4"
@@ -24,6 +25,8 @@ ktlint = "12.2.0"
 
 [libraries]
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
+arrow-core = { module = "io.arrow-kt:arrow-core", version.ref = "arrowFxCoroutines" }
+arrow-fx-coroutines = { module = "io.arrow-kt:arrow-fx-coroutines", version.ref = "arrowFxCoroutines" }
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
