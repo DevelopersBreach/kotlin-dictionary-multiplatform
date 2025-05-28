@@ -1,5 +1,6 @@
 package com.developersbreach.kotlindictionarymultiplatform.data.topic.repository
 
+import arrow.core.Either
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
 
 object TopicRepository {
@@ -20,4 +21,7 @@ object TopicRepository {
         Topic("Generics"),
         Topic("Annotations"),
     )
+
+    suspend fun getTopicsSafe(): Either<Throwable, List<Topic>> =
+        Either.catch { getTopics() }
 }
