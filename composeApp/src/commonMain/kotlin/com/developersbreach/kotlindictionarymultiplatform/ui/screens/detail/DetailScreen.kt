@@ -20,10 +20,8 @@ import androidx.compose.foundation.lazy.items
 @Composable
 fun DetailScreen(viewModel: DetailViewModel) {
     val topicState by viewModel.state.collectAsState()
-    println("check topicState: $topicState")
 
     topicState?.let { topic ->
-        println("Topic data fetched: $topic")
         LazyColumn(modifier = Modifier.padding(16.dp)) {
             item {
                 Text(text = topic.topicName, style = MaterialTheme.typography.h5)

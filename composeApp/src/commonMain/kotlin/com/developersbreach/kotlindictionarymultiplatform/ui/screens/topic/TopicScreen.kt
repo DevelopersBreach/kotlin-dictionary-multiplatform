@@ -14,6 +14,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.developersbreach.kotlindictionarymultiplatform.Log
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
 
 @Composable
@@ -30,7 +31,7 @@ fun TopicScreen(
     ) {
         items(topics) { topic ->
             TopicItem(topic = topic, onClick = {
-                println("Topic clicked: ${topic.name}")
+                Log.i("TopicScreen", "Topic clicked: ${topic.name}")
                 onTopicClick(topic.name)
             })
         }
@@ -42,7 +43,7 @@ fun TopicItem(
     topic: Topic,
     onClick: () -> Unit,
 ) {
-    println("Rendering topic item: ${topic.name}")
+    Log.i("TopicItem", "Rendering topic item: ${topic.name}")
 
     Card(
         elevation = 4.dp,

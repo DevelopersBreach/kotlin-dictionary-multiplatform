@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
+import com.developersbreach.kotlindictionarymultiplatform.Log
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.KotlinTopicDetails
 import com.developersbreach.kotlindictionarymultiplatform.core.KtorHttpClient
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,11 +30,11 @@ class DetailViewModel(
         viewModelScope.launch {
             try {
                 val topic = KtorHttpClient.generateTopicDetails(topicId, API_KEY)
-                println("Fetched details: $topic")
+                Log.i("DetailViewModel", "Fetched details: $topic")
                 _state.value = topic
-                println("State updated with topic: $topic")
+                Log.i("DetailViewModel", "State updated with topic: $topic")
             } catch (e: Exception) {
-                println("Error fetching topic: ${e.message}")
+                Log.e("DetailViewModel", "Error fetching topic: ${e.message}", e)
             }
         }
     }
