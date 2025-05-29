@@ -7,7 +7,7 @@ import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.Kotl
 
 class DetailRepository {
 
-    suspend fun fetchTopicSafe(topicId: String): Either<Throwable, KotlinTopicDetails> =
+    suspend fun fetchTopic(topicId: String): Either<Throwable, KotlinTopicDetails> =
         Either.catch {
             KtorHttpClient.generateTopicDetails(topicId, API_KEY)
         }

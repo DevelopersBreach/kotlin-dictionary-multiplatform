@@ -10,6 +10,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.runtime.saveable.rememberSaveable
+import kotlindictionarymultiplatform.composeapp.generated.resources.Res
+import kotlindictionarymultiplatform.composeapp.generated.resources.error_occurred
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun <T> UiStateHandler(
@@ -42,7 +45,7 @@ fun <T> UiStateHandler(
                     ShowAlertDialog(
                         onButtonClick = { shouldDismissErrorDialog.value = true },
                         modifier = Modifier,
-                        title = "Error occurred",
+                        title = stringResource(Res.string.error_occurred),
                         description = errorDetails,
                     )
                 }
