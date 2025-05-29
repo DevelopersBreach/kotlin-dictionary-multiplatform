@@ -2,11 +2,14 @@ package com.developersbreach.kotlindictionarymultiplatform
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import com.developersbreach.kotlindictionarymultiplatform.theme.AppTypography
 import com.developersbreach.kotlindictionarymultiplatform.ui.navigation.AppNavigation
 
 @Composable
 fun App() {
-    MaterialTheme {
+    MaterialTheme(
+        typography = AppTypography()
+    ){
         AppNavigation()
     }
 }
