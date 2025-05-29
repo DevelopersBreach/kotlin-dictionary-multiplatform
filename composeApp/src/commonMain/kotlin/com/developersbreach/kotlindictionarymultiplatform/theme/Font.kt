@@ -6,7 +6,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import kotlindictionarymultiplatform.composeapp.generated.resources.*
+import kotlindictionarymultiplatform.composeapp.generated.resources.Res
+import kotlindictionarymultiplatform.composeapp.generated.resources.noto_sans_bold
+import kotlindictionarymultiplatform.composeapp.generated.resources.noto_sans_medium
+import kotlindictionarymultiplatform.composeapp.generated.resources.noto_sans_regular
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.Font
 
