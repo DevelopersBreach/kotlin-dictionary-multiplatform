@@ -51,7 +51,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 
-
 @Composable
 fun DetailScreen(viewModel: DetailViewModel) {
     val topicState by viewModel.state.collectAsState()
@@ -196,28 +195,27 @@ fun CodeExampleBox(
         modifier = modifier
             .fillMaxWidth()
             .border(1.dp, Color(0xFFECB77A), RoundedCornerShape(8.dp))
-            .background(Color(0xFFFFE0B2), RoundedCornerShape(8.dp))
+            .background(Color(0xFFFFE0B2), RoundedCornerShape(8.dp)),
     ) {
         Column(modifier = Modifier.padding(0.dp)) {
-
             // Top bar
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(Color(0xFFECB77A), RoundedCornerShape(6.dp))
-                    .padding(6.dp)
+                    .padding(6.dp),
             ) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
                         text = "Kotlin",
                         color = Color(0xFF0F2851),
                         fontWeight = FontWeight.Bold,
                         fontSize = 14.sp,
-                        modifier = Modifier.padding(start = 4.dp)
+                        modifier = Modifier.padding(start = 4.dp),
                     )
 
                     Row(
@@ -231,7 +229,7 @@ fun CodeExampleBox(
                                     copied = false
                                 }
                             }
-                            .padding(4.dp)
+                            .padding(4.dp),
                     ) {
                         Icon(
                             painter = if (copied) {
@@ -246,7 +244,7 @@ fun CodeExampleBox(
                         Text(
                             text = if (copied) "Copied" else "Copy",
                             fontSize = 12.sp,
-                            color = Color(0xFF0F2851)
+                            color = Color(0xFF0F2851),
                         )
                     }
                 }
@@ -261,7 +259,7 @@ fun CodeExampleBox(
                 fontFamily = FontFamily.Monospace,
                 color = Color(0xFF0F2851),
                 fontSize = 14.sp,
-                lineHeight = 20.sp
+                lineHeight = 20.sp,
             )
         }
     }

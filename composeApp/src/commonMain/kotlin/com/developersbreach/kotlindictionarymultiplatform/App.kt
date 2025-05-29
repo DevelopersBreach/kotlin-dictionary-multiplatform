@@ -8,8 +8,8 @@ import com.developersbreach.kotlindictionarymultiplatform.ui.navigation.AppNavig
 @Composable
 fun App() {
     MaterialTheme(
-        typography = AppTypography()
-    ){
+        typography = AppTypography(),
+    ) {
         AppNavigation()
     }
 }
