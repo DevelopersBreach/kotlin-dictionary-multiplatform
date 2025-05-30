@@ -21,9 +21,11 @@ ktor-bom = "3.0.1"
 koin = "4.0.4"
 navigation-compose = "2.9.0"
 ktlint = "12.2.0"
+ui = "1.8.2"
 
 [libraries]
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
+androidx-ui = { module = "androidx.compose.ui:ui", version.ref = "ui" }
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
