@@ -52,6 +52,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlindictionarymultiplatform.composeapp.generated.resources.Res
+import kotlindictionarymultiplatform.composeapp.generated.resources.add_bookmark
+import kotlindictionarymultiplatform.composeapp.generated.resources.back
+import kotlindictionarymultiplatform.composeapp.generated.resources.description_subtitle
+import kotlindictionarymultiplatform.composeapp.generated.resources.icon
+import kotlindictionarymultiplatform.composeapp.generated.resources.remove_bookmark
+import kotlindictionarymultiplatform.composeapp.generated.resources.search
+import kotlindictionarymultiplatform.composeapp.generated.resources.search_kotlin_terms
+import kotlindictionarymultiplatform.composeapp.generated.resources.topics
+import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -78,7 +88,7 @@ fun TopicScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = "Topics",
+                        text = stringResource(Res.string.topics),
                         style = MaterialTheme.typography.displayMedium,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Start,
@@ -86,7 +96,7 @@ fun TopicScreen(
                 },
                 navigationIcon = {
                     IconButton(onClick = { /* Handle back */ }) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(Res.string.back))
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -116,7 +126,7 @@ fun TopicScreen(
 
                     TopicCard(
                         topic = topic.name,
-                        subtitle = "Description need to be added",
+                        subtitle = stringResource(Res.string.description_subtitle),
                         isBookmarked = isBookmarked,
                         onBookmarkClick = {
                             if (index != -1) bookmarkedStates[index] = !bookmarkedStates[index]
@@ -160,7 +170,7 @@ fun TopicCard(
                     .background(MaterialTheme.colorScheme.primary, CircleShape),
                 contentAlignment = Alignment.Center,
             ) {
-                Icon(Icons.Filled.Search, contentDescription = "Icon")
+                Icon(Icons.Filled.Search, contentDescription = stringResource(Res.string.icon))
             }
 
             Spacer(modifier = Modifier.width(12.dp))
@@ -190,7 +200,7 @@ fun TopicCard(
             IconButton(onClick = onBookmarkClick) {
                 Icon(
                     imageVector = if (isBookmarked) Icons.Outlined.Bookmark else Icons.Filled.Bookmark,
-                    contentDescription = if (isBookmarked) "Remove bookmark" else "Add bookmark",
+                    contentDescription = if (isBookmarked) stringResource(Res.string.remove_bookmark) else stringResource(Res.string.add_bookmark),
                     tint = MaterialTheme.colorScheme.primary,
                 )
             }
@@ -211,14 +221,14 @@ fun SearchField(
             .padding(4.dp),
         placeholder = {
             Text(
-                "Search Kotlin terms...",
+                stringResource(Res.string.search_kotlin_terms),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 color = MaterialTheme.colorScheme.onSurface,
             )
         },
         leadingIcon = {
-            Icon(Icons.Filled.Search, contentDescription = "Search", tint = MaterialTheme.colorScheme.onSurface)
+            Icon(Icons.Filled.Search, contentDescription = stringResource(Res.string.search), tint = MaterialTheme.colorScheme.onSurface)
         },
         colors = TextFieldDefaults.colors(
             focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,

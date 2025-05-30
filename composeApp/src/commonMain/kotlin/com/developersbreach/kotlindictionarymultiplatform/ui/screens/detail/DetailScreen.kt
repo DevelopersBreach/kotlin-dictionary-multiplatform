@@ -43,10 +43,28 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlindictionarymultiplatform.composeapp.generated.resources.Res
+import kotlindictionarymultiplatform.composeapp.generated.resources.back
+import kotlindictionarymultiplatform.composeapp.generated.resources.bullet_item
+import kotlindictionarymultiplatform.composeapp.generated.resources.copied
+import kotlindictionarymultiplatform.composeapp.generated.resources.copy
+import kotlindictionarymultiplatform.composeapp.generated.resources.introduction
+import kotlindictionarymultiplatform.composeapp.generated.resources.introduction_bullet
+import kotlindictionarymultiplatform.composeapp.generated.resources.kotlin
+import kotlindictionarymultiplatform.composeapp.generated.resources.notes_with_value
+import kotlindictionarymultiplatform.composeapp.generated.resources.pitfalls
+import kotlindictionarymultiplatform.composeapp.generated.resources.pitfalls_bullet
+import kotlindictionarymultiplatform.composeapp.generated.resources.related_topics
+import kotlindictionarymultiplatform.composeapp.generated.resources.related_topics_bullet
+import kotlindictionarymultiplatform.composeapp.generated.resources.sections_bullet
+import kotlindictionarymultiplatform.composeapp.generated.resources.syntax
+import kotlindictionarymultiplatform.composeapp.generated.resources.syntax_bullet
+import kotlindictionarymultiplatform.composeapp.generated.resources.table_of_contents
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -70,7 +88,7 @@ fun DetailScreen(viewModel: DetailViewModel) {
                     },
                     navigationIcon = {
                         IconButton(onClick = { /* Back action */ }) {
-                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(Res.string.back))
                         }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(
@@ -89,18 +107,18 @@ fun DetailScreen(viewModel: DetailViewModel) {
                     .padding(innerPadding),
             ) {
                 Text(
-                    text = "Table of Contents",
+                    text = stringResource(Res.string.table_of_contents),
                     style = MaterialTheme.typography.titleLarge,
                     color = MaterialTheme.colorScheme.onPrimary,
                 )
                 Spacer(modifier = Modifier.height(4.dp))
 
                 val tableOfContents = buildList {
-                    add("• Introduction")
-                    if (topic.syntax.signature.isNotBlank()) add("• Syntax")
-                    if (topic.sections.isNotEmpty()) add("• Sections")
-                    if (topic.pitfalls.isNotEmpty()) add("• Pitfalls")
-                    if (topic.relatedTopics.isNotEmpty()) add("• Related Topics")
+                    add(stringResource(Res.string.introduction_bullet))
+                    if (topic.syntax.signature.isNotBlank()) add(stringResource(Res.string.syntax_bullet))
+                    if (topic.sections.isNotEmpty()) add(stringResource(Res.string.sections_bullet))
+                    if (topic.pitfalls.isNotEmpty()) add(stringResource(Res.string.pitfalls_bullet))
+                    if (topic.relatedTopics.isNotEmpty()) add(stringResource(Res.string.related_topics_bullet))
                 }
 
                 tableOfContents.forEach {
@@ -115,7 +133,7 @@ fun DetailScreen(viewModel: DetailViewModel) {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                Text("Introduction", style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
+                Text(stringResource(Res.string.introduction), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = topic.intro, style = MaterialTheme.typography.bodyMedium,
@@ -123,7 +141,7 @@ fun DetailScreen(viewModel: DetailViewModel) {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                Text("Syntax", style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
+                Text(stringResource(Res.string.syntax), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = topic.syntax.signature, style = MaterialTheme.typography.bodyMedium,
@@ -131,7 +149,7 @@ fun DetailScreen(viewModel: DetailViewModel) {
                 topic.syntax.notes?.let {
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "Notes: $it", style = MaterialTheme.typography.bodyMedium,
+                        text = stringResource(Res.string.notes_with_value, it), style = MaterialTheme.typography.bodyMedium,
                     )
                 }
 
@@ -162,22 +180,22 @@ fun DetailScreen(viewModel: DetailViewModel) {
                 }
 
                 if (topic.pitfalls.isNotEmpty()) {
-                    Text("Pitfalls", style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
+                    Text(stringResource(Res.string.pitfalls), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
                     Spacer(modifier = Modifier.height(4.dp))
                     topic.pitfalls.forEach {
                         Text(
-                            "- $it", style = MaterialTheme.typography.bodyMedium,
+                            stringResource(Res.string.bullet_item, it), style = MaterialTheme.typography.bodyMedium,
                         )
                     }
                     Spacer(modifier = Modifier.height(16.dp))
                 }
 
                 if (topic.relatedTopics.isNotEmpty()) {
-                    Text("Related Topics", style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
+                    Text(stringResource(Res.string.related_topics), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
                     Spacer(modifier = Modifier.height(4.dp))
                     topic.relatedTopics.forEach {
                         Text(
-                            "• $it", style = MaterialTheme.typography.bodyMedium,
+                            stringResource(Res.string.bullet_item, it), style = MaterialTheme.typography.bodyMedium,
                         )
                     }
                 }
@@ -217,7 +235,7 @@ fun CodeExampleBox(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
-                        text = "Kotlin",
+                        text = stringResource(Res.string.kotlin),
                         color = MaterialTheme.colorScheme.onPrimary,
                         fontWeight = FontWeight.Bold,
                         fontSize = 14.sp,
@@ -239,12 +257,12 @@ fun CodeExampleBox(
                     ) {
                         Icon(
                             imageVector = if (copied) Icons.Default.Check else Icons.Default.ContentCopy,
-                            contentDescription = "Copy",
+                            contentDescription = stringResource(Res.string.copy),
                             tint = MaterialTheme.colorScheme.onPrimary,
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
-                            text = if (copied) "Copied" else "Copy",
+                            text = if (copied) stringResource(Res.string.copied) else stringResource(Res.string.copy),
                             fontSize = 12.sp,
                             color = MaterialTheme.colorScheme.onPrimary,
                         )
