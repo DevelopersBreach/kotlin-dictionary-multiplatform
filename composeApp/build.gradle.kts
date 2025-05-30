@@ -99,6 +99,8 @@ kotlin {
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
             implementation(libs.kermit)
+            implementation(libs.arrow.core)
+            implementation(libs.arrow.fx.coroutines)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

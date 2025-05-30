@@ -16,24 +16,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.developersbreach.kotlindictionarymultiplatform.Log
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
+import com.developersbreach.kotlindictionarymultiplatform.ui.components.UiStateHandler
 
 @Composable
 fun TopicScreen(
     onTopicClick: (String) -> Unit,
     viewModel: TopicViewModel,
 ) {
-    val topics by viewModel.topics.collectAsState()
+    val state by viewModel.topics.collectAsState()
 
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-    ) {
-        items(topics) { topic ->
-            TopicItem(topic = topic, onClick = {
-                Log.i("TopicScreen", "Topic clicked: ${topic.name}")
-                onTopicClick(topic.name)
-            })
+    UiStateHandler(uiState = state) { topics ->
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+        ) {
+            items(topics) { topic ->
+                TopicItem(topic = topic, onClick = {
+                    Log.i("TopicScreen", "Topic clicked: ${topic.name}")
+                    onTopicClick(topic.name)
+                })
+            }
         }
     }
 }
