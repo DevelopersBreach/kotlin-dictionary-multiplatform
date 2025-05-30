@@ -1,15 +1,12 @@
 package com.developersbreach.kotlindictionarymultiplatform
 
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
-import com.developersbreach.kotlindictionarymultiplatform.theme.AppTypography
 import com.developersbreach.kotlindictionarymultiplatform.ui.navigation.AppNavigation
+import com.developersbreach.kotlindictionarymultiplatform.ui.theme.KotlinDictionaryTheme
 
 @Composable
 fun App() {
-    MaterialTheme(
-        typography = AppTypography(),
-    ) {
+    KotlinDictionaryTheme {
         AppNavigation()
     }
 }
