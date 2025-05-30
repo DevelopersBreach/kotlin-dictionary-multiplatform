@@ -1,6 +1,5 @@
 package com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -13,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -21,18 +19,22 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
-import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.outlined.Bookmark
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
@@ -45,21 +47,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.developersbreach.kotlindictionarymultiplatform.Log
-import com.developersbreach.kotlindictionarymultiplatform.theme.Cream
-import com.developersbreach.kotlindictionarymultiplatform.theme.Grey
-import com.developersbreach.kotlindictionarymultiplatform.theme.White
-import kotlindictionarymultiplatform.composeapp.generated.resources.Res
-import kotlindictionarymultiplatform.composeapp.generated.resources.ic_bookmark
-import kotlindictionarymultiplatform.composeapp.generated.resources.ic_bookmark_filled
-import org.jetbrains.compose.resources.painterResource
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopicScreen(
     onTopicClick: (String) -> Unit,
@@ -79,32 +73,34 @@ fun TopicScreen(
     val bookmarkedStates = remember { mutableStateListOf<Boolean>().apply { addAll(List(allTopics.size) { true }) } }
 
     Scaffold(
-        backgroundColor = White,
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopAppBar(
                 title = {
                     Text(
                         text = "Topics",
-                        style = MaterialTheme.typography.h2,
+                        style = MaterialTheme.typography.displayMedium,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Start,
                     )
                 },
-                backgroundColor = White,
                 navigationIcon = {
                     IconButton(onClick = { /* Handle back */ }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                     }
                 },
-                elevation = 0.dp,
-                modifier = Modifier.statusBarsPadding(),
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.background,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
+                ),
             )
         },
     ) { paddingValues ->
         Column(
             modifier = Modifier
-                .padding(paddingValues)
-                .padding(horizontal = 16.dp),
+                .padding(horizontal = 16.dp)
+                .padding(top = paddingValues.calculateTopPadding()),
         ) {
             SearchField(searchQuery = searchQuery)
 
@@ -120,14 +116,12 @@ fun TopicScreen(
 
                     TopicCard(
                         topic = topic.name,
-                        // subtitle = topic.description ?: "",
                         subtitle = "Description need to be added",
                         isBookmarked = isBookmarked,
                         onBookmarkClick = {
                             if (index != -1) bookmarkedStates[index] = !bookmarkedStates[index]
                         },
                         onCardClick = {
-                            Log.i("TopicScreen", "Topic clicked: ${topic.name}")
                             onTopicClick(topic.name)
                         },
                     )
@@ -152,7 +146,7 @@ fun TopicCard(
             .shadow(6.dp, RoundedCornerShape(16.dp), clip = true)
             .clickable { onCardClick() },
         shape = RoundedCornerShape(16.dp),
-        color = Grey,
+        color = MaterialTheme.colorScheme.surface,
     ) {
         Row(
             modifier = Modifier
@@ -163,7 +157,7 @@ fun TopicCard(
             Box(
                 modifier = Modifier
                     .size(36.dp)
-                    .background(Color(0xFFFFE0B2), CircleShape),
+                    .background(MaterialTheme.colorScheme.primary, CircleShape),
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(Icons.Filled.Search, contentDescription = "Icon")
@@ -176,10 +170,8 @@ fun TopicCard(
             ) {
                 Text(
                     text = topic,
-                    style = MaterialTheme.typography.h4.copy(
-                        color = Color(0xFF0F2851),
-                        lineHeight = (18 * 1.3).sp,
-                        letterSpacing = (18 * 0.012).sp,
+                    style = MaterialTheme.typography.headlineMedium.copy(
+                        color = MaterialTheme.colorScheme.onPrimary,
                     ),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
@@ -187,28 +179,21 @@ fun TopicCard(
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = subtitle,
-                    style = MaterialTheme.typography.caption.copy(
-                        lineHeight = (18 * 1.3).sp,
-                        letterSpacing = (18 * 0.012).sp,
-                        color = Color.Black.copy(alpha = 0.67f),
+                    style = MaterialTheme.typography.labelMedium.copy(
+                        color = MaterialTheme.colorScheme.onSurface,
                     ),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
             }
 
-            Image(
-                painter = if (isBookmarked) {
-                    painterResource(Res.drawable.ic_bookmark)
-                } else {
-                    painterResource(Res.drawable.ic_bookmark_filled)
-                },
-                contentDescription = "Bookmark icon",
-                modifier = Modifier
-                    .size(24.dp)
-                    .clickable { onBookmarkClick() },
-                colorFilter = ColorFilter.tint(Cream),
-            )
+            IconButton(onClick = onBookmarkClick) {
+                Icon(
+                    imageVector = if (isBookmarked) Icons.Outlined.Bookmark else Icons.Filled.Bookmark,
+                    contentDescription = if (isBookmarked) "Remove bookmark" else "Add bookmark",
+                    tint = MaterialTheme.colorScheme.primary,
+                )
+            }
         }
     }
 }
@@ -229,18 +214,20 @@ fun SearchField(
                 "Search Kotlin terms...",
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                color = Color.DarkGray,
+                color = MaterialTheme.colorScheme.onSurface,
             )
         },
         leadingIcon = {
-            Icon(Icons.Filled.Search, contentDescription = "Search", tint = Color.DarkGray)
+            Icon(Icons.Filled.Search, contentDescription = "Search", tint = MaterialTheme.colorScheme.onSurface)
         },
-        colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = Color(0xFFE0E0E0),
+        colors = TextFieldDefaults.colors(
+            focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+            unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+            cursorColor = MaterialTheme.colorScheme.onSurface,
+            focusedTextColor = MaterialTheme.colorScheme.onSurface,
+            unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
-            cursorColor = Color.DarkGray,
-            textColor = Color.DarkGray,
         ),
         shape = RoundedCornerShape(25.dp),
         singleLine = true,
@@ -252,8 +239,8 @@ fun SearchField(
                 // Optional: handle enter key logic
             },
         ),
-        textStyle = MaterialTheme.typography.subtitle1.copy(
-            color = Color.DarkGray,
+        textStyle = MaterialTheme.typography.titleMedium.copy(
+            color = MaterialTheme.colorScheme.onSurface,
             lineHeight = 24.sp,
             letterSpacing = .5.sp,
         ),
