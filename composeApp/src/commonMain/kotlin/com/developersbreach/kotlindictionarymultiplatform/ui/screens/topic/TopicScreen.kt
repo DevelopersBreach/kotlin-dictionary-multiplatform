@@ -52,6 +52,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.developersbreach.kotlindictionarymultiplatform.ui.components.UiStateHandler
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
 import kotlindictionarymultiplatform.composeapp.generated.resources.add_bookmark
 import kotlindictionarymultiplatform.composeapp.generated.resources.back
@@ -69,72 +70,76 @@ fun TopicScreen(
     onTopicClick: (String) -> Unit,
     viewModel: TopicViewModel,
 ) {
-    val allTopics by viewModel.topics.collectAsState()
-    val searchQuery = remember { mutableStateOf("") }
+    val topicState by viewModel.topics.collectAsState()
 
-    val filteredTopics = remember(searchQuery.value, allTopics) {
-        if (searchQuery.value.isBlank()) {
-            allTopics
-        } else {
-            allTopics.filter { it.name.contains(searchQuery.value, ignoreCase = true) }
+    UiStateHandler(uiState = topicState) { topics ->
+
+        val searchQuery = remember { mutableStateOf("") }
+
+        val filteredTopics = remember(searchQuery.value, topics) {
+            if (searchQuery.value.isBlank()) {
+                topics
+            } else {
+                topics.filter { it.name.contains(searchQuery.value, ignoreCase = true) }
+            }
         }
-    }
 
-    val bookmarkedStates = remember { mutableStateListOf<Boolean>().apply { addAll(List(allTopics.size) { true }) } }
+        val bookmarkedStates = remember { mutableStateListOf<Boolean>().apply { addAll(List(topics.size) { true }) } }
 
-    Scaffold(
-        containerColor = MaterialTheme.colorScheme.background,
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(Res.string.topics),
-                        style = MaterialTheme.typography.displayMedium,
-                        modifier = Modifier.fillMaxWidth(),
-                        textAlign = TextAlign.Start,
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = { /* Handle back */ }) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(Res.string.back))
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
-                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
-                ),
-            )
-        },
-    ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .padding(horizontal = 16.dp)
-                .padding(top = paddingValues.calculateTopPadding()),
-        ) {
-            SearchField(searchQuery = searchQuery)
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(bottom = 40.dp),
+        Scaffold(
+            containerColor = MaterialTheme.colorScheme.background,
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Text(
+                            text = stringResource(Res.string.topics),
+                            style = MaterialTheme.typography.displayMedium,
+                            modifier = Modifier.fillMaxWidth(),
+                            textAlign = TextAlign.Start,
+                        )
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = { /* Handle back */ }) {
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(Res.string.back))
+                        }
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.background,
+                        titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                        navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
+                    ),
+                )
+            },
+        ) { paddingValues ->
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .padding(top = paddingValues.calculateTopPadding()),
             ) {
-                items(filteredTopics) { topic ->
-                    val index = allTopics.indexOf(topic)
-                    val isBookmarked = bookmarkedStates.getOrNull(index) ?: true
+                SearchField(searchQuery = searchQuery)
 
-                    TopicCard(
-                        topic = topic.name,
-                        subtitle = stringResource(Res.string.description_subtitle),
-                        isBookmarked = isBookmarked,
-                        onBookmarkClick = {
-                            if (index != -1) bookmarkedStates[index] = !bookmarkedStates[index]
-                        },
-                        onCardClick = {
-                            onTopicClick(topic.name)
-                        },
-                    )
+                Spacer(modifier = Modifier.height(8.dp))
+
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(bottom = 40.dp),
+                ) {
+                    items(filteredTopics) { topic ->
+                        val index = topics.indexOf(topic)
+                        val isBookmarked = bookmarkedStates.getOrNull(index) ?: true
+
+                        TopicCard(
+                            topic = topic.name,
+                            subtitle = stringResource(Res.string.description_subtitle),
+                            isBookmarked = isBookmarked,
+                            onBookmarkClick = {
+                                if (index != -1) bookmarkedStates[index] = !bookmarkedStates[index]
+                            },
+                            onCardClick = {
+                                onTopicClick(topic.name)
+                            },
+                        )
+                    }
                 }
             }
         }

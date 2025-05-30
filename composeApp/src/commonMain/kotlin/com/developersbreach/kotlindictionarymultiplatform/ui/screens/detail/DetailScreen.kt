@@ -20,7 +20,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.ContentCopy
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -43,6 +42,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.developersbreach.kotlindictionarymultiplatform.ui.components.UiStateHandler
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
 import kotlindictionarymultiplatform.composeapp.generated.resources.back
 import kotlindictionarymultiplatform.composeapp.generated.resources.bullet_item
@@ -71,7 +71,7 @@ import org.jetbrains.compose.resources.stringResource
 fun DetailScreen(viewModel: DetailViewModel) {
     val topicState by viewModel.state.collectAsState()
 
-    topicState?.let { topic ->
+    UiStateHandler(uiState = topicState) { topic ->
         val scrollState = rememberScrollState()
 
         Scaffold(
@@ -136,7 +136,8 @@ fun DetailScreen(viewModel: DetailViewModel) {
                 Text(stringResource(Res.string.introduction), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = topic.intro, style = MaterialTheme.typography.bodyMedium,
+                    text = topic.intro,
+                    style = MaterialTheme.typography.bodyMedium,
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -144,12 +145,14 @@ fun DetailScreen(viewModel: DetailViewModel) {
                 Text(stringResource(Res.string.syntax), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = topic.syntax.signature, style = MaterialTheme.typography.bodyMedium,
+                    text = topic.syntax.signature,
+                    style = MaterialTheme.typography.bodyMedium,
                 )
                 topic.syntax.notes?.let {
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = stringResource(Res.string.notes_with_value, it), style = MaterialTheme.typography.bodyMedium,
+                        text = stringResource(Res.string.notes_with_value, it),
+                        style = MaterialTheme.typography.bodyMedium,
                     )
                 }
 
@@ -162,7 +165,8 @@ fun DetailScreen(viewModel: DetailViewModel) {
                     }
                     section.content?.let {
                         Text(
-                            it, style = MaterialTheme.typography.bodyMedium,
+                            it,
+                            style = MaterialTheme.typography.bodyMedium,
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                     }
@@ -170,7 +174,9 @@ fun DetailScreen(viewModel: DetailViewModel) {
                     section.codeExamples.forEach { example ->
                         example.description?.let {
                             Text(
-                                it, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.bodyMedium,
+                                it,
+                                fontWeight = FontWeight.Bold,
+                                style = MaterialTheme.typography.bodyMedium,
                             )
                         }
                         Spacer(modifier = Modifier.height(16.dp))
@@ -184,7 +190,8 @@ fun DetailScreen(viewModel: DetailViewModel) {
                     Spacer(modifier = Modifier.height(4.dp))
                     topic.pitfalls.forEach {
                         Text(
-                            stringResource(Res.string.bullet_item, it), style = MaterialTheme.typography.bodyMedium,
+                            stringResource(Res.string.bullet_item, it),
+                            style = MaterialTheme.typography.bodyMedium,
                         )
                     }
                     Spacer(modifier = Modifier.height(16.dp))
@@ -195,15 +202,12 @@ fun DetailScreen(viewModel: DetailViewModel) {
                     Spacer(modifier = Modifier.height(4.dp))
                     topic.relatedTopics.forEach {
                         Text(
-                            stringResource(Res.string.bullet_item, it), style = MaterialTheme.typography.bodyMedium,
+                            stringResource(Res.string.bullet_item, it),
+                            style = MaterialTheme.typography.bodyMedium,
                         )
                     }
                 }
             }
-        }
-    } ?: run {
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            CircularProgressIndicator()
         }
     }
 }
