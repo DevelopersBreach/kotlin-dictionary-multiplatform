@@ -1,11 +1,11 @@
-package com.developersbreach.kotlindictionarymultiplatform.core
+package com.developersbreach.kotlindictionarymultiplatform.core.network
 
 import com.developersbreach.kotlindictionarymultiplatform.Log
-import com.developersbreach.kotlindictionarymultiplatform.data.detail.ChatCompletionRequest
-import com.developersbreach.kotlindictionarymultiplatform.data.detail.ChatCompletionResponse
-import com.developersbreach.kotlindictionarymultiplatform.data.detail.ChatMessage
-import com.developersbreach.kotlindictionarymultiplatform.data.detail.FunctionDefinition
-import com.developersbreach.kotlindictionarymultiplatform.data.detail.KotlinTopicDetails
+import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.ChatCompletionRequest
+import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.ChatCompletionResponse
+import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.ChatMessage
+import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.FunctionDefinition
+import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.KotlinTopicDetails
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.header

@@ -5,37 +5,39 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import com.developersbreach.kotlindictionarymultiplatform.Log
-import com.developersbreach.kotlindictionarymultiplatform.data.detail.KotlinTopicDetails
-import com.developersbreach.kotlindictionarymultiplatform.core.KtorHttpClient
+import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.KotlinTopicDetails
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import com.developersbreach.kotlindictionarymultiplatform.core.API_KEY
+import com.developersbreach.kotlindictionarymultiplatform.data.detail.repository.DetailRepository
+import com.developersbreach.kotlindictionarymultiplatform.ui.components.UiState
 import com.developersbreach.kotlindictionarymultiplatform.ui.navigation.AppDestinations
+import kotlinx.io.IOException
 
 class DetailViewModel(
-    savedStateHandle: SavedStateHandle,
+    private val savedStateHandle: SavedStateHandle,
+    private val repository: DetailRepository,
 ) : ViewModel() {
 
     private val topicId = savedStateHandle.toRoute<AppDestinations.Detail>().topicId
 
-    private val _state = MutableStateFlow<KotlinTopicDetails?>(null)
-    val state: StateFlow<KotlinTopicDetails?> = _state
+    private val _state = MutableStateFlow<UiState<KotlinTopicDetails>>(UiState.Loading)
+    val state: StateFlow<UiState<KotlinTopicDetails>> = _state
 
     init {
-        fetchTopic(topicId)
-    }
-
-    private fun fetchTopic(topicId: String) {
         viewModelScope.launch {
             try {
-                val topic = KtorHttpClient.generateTopicDetails(topicId, API_KEY)
-                Log.i("DetailViewModel", "Fetched details: $topic")
-                _state.value = topic
-                Log.i("DetailViewModel", "State updated with topic: $topic")
-            } catch (e: Exception) {
+                fetchTopic()
+            } catch (e: IOException) {
                 Log.e("DetailViewModel", "Error fetching topic: ${e.message}", e)
             }
         }
+    }
+
+    private suspend fun fetchTopic() {
+        _state.value = repository.fetchTopic(topicId).fold(
+            ifLeft = { UiState.Error(it) },
+            ifRight = { UiState.Success(it) },
+        )
     }
 }

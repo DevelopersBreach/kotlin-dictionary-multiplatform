@@ -5,28 +5,33 @@ import androidx.lifecycle.viewModelScope
 import com.developersbreach.kotlindictionarymultiplatform.Log
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.repository.TopicRepository
+import com.developersbreach.kotlindictionarymultiplatform.ui.components.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.io.IOException
 
-class TopicViewModel : ViewModel() {
+class TopicViewModel(
+    private val repository: TopicRepository,
+) : ViewModel() {
 
-    private val _topics = MutableStateFlow<List<Topic>>(emptyList())
-    val topics: StateFlow<List<Topic>> = _topics
+    private val _topics = MutableStateFlow<UiState<List<Topic>>>(UiState.Loading)
+    val topics: StateFlow<UiState<List<Topic>>> = _topics
 
     init {
-        fetchTopicList()
+        viewModelScope.launch {
+            try {
+                fetchTopicList()
+            } catch (e: IOException) {
+                Log.e("TopicViewModel", "Error fetching topics: ${e.message}", e)
+            }
+        }
     }
 
     private fun fetchTopicList() {
-        viewModelScope.launch {
-            try {
-                val topics = TopicRepository.getTopics()
-                Log.i("TopicFetch", "Successfully fetched topics: $topics")
-                _topics.value = topics
-            } catch (e: Exception) {
-                Log.e("TopicFetch", "Error fetching topics: ${e.message}", e)
-            }
-        }
+        _topics.value = repository.getTopics().fold(
+            ifLeft = { UiState.Error(it) },
+            ifRight = { UiState.Success(it) },
+        )
     }
 }

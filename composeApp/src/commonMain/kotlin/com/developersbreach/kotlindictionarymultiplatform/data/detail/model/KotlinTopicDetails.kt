@@ -1,4 +1,4 @@
-package com.developersbreach.kotlindictionarymultiplatform.data.detail
+package com.developersbreach.kotlindictionarymultiplatform.data.detail.model
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
