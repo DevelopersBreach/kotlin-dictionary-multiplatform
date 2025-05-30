@@ -1,4 +1,4 @@
-package com.developersbreach.kotlindictionarymultiplatform.core
+package com.developersbreach.kotlindictionarymultiplatform.core.network
 
 import com.developersbreach.kotlindictionarymultiplatform.Log
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.ChatCompletionRequest
