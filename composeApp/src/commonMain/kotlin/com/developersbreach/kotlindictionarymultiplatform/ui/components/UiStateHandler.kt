@@ -22,10 +22,8 @@ fun <T> UiStateHandler(
 ) {
     val shouldDismissErrorDialog = rememberSaveable { mutableStateOf(false) }
 
-    LaunchedEffect(uiState) {
-        if (uiState is UiState.Error) {
-            shouldDismissErrorDialog.value = false
-        }
+    LaunchedEffect(Unit) {
+        shouldDismissErrorDialog.value = false
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
