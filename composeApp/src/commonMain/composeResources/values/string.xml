@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
+    <string name="error_occurred">Error occurred</string>
+    <string name="ok">OK</string>
+    <string name="error_info_unavailable">Error information not available</string>
     <string name="table_of_contents">Table of Contents</string>
     <string name="back">Back</string>
     <string name="introduction_bullet">&#8226; Introduction</string>
