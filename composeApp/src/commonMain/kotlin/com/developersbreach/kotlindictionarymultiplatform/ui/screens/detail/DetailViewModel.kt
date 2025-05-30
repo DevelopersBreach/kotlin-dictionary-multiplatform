@@ -35,8 +35,7 @@ class DetailViewModel(
     }
 
     private suspend fun fetchTopic() {
-        val result = repository.fetchTopic(topicId)
-        _state.value = result.fold(
+        _state.value = repository.fetchTopic(topicId).fold(
             ifLeft = { UiState.Error(it) },
             ifRight = { UiState.Success(it) },
         )

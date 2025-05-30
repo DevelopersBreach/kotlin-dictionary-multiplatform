@@ -28,9 +28,8 @@ class TopicViewModel(
         }
     }
 
-    private suspend fun fetchTopicList() {
-        val result = repository.getTopics()
-        _topics.value = result.fold(
+    private fun fetchTopicList() {
+        _topics.value = repository.getTopics().fold(
             ifLeft = { UiState.Error(it) },
             ifRight = { UiState.Success(it) },
         )
