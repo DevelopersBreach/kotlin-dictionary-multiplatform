@@ -28,9 +28,7 @@ fun <T> UiStateHandler(
         }
     }
 
-    Box(
-        modifier = Modifier.fillMaxSize(),
-    ) {
+    Box(modifier = Modifier.fillMaxSize()) {
         when (uiState) {
             is UiState.Loading -> {
                 CircularProgressIndicator(
@@ -41,12 +39,12 @@ fun <T> UiStateHandler(
 
             is UiState.Error -> {
                 if (!shouldDismissErrorDialog.value) {
-                    val errorDetails = uiState.message
+                    val errorDetails = uiState.throwable
                     ShowAlertDialog(
                         onButtonClick = { shouldDismissErrorDialog.value = true },
                         modifier = Modifier,
                         title = stringResource(Res.string.error_occurred),
-                        description = errorDetails,
+                        description = errorDetails.message ?: "Error information not available",
                     )
                 }
             }
