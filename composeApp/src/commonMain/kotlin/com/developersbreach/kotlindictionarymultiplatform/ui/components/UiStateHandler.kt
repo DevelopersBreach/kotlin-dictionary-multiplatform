@@ -11,7 +11,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.runtime.saveable.rememberSaveable
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
-import kotlindictionarymultiplatform.composeapp.generated.resources.error_info_unavailable
 import kotlindictionarymultiplatform.composeapp.generated.resources.error_occurred
 import org.jetbrains.compose.resources.stringResource
 
@@ -43,7 +42,7 @@ fun <T> UiStateHandler(
                         onButtonClick = { shouldDismissErrorDialog.value = true },
                         modifier = Modifier,
                         title = stringResource(Res.string.error_occurred),
-                        description = errorDetails.message ?: stringResource(Res.string.error_info_unavailable)
+                        description = errorDetails.message ?: "Error information not available",
                     )
                 }
             }

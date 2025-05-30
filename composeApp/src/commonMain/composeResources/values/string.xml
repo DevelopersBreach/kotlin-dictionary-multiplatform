@@ -2,5 +2,4 @@
 <resources>
     <string name="error_occurred">Error occurred</string>
     <string name="ok">OK</string>
-    <string name="error_info_unavailable">Error information not available</string>
 </resources>
