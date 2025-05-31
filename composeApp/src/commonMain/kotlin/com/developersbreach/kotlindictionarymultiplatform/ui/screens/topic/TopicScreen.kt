@@ -191,11 +191,11 @@ fun TopicCard(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(6.dp))
                 Text(
                     text = subtitle,
                     style = MaterialTheme.typography.labelMedium.copy(
-                        color = MaterialTheme.colorScheme.onSurface,
+                        color = MaterialTheme.colorScheme.onBackground,
                     ),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
@@ -229,18 +229,18 @@ fun SearchField(
                 stringResource(Res.string.search_kotlin_terms),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                color = MaterialTheme.colorScheme.onSurface,
+                color = MaterialTheme.colorScheme.onBackground,
             )
         },
         leadingIcon = {
-            Icon(Icons.Filled.Search, contentDescription = stringResource(Res.string.search), tint = MaterialTheme.colorScheme.onSurface)
+            Icon(Icons.Filled.Search, contentDescription = stringResource(Res.string.search), tint = MaterialTheme.colorScheme.onBackground)
         },
         colors = TextFieldDefaults.colors(
             focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
             unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-            cursorColor = MaterialTheme.colorScheme.onSurface,
-            focusedTextColor = MaterialTheme.colorScheme.onSurface,
-            unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
+            cursorColor = MaterialTheme.colorScheme.onBackground,
+            focusedTextColor = MaterialTheme.colorScheme.onBackground,
+            unfocusedTextColor = MaterialTheme.colorScheme.onBackground,
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
         ),
@@ -255,7 +255,7 @@ fun SearchField(
             },
         ),
         textStyle = MaterialTheme.typography.titleMedium.copy(
-            color = MaterialTheme.colorScheme.onSurface,
+            color = MaterialTheme.colorScheme.onBackground,
             lineHeight = 24.sp,
             letterSpacing = .5.sp,
         ),
