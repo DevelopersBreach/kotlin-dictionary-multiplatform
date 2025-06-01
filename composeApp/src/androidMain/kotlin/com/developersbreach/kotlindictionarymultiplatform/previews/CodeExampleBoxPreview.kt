@@ -10,7 +10,7 @@ import com.developersbreach.kotlindictionarymultiplatform.ui.theme.KotlinDiction
 
 @PreviewLightDark
 @Composable
-fun CodeExampleBoxLightPreview() {
+fun CodeExampleBoxPreview() {
     KotlinDictionaryTheme {
         CodeExampleBox(
             code = sampleCodeSnippet(),

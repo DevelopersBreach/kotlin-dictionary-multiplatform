@@ -7,7 +7,7 @@ import com.developersbreach.kotlindictionarymultiplatform.ui.theme.KotlinDiction
 
 @PreviewLightDark
 @Composable
-fun TopicCardLightPreview() {
+fun TopicCardPreview() {
     KotlinDictionaryTheme {
         TopicCard(
             topic = topic(),

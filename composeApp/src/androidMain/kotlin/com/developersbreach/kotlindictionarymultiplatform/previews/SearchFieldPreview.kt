@@ -11,7 +11,7 @@ import com.developersbreach.kotlindictionarymultiplatform.ui.theme.KotlinDiction
 
 @PreviewLightDark
 @Composable
-fun SearchFieldLightPreview() {
+fun SearchFieldPreview() {
     KotlinDictionaryTheme {
         var searchQuery by remember { mutableStateOf("") }
         SearchField(
