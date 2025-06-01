@@ -1,9 +1,11 @@
+import com.android.build.api.dsl.ApplicationDefaultConfig
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -118,6 +120,9 @@ android {
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
+
+        val properties = getLocalProperties()
+        setupBuildConfigFields(properties = properties)
     }
     packaging {
         resources {
@@ -133,6 +138,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
@@ -147,6 +155,27 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "com.developersbreach.kotlindictionarymultiplatform"
             packageVersion = "1.0.0"
+        }
+    }
+}
+
+fun ApplicationDefaultConfig.setupBuildConfigFields(
+    properties: Properties,
+) {
+    fun secret(key: String): String = System.getenv(key) ?: properties.getProperty(key, "")
+
+    if (secret("OPEN_API_KEY").isEmpty()) {
+        error("OPEN_API_KEY not set in local.properties")
+    }
+
+    buildConfigField(type = "String", name = "OPEN_API_KEY", value = "\"${secret("OPEN_API_KEY")}\"")
+}
+
+fun getLocalProperties(): Properties {
+    return Properties().apply {
+        val file = rootProject.file("local.properties")
+        if (file.exists()) {
+            file.inputStream().use { load(it) }
         }
     }
 }
