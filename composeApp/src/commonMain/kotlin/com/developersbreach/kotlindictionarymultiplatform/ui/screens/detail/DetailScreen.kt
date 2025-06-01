@@ -42,6 +42,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.KotlinTopicDetails
 import com.developersbreach.kotlindictionarymultiplatform.ui.components.UiStateHandler
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
 import kotlindictionarymultiplatform.composeapp.generated.resources.back
@@ -66,146 +67,135 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(viewModel: DetailViewModel) {
     val topicState by viewModel.state.collectAsState()
 
     UiStateHandler(uiState = topicState) { topic ->
-        val scrollState = rememberScrollState()
+        DetailScreenContent(topic)
+    }
+}
 
-        Scaffold(
-            containerColor = MaterialTheme.colorScheme.background,
-            topBar = {
-                TopAppBar(
-                    title = {
-                        Text(
-                            text = topic.topicName,
-                            style = MaterialTheme.typography.displayMedium,
-                            color = MaterialTheme.colorScheme.onPrimary,
-                            modifier = Modifier.fillMaxWidth(),
-                        )
-                    },
-                    navigationIcon = {
-                        IconButton(onClick = { /* Back action */ }) {
-                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(Res.string.back))
-                        }
-                    },
-                    colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.background,
-                        titleContentColor = MaterialTheme.colorScheme.onPrimary,
-                        navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
-                    ),
-                )
-            },
-        ) { innerPadding ->
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .verticalScroll(scrollState)
-                    .padding(16.dp)
-                    .padding(innerPadding),
-            ) {
-                Text(
-                    text = stringResource(Res.string.table_of_contents),
-                    style = MaterialTheme.typography.titleLarge,
-                    color = MaterialTheme.colorScheme.onPrimary,
-                )
-                Spacer(modifier = Modifier.height(4.dp))
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun DetailScreenContent(topic: KotlinTopicDetails) {
+    val scrollState = rememberScrollState()
 
-                val tableOfContents = buildList {
-                    add(stringResource(Res.string.introduction_bullet))
-                    if (topic.syntax.signature.isNotBlank()) add(stringResource(Res.string.syntax_bullet))
-                    if (topic.sections.isNotEmpty()) add(stringResource(Res.string.sections_bullet))
-                    if (topic.pitfalls.isNotEmpty()) add(stringResource(Res.string.pitfalls_bullet))
-                    if (topic.relatedTopics.isNotEmpty()) add(stringResource(Res.string.related_topics_bullet))
-                }
-
-                tableOfContents.forEach {
+    Scaffold(
+        containerColor = MaterialTheme.colorScheme.background,
+        topBar = {
+            TopAppBar(
+                title = {
                     Text(
-                        text = it,
-                        modifier = Modifier
-                            .clickable { }
-                            .padding(vertical = 4.dp),
-                        color = MaterialTheme.colorScheme.onSurface,
+                        text = topic.topicName,
+                        style = MaterialTheme.typography.displayMedium,
+                        color = MaterialTheme.colorScheme.onPrimary,
+                        modifier = Modifier.fillMaxWidth(),
                     )
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Text(stringResource(Res.string.introduction), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
-                Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = topic.intro,
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Text(stringResource(Res.string.syntax), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
-                Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = topic.syntax.signature,
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-                topic.syntax.notes?.let {
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(
-                        text = stringResource(Res.string.notes_with_value, it),
-                        style = MaterialTheme.typography.bodyMedium,
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                topic.sections.forEach { section ->
-                    section.heading?.let {
-                        Text(it, style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
-                        Spacer(modifier = Modifier.height(4.dp))
+                },
+                navigationIcon = {
+                    IconButton(onClick = { }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(Res.string.back))
                     }
-                    section.content?.let {
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.background,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
+                ),
+            )
+        },
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(scrollState)
+                .padding(16.dp)
+                .padding(innerPadding),
+        ) {
+            Text(
+                text = stringResource(Res.string.table_of_contents),
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.onPrimary,
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+
+            val tableOfContents = buildList {
+                add(stringResource(Res.string.introduction_bullet))
+                if (topic.syntax.signature.isNotBlank()) add(stringResource(Res.string.syntax_bullet))
+                if (topic.sections.isNotEmpty()) add(stringResource(Res.string.sections_bullet))
+                if (topic.pitfalls.isNotEmpty()) add(stringResource(Res.string.pitfalls_bullet))
+                if (topic.relatedTopics.isNotEmpty()) add(stringResource(Res.string.related_topics_bullet))
+            }
+
+            tableOfContents.forEach {
+                Text(
+                    text = it,
+                    modifier = Modifier
+                        .clickable { }
+                        .padding(vertical = 4.dp),
+                    color = MaterialTheme.colorScheme.onSurface,
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Text(stringResource(Res.string.introduction), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(text = topic.intro, style = MaterialTheme.typography.bodyMedium)
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Text(stringResource(Res.string.syntax), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(text = topic.syntax.signature, style = MaterialTheme.typography.bodyMedium)
+            topic.syntax.notes?.let {
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = stringResource(Res.string.notes_with_value, it),
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            topic.sections.forEach { section ->
+                section.heading?.let {
+                    Text(it, style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
+                    Spacer(modifier = Modifier.height(4.dp))
+                }
+                section.content?.let {
+                    Text(it, style = MaterialTheme.typography.bodyMedium)
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
+                section.codeExamples.forEach { example ->
+                    example.description?.let {
                         Text(
                             it,
-                            style = MaterialTheme.typography.bodyMedium,
-                        )
-                        Spacer(modifier = Modifier.height(8.dp))
-                    }
-
-                    section.codeExamples.forEach { example ->
-                        example.description?.let {
-                            Text(
-                                it,
-                                fontWeight = FontWeight.Bold,
-                                style = MaterialTheme.typography.bodyMedium,
-                            )
-                        }
-                        Spacer(modifier = Modifier.height(16.dp))
-                        CodeExampleBox(code = example.code)
-                        Spacer(modifier = Modifier.height(16.dp))
-                    }
-                }
-
-                if (topic.pitfalls.isNotEmpty()) {
-                    Text(stringResource(Res.string.pitfalls), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
-                    Spacer(modifier = Modifier.height(4.dp))
-                    topic.pitfalls.forEach {
-                        Text(
-                            stringResource(Res.string.bullet_item, it),
+                            fontWeight = FontWeight.Bold,
                             style = MaterialTheme.typography.bodyMedium,
                         )
                     }
                     Spacer(modifier = Modifier.height(16.dp))
+                    CodeExampleBox(code = example.code)
+                    Spacer(modifier = Modifier.height(16.dp))
                 }
+            }
 
-                if (topic.relatedTopics.isNotEmpty()) {
-                    Text(stringResource(Res.string.related_topics), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
-                    Spacer(modifier = Modifier.height(4.dp))
-                    topic.relatedTopics.forEach {
-                        Text(
-                            stringResource(Res.string.bullet_item, it),
-                            style = MaterialTheme.typography.bodyMedium,
-                        )
-                    }
+            if (topic.pitfalls.isNotEmpty()) {
+                Text(stringResource(Res.string.pitfalls), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
+                Spacer(modifier = Modifier.height(4.dp))
+                topic.pitfalls.forEach {
+                    Text(stringResource(Res.string.bullet_item, it), style = MaterialTheme.typography.bodyMedium)
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+            }
+
+            if (topic.relatedTopics.isNotEmpty()) {
+                Text(stringResource(Res.string.related_topics), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
+                Spacer(modifier = Modifier.height(4.dp))
+                topic.relatedTopics.forEach {
+                    Text(stringResource(Res.string.bullet_item, it), style = MaterialTheme.typography.bodyMedium)
                 }
             }
         }
