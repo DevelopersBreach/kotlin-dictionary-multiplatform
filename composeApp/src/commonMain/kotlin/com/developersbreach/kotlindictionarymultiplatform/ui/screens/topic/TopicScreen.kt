@@ -14,7 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -36,12 +36,8 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -71,21 +67,11 @@ fun TopicScreen(
     viewModel: TopicViewModel,
 ) {
     val topicState by viewModel.topics.collectAsState()
+    val filteredTopics by viewModel.filteredTopics.collectAsState()
+    val searchQuery by viewModel.searchQuery.collectAsState()
+    val bookmarkedStates by viewModel.bookmarkedStates.collectAsState()
 
-    UiStateHandler(uiState = topicState) { topics ->
-
-        val searchQuery = remember { mutableStateOf("") }
-
-        val filteredTopics = remember(searchQuery.value, topics) {
-            if (searchQuery.value.isBlank()) {
-                topics
-            } else {
-                topics.filter { it.name.contains(searchQuery.value, ignoreCase = true) }
-            }
-        }
-
-        val bookmarkedStates = remember { mutableStateListOf<Boolean>().apply { addAll(List(topics.size) { true }) } }
-
+    UiStateHandler(uiState = topicState) {
         Scaffold(
             containerColor = MaterialTheme.colorScheme.background,
             topBar = {
@@ -116,7 +102,10 @@ fun TopicScreen(
                     .padding(horizontal = 16.dp)
                     .padding(top = paddingValues.calculateTopPadding()),
             ) {
-                SearchField(searchQuery = searchQuery)
+                SearchField(
+                    searchQuery = searchQuery,
+                    onQueryChange = viewModel::updateSearchQuery,
+                )
 
                 Spacer(modifier = Modifier.height(8.dp))
 
@@ -124,8 +113,7 @@ fun TopicScreen(
                     modifier = Modifier.fillMaxSize(),
                     contentPadding = PaddingValues(bottom = 40.dp),
                 ) {
-                    items(filteredTopics) { topic ->
-                        val index = topics.indexOf(topic)
+                    itemsIndexed(filteredTopics) { index, topic ->
                         val isBookmarked = bookmarkedStates.getOrNull(index) ?: true
 
                         TopicCard(
@@ -133,7 +121,7 @@ fun TopicScreen(
                             subtitle = stringResource(Res.string.description_subtitle),
                             isBookmarked = isBookmarked,
                             onBookmarkClick = {
-                                if (index != -1) bookmarkedStates[index] = !bookmarkedStates[index]
+                                viewModel.toggleBookmark(index)
                             },
                             onCardClick = {
                                 onTopicClick(topic.name)
@@ -215,11 +203,12 @@ fun TopicCard(
 
 @Composable
 fun SearchField(
-    searchQuery: MutableState<String>,
+    searchQuery: String,
+    onQueryChange: (String) -> Unit,
 ) {
     TextField(
-        value = searchQuery.value,
-        onValueChange = { searchQuery.value = it },
+        value = searchQuery,
+        onValueChange = onQueryChange,
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(25.dp))
