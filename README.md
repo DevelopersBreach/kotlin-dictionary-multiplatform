@@ -25,7 +25,13 @@ You can open the web application by running the `:composeApp:wasmJsBrowserDevelo
 ## 🎢 Roadmap
 
 - [x] Add `ktlint` configuration for code style enforcement.
-- [ ] Integrate `Arrow Core` for exception handling.
+- [x] Integrate `Arrow Core` for exception handling.
 - [x] Add a centralized logger.
 - [ ] Create a separate module for reusable UI components.
-- [ ] Configure GitHub Actions workflow.
+- [x] Configure GitHub Actions workflow.
+- [ ] Assign unique IDs to objects and enforce consistent ordering logic.
+- [ ] Correct usage of visibility modifiers across the codebase.
+- [ ] Introduce common @Preview annotations for reusable Composable previews.
+- [ ] Implement section-wise scroll behavior on the `Detail Screen` for better navigation.
+- [ ] Add inline code formatting support for syntax display on the `Detail Screen`.
+- [ ] Replace the search icon on the `Topic Card` to improve visual consistency.
