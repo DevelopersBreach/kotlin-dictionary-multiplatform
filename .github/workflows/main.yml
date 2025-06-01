@@ -1,4 +1,4 @@
-name: androidTest
+name: tests
 
 on:
   pull_request:
@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      OPEN_API_KEY: ${{ secrets.OPEN_API_KEY }}
 
     steps:
       - name: Checkout 
