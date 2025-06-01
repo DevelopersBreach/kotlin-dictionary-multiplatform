@@ -223,7 +223,7 @@ fun CodeExampleBox(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .border(1.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(8.dp))
+            .border(1.dp, MaterialTheme.colorScheme.onPrimaryContainer, RoundedCornerShape(8.dp))
             .background(MaterialTheme.colorScheme.primaryContainer, RoundedCornerShape(8.dp)),
     ) {
         Column(modifier = Modifier.padding(0.dp)) {
