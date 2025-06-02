@@ -1,7 +1,9 @@
-package com.developersbreach.kotlindictionarymultiplatform.previews
+package com.developersbreach.kotlindictionarymultiplatform.previews.topic
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import com.developersbreach.kotlindictionarymultiplatform.previews.subtitle
+import com.developersbreach.kotlindictionarymultiplatform.previews.topic
 import com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.TopicCard
 import com.developersbreach.kotlindictionarymultiplatform.ui.theme.KotlinDictionaryTheme
 
