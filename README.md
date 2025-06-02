@@ -2,7 +2,8 @@
 
 ![Kotlin Dictionary Banner](assets/banner.png)
 
-Kotlin Dictionary is a student-led, cross-platform app designed to help learners dive deep into the Kotlin programming language. It serves as an interactive reference where you can explore topics with clear explanations and reinforce your learning through quizzes.
+Kotlin Dictionary is a student-led, cross-platform app designed to help learners dive deep into the Kotlin programming language. It serves as an interactive reference where you can explore topics with clear explanations and reinforce your learning through quizzes.   
+✨ _The data is powered by AI tools which help automate content generation, ensure consistency, and speed up the documentation._
 
 ---
 
@@ -23,13 +24,21 @@ We're all learning together, and the code evolves as we grow!
 
 ---
 
+## 🎨 Concept Design
+
+Here’s an early concept image illustrating the app’s design:
+
+![Concept Design](assets/img_concept.png)
+
+---
+
 ## 📱 Screenshots
 
 Here are a couple of early previews from the Android version of the app:
 
 <p>
-  <img src="assets/img_topic_screen.jpg" alt="Topic Screen" width="150"/>
-  <img src="assets/img_detail_screen_variables.jpg" alt="Detail Screen" width="150"/>
+  <img src="assets/img_topic_screen.png" alt="Topic Screen" width="150"/>
+  <img src="assets/img_detail_screen_variables.png" alt="Detail Screen" width="150"/>
 </p>
 
 > *More previews coming soon as the UI progresses!*
