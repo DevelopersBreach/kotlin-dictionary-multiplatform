@@ -27,8 +27,10 @@ We're all learning together, and the code evolves as we grow!
 
 Here are a couple of early previews from the Android version of the app:
 
-![Android Screenshot](assets/img_topic_screen.jpg)
-![Android Screenshot](assets/img_detail_screen_variables.jpg)
+<p>
+  <img src="assets/img_topic_screen.jpg" alt="Topic Screen" width="150"/>
+  <img src="assets/img_detail_screen_variables.jpg" alt="Detail Screen" width="150"/>
+</p>
 
 > *More previews coming soon as the UI progresses!*
 
