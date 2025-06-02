@@ -1,24 +1,42 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop.
+# Kotlin Dictionary 📚
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+![Kotlin Dictionary Banner](assets/banner.png)
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+Kotlin Dictionary is a student-led, cross-platform app designed to help learners dive deep into the Kotlin programming language. It serves as an interactive reference where you can explore topics with clear explanations and reinforce your learning through quizzes.
 
+---
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html),
-[Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform/#compose-multiplatform),
-[Kotlin/Wasm](https://kotl.in/wasm/)…
+## About This Project
 
-We would appreciate your feedback on Compose/Web and Kotlin/Wasm in the public Slack channel [#compose-web](https://slack-chats.kotlinlang.org/c/compose-web).
-If you face any issues, please report them on [GitHub](https://github.com/JetBrains/compose-multiplatform/issues).
+This project is part of a collaborative learning effort by students passionate about Kotlin, Jetpack Compose, and cross-platform development. It is being built as we explore and experiment with Kotlin Multiplatform capabilities.
 
-You can open the web application by running the `:composeApp:wasmJsBrowserDevelopmentRun` Gradle task.
+We're exploring core Kotlin concepts and building this app as a way to document our journey, reinforce what we learn, and share it with others along the way.
+
+The Kotlin Dictionary project is being guided by [@RajashekarRaju](https://github.com/RajashekarRaju), who mentors contributors throughout the process. This includes:
+
+- Providing architectural guidance
+- Reviewing contributions
+- Suggesting improvements
+- Promoting best practices in Kotlin development
+
+We're all learning together, and the code evolves as we grow!
+
+---
+
+## 📱 Screenshots
+
+Here are a couple of early previews from the Android version of the app:
+
+![Android Screenshot](assets/img_topic_screen.jpg)
+![Android Screenshot](assets/img_detail_screen_variables.jpg)
+
+> *More previews coming soon as the UI progresses!*
+
+---
+
+## ⚠️ Disclaimer
+
+This is an educational project developed by students. Expect rapid changes, experiments, and ongoing improvements as part of the learning journey. 😊
 
 ---
 
@@ -35,3 +53,6 @@ You can open the web application by running the `:composeApp:wasmJsBrowserDevelo
 - [ ] Implement section-wise scroll behavior on the `Detail Screen` for better navigation.
 - [ ] Add inline code formatting support for syntax display on the `Detail Screen`.
 - [ ] Replace the search icon on the `Topic Card` to improve visual consistency.
+- [ ] Implement caching on the `Detail Screen` to store previously viewed topic data.
+- [ ] Switch AI integration from OpenAI to Gemini.
+- [ ] Refactor network layer for cleaner architecture.
