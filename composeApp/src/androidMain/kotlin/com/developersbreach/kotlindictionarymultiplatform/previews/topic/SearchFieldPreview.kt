@@ -1,4 +1,4 @@
-package com.developersbreach.kotlindictionarymultiplatform.previews
+package com.developersbreach.kotlindictionarymultiplatform.previews.topic
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue

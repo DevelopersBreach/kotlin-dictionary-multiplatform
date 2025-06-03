@@ -1,13 +1,14 @@
-package com.developersbreach.kotlindictionarymultiplatform.previews
+package com.developersbreach.kotlindictionarymultiplatform.previews.topic
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
+import com.developersbreach.kotlindictionarymultiplatform.previews.sampleTopicList
 import com.developersbreach.kotlindictionarymultiplatform.ui.components.UiState
 import com.developersbreach.kotlindictionarymultiplatform.ui.components.UiStateHandler
-import com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.TopicScreenLayout
+import com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.TopicScreenUI
 import com.developersbreach.kotlindictionarymultiplatform.ui.theme.KotlinDictionaryTheme
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -47,7 +48,7 @@ fun TopicScreenContent(
     val bookmarkedStates by viewModel.bookmarkedStates.collectAsState()
 
     UiStateHandler(uiState = topicState) {
-        TopicScreenLayout(
+        TopicScreenUI(
             topics = filteredTopics,
             bookmarkedStates = bookmarkedStates,
             searchQuery = searchQuery,
