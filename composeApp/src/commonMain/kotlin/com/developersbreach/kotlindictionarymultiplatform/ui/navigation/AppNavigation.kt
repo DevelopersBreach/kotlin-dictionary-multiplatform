@@ -12,9 +12,7 @@ import com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.Topic
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun AppNavigation(
-    startDestination: AppDestinations = AppDestinations.TopicList,
-) {
+fun AppNavigation(startDestination: AppDestinations = AppDestinations.TopicList) {
     val navController = rememberNavController()
     val actions = remember(navController) { NavigationAction(navController) }
 

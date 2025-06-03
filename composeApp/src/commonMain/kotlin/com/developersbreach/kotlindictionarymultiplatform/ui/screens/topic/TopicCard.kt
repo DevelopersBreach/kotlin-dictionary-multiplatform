@@ -92,8 +92,18 @@ fun TopicCard(
 
             IconButton(onClick = onBookmarkClick) {
                 Icon(
-                    imageVector = if (isBookmarked) Icons.Outlined.BookmarkBorder else Icons.Filled.Bookmark,
-                    contentDescription = if (isBookmarked) stringResource(Res.string.remove_bookmark) else stringResource(Res.string.add_bookmark),
+                    imageVector = if (isBookmarked) {
+                        Icons.Outlined.BookmarkBorder
+                    } else {
+                        Icons.Filled.Bookmark
+                    },
+                    contentDescription = if (isBookmarked) {
+                        stringResource(
+                            Res.string.remove_bookmark,
+                        )
+                    } else {
+                        stringResource(Res.string.add_bookmark)
+                    },
                     tint = MaterialTheme.colorScheme.primary,
                 )
             }

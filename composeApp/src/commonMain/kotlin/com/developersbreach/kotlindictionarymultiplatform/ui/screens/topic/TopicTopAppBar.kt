@@ -32,7 +32,10 @@ fun TopicTopBar() {
         },
         navigationIcon = {
             IconButton(onClick = { /* Optional Back Logic */ }) {
-                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(Res.string.back))
+                Icon(
+                    Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = stringResource(Res.string.back),
+                )
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(
