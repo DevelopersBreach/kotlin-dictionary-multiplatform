@@ -14,11 +14,7 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun IntroductionSection(topic: KotlinTopicDetails) {
-    Text(
-        stringResource(Res.string.introduction),
-        style = MaterialTheme.typography.headlineLarge,
-        color = MaterialTheme.colorScheme.onPrimary,
-    )
+    Text(stringResource(Res.string.introduction), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
     Spacer(modifier = Modifier.height(4.dp))
     Text(text = topic.intro, style = MaterialTheme.typography.bodyMedium)
 }

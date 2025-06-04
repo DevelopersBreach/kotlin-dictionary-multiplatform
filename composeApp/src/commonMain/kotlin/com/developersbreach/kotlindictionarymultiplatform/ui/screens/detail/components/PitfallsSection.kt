@@ -16,17 +16,10 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun PitfallsSection(topic: KotlinTopicDetails) {
     if (topic.pitfalls.isNotEmpty()) {
-        Text(
-            stringResource(Res.string.pitfalls),
-            style = MaterialTheme.typography.headlineLarge,
-            color = MaterialTheme.colorScheme.onPrimary,
-        )
+        Text(stringResource(Res.string.pitfalls), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
         Spacer(Modifier.height(4.dp))
         topic.pitfalls.forEach {
-            Text(
-                stringResource(Res.string.bullet_item, it),
-                style = MaterialTheme.typography.bodyMedium,
-            )
+            Text(stringResource(Res.string.bullet_item, it), style = MaterialTheme.typography.bodyMedium)
         }
         Spacer(Modifier.height(16.dp))
     }

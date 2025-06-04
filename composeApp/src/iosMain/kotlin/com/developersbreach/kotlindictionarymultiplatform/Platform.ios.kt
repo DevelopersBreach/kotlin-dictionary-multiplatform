@@ -1,4 +1,3 @@
-@file:Suppress("ktlint")
 package com.developersbreach.kotlindictionarymultiplatform
 
 import platform.UIKit.UIDevice

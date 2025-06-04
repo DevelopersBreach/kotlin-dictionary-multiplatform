@@ -46,11 +46,7 @@ fun SearchField(
             )
         },
         leadingIcon = {
-            Icon(
-                Icons.Filled.Search,
-                contentDescription = stringResource(Res.string.search),
-                tint = MaterialTheme.colorScheme.onBackground,
-            )
+            Icon(Icons.Filled.Search, contentDescription = stringResource(Res.string.search), tint = MaterialTheme.colorScheme.onBackground)
         },
         colors = TextFieldDefaults.colors(
             focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,

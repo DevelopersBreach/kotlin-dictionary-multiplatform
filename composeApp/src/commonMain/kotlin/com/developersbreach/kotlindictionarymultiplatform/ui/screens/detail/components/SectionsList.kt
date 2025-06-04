@@ -15,11 +15,7 @@ import com.developersbreach.kotlindictionarymultiplatform.ui.screens.detail.Code
 fun SectionsList(topic: KotlinTopicDetails) {
     topic.sections.forEach { section ->
         section.heading?.let {
-            Text(
-                it,
-                style = MaterialTheme.typography.headlineLarge,
-                color = MaterialTheme.colorScheme.onPrimary,
-            )
+            Text(it, style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
             Spacer(Modifier.height(4.dp))
         }
         section.content?.let {

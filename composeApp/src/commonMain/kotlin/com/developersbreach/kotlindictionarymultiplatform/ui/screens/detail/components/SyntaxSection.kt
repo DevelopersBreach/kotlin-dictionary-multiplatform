@@ -16,11 +16,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun SyntaxSection(topic: KotlinTopicDetails) {
     if (topic.syntax.signature.isNotBlank()) {
-        Text(
-            stringResource(Res.string.syntax),
-            style = MaterialTheme.typography.headlineLarge,
-            color = MaterialTheme.colorScheme.onPrimary,
-        )
+        Text(stringResource(Res.string.syntax), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
         Spacer(Modifier.height(4.dp))
         Text(text = topic.syntax.signature, style = MaterialTheme.typography.bodyMedium)
         topic.syntax.notes?.let {

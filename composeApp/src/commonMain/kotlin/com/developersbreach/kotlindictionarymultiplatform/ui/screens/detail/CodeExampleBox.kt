@@ -60,10 +60,7 @@ fun CodeExampleBox(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(
-                        MaterialTheme.colorScheme.onPrimaryContainer,
-                        RoundedCornerShape(8.dp),
-                    )
+                    .background(MaterialTheme.colorScheme.onPrimaryContainer, RoundedCornerShape(8.dp))
                     .padding(6.dp),
             ) {
                 Row(
@@ -93,23 +90,13 @@ fun CodeExampleBox(
                             .padding(4.dp),
                     ) {
                         Icon(
-                            imageVector = if (copied) {
-                                Icons.Default.Check
-                            } else {
-                                Icons.Default.ContentCopy
-                            },
+                            imageVector = if (copied) Icons.Default.Check else Icons.Default.ContentCopy,
                             contentDescription = stringResource(Res.string.copy),
                             tint = MaterialTheme.colorScheme.onPrimary,
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
-                            text = if (copied) {
-                                stringResource(
-                                    Res.string.copied,
-                                )
-                            } else {
-                                stringResource(Res.string.copy)
-                            },
+                            text = if (copied) stringResource(Res.string.copied) else stringResource(Res.string.copy),
                             fontSize = 12.sp,
                             color = MaterialTheme.colorScheme.onPrimary,
                         )

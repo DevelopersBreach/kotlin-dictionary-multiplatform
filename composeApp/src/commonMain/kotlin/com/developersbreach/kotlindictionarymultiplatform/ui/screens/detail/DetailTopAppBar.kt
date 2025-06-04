@@ -30,10 +30,7 @@ fun DetailTopBar(title: String) {
         },
         navigationIcon = {
             IconButton(onClick = { /* TODO: Navigate back */ }) {
-                Icon(
-                    Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = stringResource(Res.string.back),
-                )
+                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(Res.string.back))
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(
