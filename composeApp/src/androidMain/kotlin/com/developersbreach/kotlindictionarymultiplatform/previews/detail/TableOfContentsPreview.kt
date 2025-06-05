@@ -2,7 +2,7 @@ package com.developersbreach.kotlindictionarymultiplatform.previews.detail
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.developersbreach.kotlindictionarymultiplatform.previews.fakeTopicDetails
+import com.developersbreach.kotlindictionarymultiplatform.previews.faketopiclist
 import com.developersbreach.kotlindictionarymultiplatform.ui.screens.detail.components.TableOfContents
 import com.developersbreach.kotlindictionarymultiplatform.ui.theme.KotlinDictionaryTheme
 
@@ -10,6 +10,9 @@ import com.developersbreach.kotlindictionarymultiplatform.ui.theme.KotlinDiction
 @Composable
 fun TableOfContentsPreview() {
     KotlinDictionaryTheme {
-        TableOfContents(topic = fakeTopicDetails())
+        TableOfContents(
+            items = faketopiclist,
+            onClick = {},
+        )
     }
 }
