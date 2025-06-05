@@ -15,7 +15,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bookmark
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -30,7 +29,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
 import kotlindictionarymultiplatform.composeapp.generated.resources.add_bookmark
-import kotlindictionarymultiplatform.composeapp.generated.resources.icon
 import kotlindictionarymultiplatform.composeapp.generated.resources.remove_bookmark
 import org.jetbrains.compose.resources.stringResource
 
@@ -63,7 +61,12 @@ fun TopicCard(
                     .background(MaterialTheme.colorScheme.primary, CircleShape),
                 contentAlignment = Alignment.Center,
             ) {
-                Icon(Icons.Filled.Search, contentDescription = stringResource(Res.string.icon))
+                Text(
+                    text = topic.firstOrNull()?.uppercase() ?: "?",
+                    style = MaterialTheme.typography.bodyLarge.copy(
+                        color = MaterialTheme.colorScheme.onPrimary,
+                    ),
+                )
             }
 
             Spacer(modifier = Modifier.width(12.dp))

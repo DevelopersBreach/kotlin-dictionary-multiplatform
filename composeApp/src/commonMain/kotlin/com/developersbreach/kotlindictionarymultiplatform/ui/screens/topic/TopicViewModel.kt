@@ -53,9 +53,10 @@ class TopicViewModel(
         val result = repository.getTopics()
         _topics.value = result.fold(
             ifLeft = { UiState.Error(it) },
-            ifRight = {
-                _bookmarkedStates.value = List(it.size) { true }
-                UiState.Success(it)
+            ifRight = { list ->
+                val sortedList = list.sortedBy { it.name.lowercase() }
+                _bookmarkedStates.value = List(sortedList.size) { true }
+                UiState.Success(sortedList)
             },
         )
     }
