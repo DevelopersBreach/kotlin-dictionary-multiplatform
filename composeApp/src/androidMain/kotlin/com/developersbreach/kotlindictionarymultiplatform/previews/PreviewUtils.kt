@@ -53,3 +53,10 @@ fun sampleTopicList(): List<Topic> = listOf(
     Topic("Lambdas"),
     Topic("Sealed Classes"),
 )
+
+val faketopiclist = listOf(
+    "Introduction" to 0,
+    "Examples" to 1,
+    "Use Cases" to 2,
+    "Best Practices" to 3,
+)
