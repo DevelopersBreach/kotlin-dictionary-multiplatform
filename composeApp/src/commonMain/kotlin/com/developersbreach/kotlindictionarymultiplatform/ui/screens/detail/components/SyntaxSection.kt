@@ -14,7 +14,9 @@ import kotlindictionarymultiplatform.composeapp.generated.resources.syntax
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun SyntaxSection(topic: KotlinTopicDetails) {
+fun SyntaxSection(
+    topic: KotlinTopicDetails,
+) {
     if (topic.syntax.signature.isNotBlank()) {
         Text(stringResource(Res.string.syntax), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
         Spacer(Modifier.height(4.dp))

@@ -12,7 +12,9 @@ import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.Kotl
 import com.developersbreach.kotlindictionarymultiplatform.ui.screens.detail.CodeExampleBox
 
 @Composable
-fun SectionsList(topic: KotlinTopicDetails) {
+fun SectionsList(
+    topic: KotlinTopicDetails,
+) {
     topic.sections.forEach { section ->
         section.heading?.let {
             Text(it, style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)

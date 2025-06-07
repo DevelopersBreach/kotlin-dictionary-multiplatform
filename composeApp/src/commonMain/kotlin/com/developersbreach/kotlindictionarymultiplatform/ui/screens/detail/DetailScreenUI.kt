@@ -11,7 +11,9 @@ import androidx.compose.ui.unit.dp
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.KotlinTopicDetails
 
 @Composable
-fun DetailScreenUI(topic: KotlinTopicDetails) {
+fun DetailScreenUI(
+    topic: KotlinTopicDetails,
+) {
     val scrollState = rememberScrollState()
 
     Scaffold(

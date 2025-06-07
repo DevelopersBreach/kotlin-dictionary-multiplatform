@@ -18,7 +18,9 @@ import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailTopBar(title: String) {
+fun DetailTopBar(
+    title: String,
+) {
     TopAppBar(
         title = {
             Text(

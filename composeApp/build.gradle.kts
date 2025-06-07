@@ -162,7 +162,9 @@ compose.desktop {
 fun ApplicationDefaultConfig.setupBuildConfigFields(
     properties: Properties,
 ) {
-    fun secret(key: String): String = System.getenv(key) ?: properties.getProperty(key, "")
+    fun secret(
+        key: String,
+    ): String = System.getenv(key) ?: properties.getProperty(key, "")
 
     if (secret("OPEN_API_KEY").isEmpty()) {
         error("OPEN_API_KEY not set in local.properties")

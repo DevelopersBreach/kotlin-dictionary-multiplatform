@@ -14,7 +14,9 @@ import kotlindictionarymultiplatform.composeapp.generated.resources.pitfalls
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun PitfallsSection(topic: KotlinTopicDetails) {
+fun PitfallsSection(
+    topic: KotlinTopicDetails,
+) {
     if (topic.pitfalls.isNotEmpty()) {
         Text(stringResource(Res.string.pitfalls), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
         Spacer(Modifier.height(4.dp))

@@ -20,7 +20,9 @@ import kotlindictionarymultiplatform.composeapp.generated.resources.table_of_con
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun TableOfContents(topic: KotlinTopicDetails) {
+fun TableOfContents(
+    topic: KotlinTopicDetails,
+) {
     val items = buildList {
         add(stringResource(Res.string.introduction_bullet))
         if (topic.syntax.signature.isNotBlank()) add(stringResource(Res.string.syntax_bullet))
