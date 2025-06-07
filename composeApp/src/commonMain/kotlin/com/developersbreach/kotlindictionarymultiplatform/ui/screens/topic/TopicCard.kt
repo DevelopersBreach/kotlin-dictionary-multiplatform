@@ -35,7 +35,7 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun TopicCard(
-    topicUi: TopicUi?,
+    topicUi: TopicUi,
     topic: String,
     subtitle: String,
     isBookmarked: Boolean,
