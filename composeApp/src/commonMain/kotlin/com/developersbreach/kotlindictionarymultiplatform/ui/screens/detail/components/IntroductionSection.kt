@@ -7,15 +7,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.KotlinTopicDetails
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
 import kotlindictionarymultiplatform.composeapp.generated.resources.introduction
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun IntroductionSection(topic: KotlinTopicDetails) {
+fun IntroductionSection(intro : String) {
     Text(stringResource(Res.string.introduction), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
     Spacer(Modifier.height(4.dp))
-    Text(text = topic.intro, style = MaterialTheme.typography.bodyMedium)
+    Text(text = intro, style = MaterialTheme.typography.bodyMedium)
     Spacer(Modifier.height(16.dp))
 }

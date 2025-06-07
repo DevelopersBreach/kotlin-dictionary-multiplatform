@@ -3,6 +3,7 @@ package com.developersbreach.kotlindictionarymultiplatform.ui.screens.detail
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -31,24 +32,26 @@ fun DetailContent(
 ) {
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
-
-    val tocItems = buildList {
-        var index = 1
-        add(stringResource(Res.string.introduction_bullet) to index++)
-        if (topic.syntax.signature.isNotBlank()) add(stringResource(Res.string.syntax_bullet) to index++)
-        topic.sections.forEach { section ->
-            section.heading?.let { add(stringResource(Res.string.bullet_item, it) to index++) }
-        }
-        if (topic.pitfalls.isNotEmpty()) add(stringResource(Res.string.pitfalls_bullet) to index++)
-        if (topic.relatedTopics.isNotEmpty()) add(stringResource(Res.string.related_topics_bullet) to index)
-    }
-
+    val tocItems = list(topic)
     LazyColumn(
         state = listState,
         modifier = modifier
             .fillMaxSize()
             .padding(horizontal = 16.dp),
     ) {
+        items(
+            tocItems
+        ){
+
+            when(it){
+                DetailViewModel.ItemTableOfContent.Introduction(intro = topic.intro) -> IntroductionSection(it.)
+                DetailViewModel.ItemTableOfContent.Pitfall -> SyntaxSection(it.)
+                DetailViewModel.ItemTableOfContent.RelatedTopic -> TODO()
+                is DetailViewModel.ItemTableOfContent.Section -> TODO()
+                DetailViewModel.ItemTableOfContent.Syntax -> TODO()
+            }
+        }
+
         // Table of Contents
         item {
             TableOfContents(
