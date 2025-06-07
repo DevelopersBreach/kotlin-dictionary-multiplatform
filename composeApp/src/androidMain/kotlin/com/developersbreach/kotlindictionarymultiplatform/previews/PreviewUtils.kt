@@ -5,6 +5,7 @@ import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.Kotl
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.Section
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.Syntax
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
+import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.TopicUi
 
 fun sampleCodeSnippet(): String = """
     fun greet(name: String): String {
@@ -53,3 +54,12 @@ fun sampleTopicList(): List<Topic> = listOf(
     Topic("Lambdas"),
     Topic("Sealed Classes"),
 )
+
+fun sampleTopicUiList(): List<TopicUi> =
+    sampleTopicList().map { topic ->
+        TopicUi(
+            name = topic.name,
+            initial = topic.name.firstOrNull()?.uppercase() ?: "",
+            isBookmarked = true,
+        )
+    }

@@ -5,6 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
+import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.TopicUi
 import com.developersbreach.kotlindictionarymultiplatform.previews.sampleTopicList
 import com.developersbreach.kotlindictionarymultiplatform.ui.components.UiState
 import com.developersbreach.kotlindictionarymultiplatform.ui.components.UiStateHandler
@@ -17,7 +18,15 @@ import kotlinx.coroutines.flow.StateFlow
 class FakeTopicViewModel : TopicViewModelFakeBase() {
     override val topics = MutableStateFlow<UiState<List<Topic>>>(UiState.Success(sampleTopicList()))
     override val searchQuery = MutableStateFlow("")
-    override val filteredTopics = MutableStateFlow(sampleTopicList())
+    override val filteredTopics = MutableStateFlow(
+        sampleTopicList().map { topic ->
+            TopicUi(
+                name = topic.name,
+                initial = topic.name.firstOrNull()?.uppercase() ?: "",
+                isBookmarked = true,
+            )
+        },
+    )
     override val bookmarkedStates = MutableStateFlow(List(sampleTopicList().size) { true })
 
     override fun updateSearchQuery(newQuery: String) {}
@@ -29,7 +38,7 @@ class FakeTopicViewModel : TopicViewModelFakeBase() {
 abstract class TopicViewModelFakeBase {
     abstract val topics: StateFlow<UiState<List<Topic>>>
     abstract val searchQuery: StateFlow<String>
-    abstract val filteredTopics: StateFlow<List<Topic>>
+    abstract val filteredTopics: StateFlow<List<TopicUi>>
     abstract val bookmarkedStates: StateFlow<List<Boolean>>
 
     abstract fun updateSearchQuery(newQuery: String)
