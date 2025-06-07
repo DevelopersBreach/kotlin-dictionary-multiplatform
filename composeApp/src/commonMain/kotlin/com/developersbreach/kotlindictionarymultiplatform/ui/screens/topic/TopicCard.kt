@@ -63,9 +63,7 @@ fun TopicCard(
                     .background(MaterialTheme.colorScheme.primary, CircleShape),
                 contentAlignment = Alignment.Center,
             ) {
-                if (topicUi != null) {
-                    Text(text = topicUi.initial)
-                }
+                Text(text = topicUi.initial)
             }
 
             Spacer(modifier = Modifier.width(12.dp))
