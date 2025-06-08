@@ -46,7 +46,11 @@ fun TopicCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
-            .shadow(6.dp, RoundedCornerShape(16.dp), clip = true)
+            .shadow(
+                elevation = 6.dp,
+                shape = RoundedCornerShape(16.dp),
+                clip = true,
+            )
             .clickable { onCardClick() },
         shape = RoundedCornerShape(16.dp),
         color = MaterialTheme.colorScheme.surface,
@@ -60,10 +64,16 @@ fun TopicCard(
             Box(
                 modifier = Modifier
                     .size(36.dp)
-                    .background(MaterialTheme.colorScheme.primary, CircleShape),
+                    .background(
+                        color = MaterialTheme.colorScheme.primary,
+                        shape = CircleShape,
+                    ),
                 contentAlignment = Alignment.Center,
             ) {
-                Icon(Icons.Filled.Search, contentDescription = stringResource(Res.string.icon))
+                Icon(
+                    imageVector = Icons.Filled.Search,
+                    contentDescription = stringResource(Res.string.icon),
+                )
             }
 
             Spacer(modifier = Modifier.width(12.dp))

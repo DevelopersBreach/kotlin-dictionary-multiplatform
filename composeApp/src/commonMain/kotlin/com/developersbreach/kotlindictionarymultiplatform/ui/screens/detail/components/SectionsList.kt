@@ -17,16 +17,27 @@ fun SectionsList(
 ) {
     topic.sections.forEach { section ->
         section.heading?.let {
-            Text(it, style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
+            Text(
+                text = it,
+                style = MaterialTheme.typography.headlineLarge,
+                color = MaterialTheme.colorScheme.onPrimary,
+            )
             Spacer(Modifier.height(4.dp))
         }
         section.content?.let {
-            Text(it, style = MaterialTheme.typography.bodyMedium)
+            Text(
+                text = it,
+                style = MaterialTheme.typography.bodyMedium,
+            )
             Spacer(Modifier.height(8.dp))
         }
         section.codeExamples.forEach { example ->
             example.description?.let {
-                Text(it, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.bodyMedium)
+                Text(
+                    text = it,
+                    fontWeight = FontWeight.Bold,
+                    style = MaterialTheme.typography.bodyMedium,
+                )
             }
             Spacer(Modifier.height(16.dp))
             CodeExampleBox(code = example.code)
