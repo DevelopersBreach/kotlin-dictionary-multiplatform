@@ -17,6 +17,7 @@ plugins {
 }
 
 ktlint {
+    version.set("1.3.0")
     android = true
     ignoreFailures = false
     reporters {
@@ -145,6 +146,7 @@ android {
 
 dependencies {
     debugImplementation(compose.uiTooling)
+    ktlint(project(":custom-ktlint-rules"))
 }
 
 compose.desktop {
