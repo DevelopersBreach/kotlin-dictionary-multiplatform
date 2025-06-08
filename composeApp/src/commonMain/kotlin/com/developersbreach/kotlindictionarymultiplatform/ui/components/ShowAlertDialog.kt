@@ -18,8 +18,8 @@ fun ShowAlertDialog(
 ) {
     AlertDialog(
         onDismissRequest = onButtonClick,
-        title = { Text(title) },
-        text = { Text(description) },
+        title = { Text(text = title) },
+        text = { Text(text = description) },
         confirmButton = {
             TextButton(onClick = onButtonClick) {
                 Text(text = stringResource(Res.string.ok))

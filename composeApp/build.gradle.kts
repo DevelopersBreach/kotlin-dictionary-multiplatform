@@ -154,7 +154,11 @@ compose.desktop {
         mainClass = "com.developersbreach.kotlindictionarymultiplatform.MainKt"
 
         nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            targetFormats(
+                TargetFormat.Dmg,
+                TargetFormat.Msi,
+                TargetFormat.Deb,
+            )
             packageName = "com.developersbreach.kotlindictionarymultiplatform"
             packageVersion = "1.0.0"
         }
@@ -166,13 +170,22 @@ fun ApplicationDefaultConfig.setupBuildConfigFields(
 ) {
     fun secret(
         key: String,
-    ): String = System.getenv(key) ?: properties.getProperty(key, "")
+    ): String {
+        return System.getenv(key) ?: properties.getProperty(
+            key,
+            "",
+        )
+    }
 
     if (secret("OPEN_API_KEY").isEmpty()) {
         error("OPEN_API_KEY not set in local.properties")
     }
 
-    buildConfigField(type = "String", name = "OPEN_API_KEY", value = "\"${secret("OPEN_API_KEY")}\"")
+    buildConfigField(
+        type = "String",
+        name = "OPEN_API_KEY",
+        value = "\"${secret("OPEN_API_KEY")}\"",
+    )
 }
 
 fun getLocalProperties(): Properties {
