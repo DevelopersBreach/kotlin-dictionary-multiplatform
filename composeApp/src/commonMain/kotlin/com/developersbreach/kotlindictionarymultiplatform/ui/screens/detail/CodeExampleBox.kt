@@ -53,14 +53,24 @@ fun CodeExampleBox(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .border(1.dp, MaterialTheme.colorScheme.onPrimaryContainer, RoundedCornerShape(8.dp))
-            .background(MaterialTheme.colorScheme.primaryContainer, RoundedCornerShape(8.dp)),
+            .border(
+                width = 1.dp,
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                shape = RoundedCornerShape(8.dp),
+            )
+            .background(
+                color = MaterialTheme.colorScheme.primaryContainer,
+                shape = RoundedCornerShape(8.dp),
+            ),
     ) {
         Column(modifier = Modifier.padding(0.dp)) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(MaterialTheme.colorScheme.onPrimaryContainer, RoundedCornerShape(8.dp))
+                    .background(
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        shape = RoundedCornerShape(8.dp),
+                    )
                     .padding(6.dp),
             ) {
                 Row(
@@ -108,7 +118,11 @@ fun CodeExampleBox(
 
             Text(
                 text = code,
-                modifier = Modifier.padding(start = 12.dp, end = 12.dp, bottom = 12.dp),
+                modifier = Modifier.padding(
+                    start = 12.dp,
+                    end = 12.dp,
+                    bottom = 12.dp,
+                ),
                 fontFamily = FontFamily.Monospace,
                 fontSize = 14.sp,
                 lineHeight = 20.sp,

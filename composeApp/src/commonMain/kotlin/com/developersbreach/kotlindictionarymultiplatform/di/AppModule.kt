@@ -13,7 +13,10 @@ val appModule = module {
     single { TopicRepository }
 
     viewModel { (handle: SavedStateHandle) ->
-        DetailViewModel(handle, get())
+        DetailViewModel(
+            savedStateHandle = handle,
+            repository = get(),
+        )
     }
 
     viewModel {

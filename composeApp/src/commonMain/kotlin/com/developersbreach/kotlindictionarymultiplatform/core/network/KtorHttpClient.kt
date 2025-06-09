@@ -96,8 +96,14 @@ object KtorHttpClient {
     ): KotlinTopicDetails {
         // Prepare messages
         val messages = listOf(
-            ChatMessage("system", "You are a Kotlin documentation generator."),
-            ChatMessage("user", "Generate full Kotlin documentation for topic \"$topicId\"."),
+            ChatMessage(
+                "system",
+                "You are a Kotlin documentation generator.",
+            ),
+            ChatMessage(
+                "user",
+                "Generate full Kotlin documentation for topic \"$topicId\".",
+            ),
         )
 
         // Build request body

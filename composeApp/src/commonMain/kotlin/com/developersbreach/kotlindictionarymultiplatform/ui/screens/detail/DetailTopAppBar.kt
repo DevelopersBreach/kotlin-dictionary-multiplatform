@@ -18,7 +18,9 @@ import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailTopBar(title: String) {
+fun DetailTopBar(
+    title: String,
+) {
     TopAppBar(
         title = {
             Text(
@@ -30,7 +32,10 @@ fun DetailTopBar(title: String) {
         },
         navigationIcon = {
             IconButton(onClick = { /* TODO: Navigate back */ }) {
-                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(Res.string.back))
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = stringResource(Res.string.back),
+                )
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(

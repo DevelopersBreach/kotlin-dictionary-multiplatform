@@ -14,15 +14,27 @@ import kotlindictionarymultiplatform.composeapp.generated.resources.syntax
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun SyntaxSection(topic: KotlinTopicDetails) {
+fun SyntaxSection(
+    topic: KotlinTopicDetails,
+) {
     if (topic.syntax.signature.isNotBlank()) {
-        Text(stringResource(Res.string.syntax), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
+        Text(
+            text = stringResource(resource = Res.string.syntax),
+            style = MaterialTheme.typography.headlineLarge,
+            color = MaterialTheme.colorScheme.onPrimary,
+        )
         Spacer(Modifier.height(4.dp))
-        Text(text = topic.syntax.signature, style = MaterialTheme.typography.bodyMedium)
+        Text(
+            text = topic.syntax.signature,
+            style = MaterialTheme.typography.bodyMedium,
+        )
         topic.syntax.notes?.let {
             Spacer(Modifier.height(4.dp))
             Text(
-                text = stringResource(Res.string.notes_with_value, it),
+                text = stringResource(
+                    Res.string.notes_with_value,
+                    it,
+                ),
                 style = MaterialTheme.typography.bodyMedium,
             )
         }

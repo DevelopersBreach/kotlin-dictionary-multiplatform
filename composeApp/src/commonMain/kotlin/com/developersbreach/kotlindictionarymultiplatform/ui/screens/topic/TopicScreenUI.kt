@@ -29,7 +29,10 @@ fun TopicScreenUI(
                 .padding(horizontal = 16.dp)
                 .padding(top = paddingValues.calculateTopPadding()),
         ) {
-            SearchField(searchQuery = searchQuery, onQueryChange = onQueryChange)
+            SearchField(
+                searchQuery = searchQuery,
+                onQueryChange = onQueryChange,
+            )
             Spacer(modifier = Modifier.height(8.dp))
             TopicList(
                 topics = topics,
