@@ -29,3 +29,4 @@ dependencyResolutionManagement {
 }
 
 include(":composeApp")
+include(":custom-ktlint-rules")

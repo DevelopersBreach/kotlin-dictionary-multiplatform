@@ -20,7 +20,9 @@ import kotlindictionarymultiplatform.composeapp.generated.resources.table_of_con
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun TableOfContents(topic: KotlinTopicDetails) {
+fun TableOfContents(
+    topic: KotlinTopicDetails,
+) {
     val items = buildList {
         add(stringResource(Res.string.introduction_bullet))
         if (topic.syntax.signature.isNotBlank()) add(stringResource(Res.string.syntax_bullet))
@@ -29,7 +31,11 @@ fun TableOfContents(topic: KotlinTopicDetails) {
         if (topic.relatedTopics.isNotEmpty()) add(stringResource(Res.string.related_topics_bullet))
     }
 
-    Text(text = stringResource(Res.string.table_of_contents), style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.onPrimary)
+    Text(
+        text = stringResource(Res.string.table_of_contents),
+        style = MaterialTheme.typography.titleLarge,
+        color = MaterialTheme.colorScheme.onPrimary,
+    )
     Spacer(Modifier.height(4.dp))
     items.forEach {
         Text(

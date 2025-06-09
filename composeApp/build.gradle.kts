@@ -18,6 +18,7 @@ plugins {
 }
 
 ktlint {
+    version.set("1.3.0")
     android = true
     ignoreFailures = false
     reporters {
@@ -147,6 +148,7 @@ android {
 
 dependencies {
     debugImplementation(compose.uiTooling)
+    ktlint(project(":custom-ktlint-rules"))
 }
 
 compose.desktop {
@@ -154,7 +156,11 @@ compose.desktop {
         mainClass = "com.developersbreach.kotlindictionarymultiplatform.MainKt"
 
         nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            targetFormats(
+                TargetFormat.Dmg,
+                TargetFormat.Msi,
+                TargetFormat.Deb,
+            )
             packageName = "com.developersbreach.kotlindictionarymultiplatform"
             packageVersion = "1.0.0"
         }
@@ -164,13 +170,24 @@ compose.desktop {
 fun ApplicationDefaultConfig.setupBuildConfigFields(
     properties: Properties,
 ) {
-    fun secret(key: String): String = System.getenv(key) ?: properties.getProperty(key, "")
+    fun secret(
+        key: String,
+    ): String {
+        return System.getenv(key) ?: properties.getProperty(
+            key,
+            "",
+        )
+    }
 
     if (secret("GEMINI_API_KEY").isEmpty()) {
         error("GEMINI_API_KEY not set in local.properties")
     }
 
-    buildConfigField(type = "String", name = "GEMINI_API_KEY", value = "\"${secret("GEMINI_API_KEY")}\"")
+    buildConfigField(
+        type = "String",
+        name = "GEMINI_API_KEY",
+        value = "\"${secret("GEMINI_API_KEY")}\"",
+    )
 }
 
 fun getLocalProperties(): Properties {

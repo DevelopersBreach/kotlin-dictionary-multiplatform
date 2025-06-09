@@ -65,11 +65,15 @@ class TopicViewModel(
         )
     }
 
-    fun updateSearchQuery(newQuery: String) {
+    fun updateSearchQuery(
+        newQuery: String,
+    ) {
         _searchQuery.value = newQuery
     }
 
-    fun toggleBookmark(index: Int) {
+    fun toggleBookmark(
+        index: Int,
+    ) {
         _bookmarkedStates.update { current ->
             if (index in current.indices) {
                 current.toMutableList().apply { this[index] = !this[index] }

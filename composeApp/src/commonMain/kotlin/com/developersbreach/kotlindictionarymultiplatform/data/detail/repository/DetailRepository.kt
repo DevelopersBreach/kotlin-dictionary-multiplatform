@@ -7,8 +7,14 @@ import com.developersbreach.kotlindictionarymultiplatform.getOpenApiKey
 
 class DetailRepository {
 
-    suspend fun fetchTopic(topicId: String): Either<Throwable, KotlinTopicDetails> =
-        Either.catch {
-            KtorHttpClient.generateTopicDetails(topicId, getOpenApiKey())
+    suspend fun fetchTopic(
+        topicId: String,
+    ): Either<Throwable, KotlinTopicDetails> {
+        return Either.catch {
+            KtorHttpClient.generateTopicDetails(
+                topicId = topicId,
+                apiKey = getOpenApiKey(),
+            )
         }
+    }
 }

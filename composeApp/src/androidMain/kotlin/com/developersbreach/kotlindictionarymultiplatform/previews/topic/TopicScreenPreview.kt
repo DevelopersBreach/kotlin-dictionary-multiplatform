@@ -29,9 +29,13 @@ class FakeTopicViewModel : TopicViewModelFakeBase() {
     )
     override val bookmarkedStates = MutableStateFlow(List(sampleTopicList().size) { true })
 
-    override fun updateSearchQuery(newQuery: String) {}
+    override fun updateSearchQuery(
+        newQuery: String,
+    ) {}
 
-    override fun toggleBookmark(index: Int) {}
+    override fun toggleBookmark(
+        index: Int,
+    ) {}
 }
 
 // Base class to avoid needing Android ViewModel
@@ -41,9 +45,13 @@ abstract class TopicViewModelFakeBase {
     abstract val filteredTopics: StateFlow<List<TopicUi>>
     abstract val bookmarkedStates: StateFlow<List<Boolean>>
 
-    abstract fun updateSearchQuery(newQuery: String)
+    abstract fun updateSearchQuery(
+        newQuery: String,
+    )
 
-    abstract fun toggleBookmark(index: Int)
+    abstract fun toggleBookmark(
+        index: Int,
+    )
 }
 
 @Composable

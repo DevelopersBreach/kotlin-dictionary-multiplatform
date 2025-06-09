@@ -1,3 +1,5 @@
 package com.developersbreach.kotlindictionarymultiplatform
 
-actual fun getOpenApiKey(): String = ""
+actual fun getOpenApiKey(): String {
+    return ""
+}

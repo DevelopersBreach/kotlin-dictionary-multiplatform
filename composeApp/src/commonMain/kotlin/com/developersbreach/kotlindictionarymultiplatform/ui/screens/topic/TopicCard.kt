@@ -46,7 +46,11 @@ fun TopicCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
-            .shadow(6.dp, RoundedCornerShape(16.dp), clip = true)
+            .shadow(
+                elevation = 6.dp,
+                shape = RoundedCornerShape(16.dp),
+                clip = true,
+            )
             .clickable { onCardClick() },
         shape = RoundedCornerShape(16.dp),
         color = MaterialTheme.colorScheme.surface,
@@ -60,7 +64,10 @@ fun TopicCard(
             Box(
                 modifier = Modifier
                     .size(36.dp)
-                    .background(MaterialTheme.colorScheme.primary, CircleShape),
+                    .background(
+                        color = MaterialTheme.colorScheme.primary,
+                        shape = CircleShape,
+                    ),
                 contentAlignment = Alignment.Center,
             ) {
                 Text(text = topicUi.initial)

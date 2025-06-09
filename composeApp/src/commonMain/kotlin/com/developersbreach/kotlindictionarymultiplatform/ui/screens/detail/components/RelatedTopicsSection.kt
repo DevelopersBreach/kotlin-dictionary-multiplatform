@@ -14,12 +14,24 @@ import kotlindictionarymultiplatform.composeapp.generated.resources.related_topi
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun RelatedTopicsSection(topic: KotlinTopicDetails) {
+fun RelatedTopicsSection(
+    topic: KotlinTopicDetails,
+) {
     if (topic.relatedTopics.isNotEmpty()) {
-        Text(stringResource(Res.string.related_topics), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
+        Text(
+            text = stringResource(resource = Res.string.related_topics),
+            style = MaterialTheme.typography.headlineLarge,
+            color = MaterialTheme.colorScheme.onPrimary,
+        )
         Spacer(Modifier.height(4.dp))
         topic.relatedTopics.forEach {
-            Text(stringResource(Res.string.bullet_item, it), style = MaterialTheme.typography.bodyMedium)
+            Text(
+                text = stringResource(
+                    Res.string.bullet_item,
+                    it,
+                ),
+                style = MaterialTheme.typography.bodyMedium,
+            )
         }
     }
 }

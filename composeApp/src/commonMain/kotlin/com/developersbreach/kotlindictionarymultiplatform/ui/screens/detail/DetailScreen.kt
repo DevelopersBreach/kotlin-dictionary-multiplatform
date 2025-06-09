@@ -6,7 +6,9 @@ import androidx.compose.runtime.getValue
 import com.developersbreach.kotlindictionarymultiplatform.ui.components.UiStateHandler
 
 @Composable
-fun DetailScreen(viewModel: DetailViewModel) {
+fun DetailScreen(
+    viewModel: DetailViewModel,
+) {
     val topicState by viewModel.state.collectAsState()
 
     UiStateHandler(uiState = topicState) { topic ->
