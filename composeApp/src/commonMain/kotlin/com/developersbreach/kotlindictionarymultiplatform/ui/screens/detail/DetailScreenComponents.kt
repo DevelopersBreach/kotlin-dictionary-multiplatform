@@ -67,7 +67,10 @@ fun SyntaxSection(
     syntax.notes?.let {
         Spacer(Modifier.height(4.dp))
         Text(
-            text = stringResource(Res.string.notes_with_value, it),
+            text = stringResource(
+                Res.string.notes_with_value,
+                it,
+            ),
             style = MaterialTheme.typography.bodyMedium,
         )
     }
@@ -79,18 +82,29 @@ fun SectionBlock(
     section: Section,
 ) {
     section.heading?.let {
-        Text(it, style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onPrimary)
+        Text(
+            text = it,
+            style = MaterialTheme.typography.headlineLarge,
+            color = MaterialTheme.colorScheme.onPrimary,
+        )
         Spacer(Modifier.height(4.dp))
     }
 
     section.content?.let {
-        Text(it, style = MaterialTheme.typography.bodyMedium)
+        Text(
+            text = it,
+            style = MaterialTheme.typography.bodyMedium,
+        )
         Spacer(Modifier.height(8.dp))
     }
 
     section.codeExamples.forEach { example ->
         example.description?.let {
-            Text(it, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.bodyMedium)
+            Text(
+                text = it,
+                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.bodyMedium,
+            )
         }
         Spacer(Modifier.height(16.dp))
         CodeExampleBox(code = example.code)
@@ -110,7 +124,10 @@ fun PitfallsSection(
     Spacer(Modifier.height(4.dp))
     pitfalls.forEach {
         Text(
-            text = stringResource(Res.string.bullet_item, it),
+            text = stringResource(
+                Res.string.bullet_item,
+                it,
+            ),
             style = MaterialTheme.typography.bodyMedium,
         )
     }
@@ -129,7 +146,10 @@ fun RelatedTopicsSection(
     Spacer(Modifier.height(4.dp))
     relatedTopics.forEach {
         Text(
-            text = stringResource(Res.string.bullet_item, it),
+            text = stringResource(
+                Res.string.bullet_item,
+                it,
+            ),
             style = MaterialTheme.typography.bodyMedium,
         )
     }

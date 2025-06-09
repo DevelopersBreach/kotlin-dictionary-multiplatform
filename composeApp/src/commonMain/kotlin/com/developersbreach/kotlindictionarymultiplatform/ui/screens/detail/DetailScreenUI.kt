@@ -67,7 +67,10 @@ private fun DetailContent(
             items = detailUiState.tocEntries,
         ) {
             TableOfContents(
-                item = stringResource(it.titleRes, *it.formatArgs.toTypedArray()),
+                item = stringResource(
+                    resource = it.titleRes,
+                    formatArgs = it.formatArgs.toTypedArray(),
+                ),
                 onClick = {
                     coroutineScope.launch {
                         listState.animateScrollToItem(it.destinationIndex)
