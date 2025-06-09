@@ -15,7 +15,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bookmark
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -28,14 +27,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.TopicUi
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
 import kotlindictionarymultiplatform.composeapp.generated.resources.add_bookmark
-import kotlindictionarymultiplatform.composeapp.generated.resources.icon
 import kotlindictionarymultiplatform.composeapp.generated.resources.remove_bookmark
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun TopicCard(
+    topicUi: TopicUi,
     topic: String,
     subtitle: String,
     isBookmarked: Boolean,
@@ -46,7 +46,11 @@ fun TopicCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
-            .shadow(6.dp, RoundedCornerShape(16.dp), clip = true)
+            .shadow(
+                elevation = 6.dp,
+                shape = RoundedCornerShape(16.dp),
+                clip = true,
+            )
             .clickable { onCardClick() },
         shape = RoundedCornerShape(16.dp),
         color = MaterialTheme.colorScheme.surface,
@@ -60,10 +64,13 @@ fun TopicCard(
             Box(
                 modifier = Modifier
                     .size(36.dp)
-                    .background(MaterialTheme.colorScheme.primary, CircleShape),
+                    .background(
+                        color = MaterialTheme.colorScheme.primary,
+                        shape = CircleShape,
+                    ),
                 contentAlignment = Alignment.Center,
             ) {
-                Icon(Icons.Filled.Search, contentDescription = stringResource(Res.string.icon))
+                Text(text = topicUi.initial)
             }
 
             Spacer(modifier = Modifier.width(12.dp))

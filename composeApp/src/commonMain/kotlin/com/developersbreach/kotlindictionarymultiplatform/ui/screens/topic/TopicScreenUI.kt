@@ -9,11 +9,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
+import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.TopicUi
 
 @Composable
 fun TopicScreenUI(
-    topics: List<Topic>,
+    topics: List<TopicUi>,
     bookmarkedStates: List<Boolean>,
     searchQuery: String,
     onQueryChange: (String) -> Unit,
@@ -29,7 +29,10 @@ fun TopicScreenUI(
                 .padding(horizontal = 16.dp)
                 .padding(top = paddingValues.calculateTopPadding()),
         ) {
-            SearchField(searchQuery = searchQuery, onQueryChange = onQueryChange)
+            SearchField(
+                searchQuery = searchQuery,
+                onQueryChange = onQueryChange,
+            )
             Spacer(modifier = Modifier.height(8.dp))
             TopicList(
                 topics = topics,

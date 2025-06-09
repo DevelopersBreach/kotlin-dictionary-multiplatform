@@ -7,21 +7,30 @@ object Log {
         tag: String,
         message: String,
     ) {
-        Logger.d(message, tag = tag)
+        Logger.d(
+            messageString = message,
+            tag = tag,
+        )
     }
 
     fun i(
         tag: String,
         message: String,
     ) {
-        Logger.i(message, tag = tag)
+        Logger.i(
+            messageString = message,
+            tag = tag,
+        )
     }
 
     fun w(
         tag: String,
         message: String,
     ) {
-        Logger.w(message, tag = tag)
+        Logger.w(
+            messageString = message,
+            tag = tag,
+        )
     }
 
     fun e(
@@ -29,6 +38,10 @@ object Log {
         message: String,
         throwable: Throwable? = null,
     ) {
-        Logger.e(message, throwable, tag = tag)
+        Logger.e(
+            messageString = message,
+            throwable = throwable,
+            tag = tag,
+        )
     }
 }

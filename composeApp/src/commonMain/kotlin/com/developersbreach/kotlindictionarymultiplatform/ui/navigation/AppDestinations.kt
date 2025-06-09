@@ -9,5 +9,7 @@ sealed interface AppDestinations {
     data object TopicList : AppDestinations
 
     @Serializable
-    data class Detail(val topicId: String) : AppDestinations
+    data class Detail(
+        val topicId: String,
+    ) : AppDestinations
 }
