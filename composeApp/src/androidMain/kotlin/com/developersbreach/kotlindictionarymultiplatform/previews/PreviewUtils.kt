@@ -69,11 +69,12 @@ fun sampleTopicList(): List<Topic> {
     )
 }
 
-fun sampleTopicUiList(): List<TopicUi> =
-    sampleTopicList().map { topic ->
+fun sampleTopicUiList(): List<TopicUi> {
+    return sampleTopicList().map { topic ->
         TopicUi(
             name = topic.name,
             initial = topic.name.firstOrNull()?.uppercase() ?: "",
             isBookmarked = true,
         )
     }
+}
