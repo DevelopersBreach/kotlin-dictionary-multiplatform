@@ -26,7 +26,6 @@ ktlint = "12.2.0"
 secrets = "2.0.1"
 jetbrainsKotlinJvm = "2.1.10"
 
-
 [libraries]
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
 arrow-core = { module = "io.arrow-kt:arrow-core", version.ref = "arrowFxCoroutines" }
@@ -54,7 +53,6 @@ ktor-client-logging = { module = "io.ktor:ktor-client-logging" }
 ktor-client-mock = { module = "io.ktor:ktor-client-mock" }
 ktor-client-serialization = { module = "io.ktor:ktor-client-serialization" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json" }
-
 koin-android = { module = "io.insert-koin:koin-android" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose" }
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin" }
