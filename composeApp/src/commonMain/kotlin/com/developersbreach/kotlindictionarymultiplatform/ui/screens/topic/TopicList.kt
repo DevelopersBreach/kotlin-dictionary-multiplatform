@@ -7,14 +7,14 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
+import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.TopicUi
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
 import kotlindictionarymultiplatform.composeapp.generated.resources.description_subtitle
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun TopicList(
-    topics: List<Topic>,
+    topics: List<TopicUi>,
     bookmarkedStates: List<Boolean>,
     onBookmarkClick: (Int) -> Unit,
     onTopicClick: (String) -> Unit,
@@ -27,6 +27,7 @@ fun TopicList(
             val isBookmarked = bookmarkedStates.getOrNull(index) ?: true
             TopicCard(
                 topic = topic.name,
+                topicUi = topic,
                 subtitle = stringResource(Res.string.description_subtitle),
                 isBookmarked = isBookmarked,
                 onBookmarkClick = { onBookmarkClick(index) },

@@ -15,7 +15,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bookmark
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -28,14 +27,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.TopicUi
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
 import kotlindictionarymultiplatform.composeapp.generated.resources.add_bookmark
-import kotlindictionarymultiplatform.composeapp.generated.resources.icon
 import kotlindictionarymultiplatform.composeapp.generated.resources.remove_bookmark
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun TopicCard(
+    topicUi: TopicUi,
     topic: String,
     subtitle: String,
     isBookmarked: Boolean,
@@ -70,10 +70,7 @@ fun TopicCard(
                     ),
                 contentAlignment = Alignment.Center,
             ) {
-                Icon(
-                    imageVector = Icons.Filled.Search,
-                    contentDescription = stringResource(Res.string.icon),
-                )
+                Text(text = topicUi.initial)
             }
 
             Spacer(modifier = Modifier.width(12.dp))

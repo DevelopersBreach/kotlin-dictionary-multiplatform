@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.developersbreach.kotlindictionarymultiplatform.Log
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
+import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.TopicUi
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.repository.TopicRepository
 import com.developersbreach.kotlindictionarymultiplatform.ui.components.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,15 +29,18 @@ class TopicViewModel(
     private val _bookmarkedStates = MutableStateFlow<List<Boolean>>(emptyList())
     val bookmarkedStates: StateFlow<List<Boolean>> = _bookmarkedStates
 
-    val filteredTopics: StateFlow<List<Topic>> = combine(_topics, _searchQuery) { uiState, query ->
+    val filteredTopics: StateFlow<List<TopicUi>> = combine(_topics, _searchQuery, _bookmarkedStates) { uiState, query, bookmarks ->
         val allTopics = (uiState as? UiState.Success)?.data ?: return@combine emptyList()
-        if (query.isBlank()) {
-            allTopics
-        } else {
-            allTopics.filter {
-                it.name.contains(query, ignoreCase = true)
+
+        allTopics
+            .withIndex()
+            .map { (index, topic) ->
+                TopicUi(
+                    name = topic.name,
+                    initial = topic.name.first().uppercase(),
+                    isBookmarked = bookmarks.getOrNull(index) ?: false,
+                )
             }
-        }
     }.stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
     init {
@@ -53,9 +57,10 @@ class TopicViewModel(
         val result = repository.getTopics()
         _topics.value = result.fold(
             ifLeft = { UiState.Error(it) },
-            ifRight = {
-                _bookmarkedStates.value = List(it.size) { true }
-                UiState.Success(it)
+            ifRight = { list ->
+                val sortedList = list.sortedBy { it.name.lowercase() }
+                _bookmarkedStates.value = List(sortedList.size) { true }
+                UiState.Success(sortedList)
             },
         )
     }
