@@ -1,28 +1,31 @@
 package com.developersbreach.kotlindictionarymultiplatform.core.network
 
 import com.developersbreach.kotlindictionarymultiplatform.Log
-import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.ChatCompletionRequest
-import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.ChatCompletionResponse
-import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.ChatMessage
-import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.FunctionDefinition
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.KotlinTopicDetails
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.request.header
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
-import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
-import io.ktor.http.HttpHeaders
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.decodeFromJsonElement
 import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.addJsonObject
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.jsonPrimitive
+import kotlinx.serialization.json.put
+import kotlinx.serialization.json.putJsonArray
 
 object KtorHttpClient {
-    private val json = Json { ignoreUnknownKeys = true }
+
+    private val json = Json {
+        ignoreUnknownKeys = true
+        prettyPrint = true
+    }
 
     private val client = HttpClient {
         install(ContentNegotiation) {
@@ -30,101 +33,83 @@ object KtorHttpClient {
         }
     }
 
-    private val functionSchema = json.parseToJsonElement(
-        // Paste the full JSON schema for your function here
-        """
-        {
-          "type": "object",
-          "properties": {
-            "topicId": { "type": "string" },
-            "topicName": { "type": "string" },
-            "intro": { "type": "string" },
-            "syntax": {
-              "type": "object",
-              "properties": {
-                "signature": { "type": "string" },
-                "notes": { "type": "string" }
-              },
-              "required": ["signature"]
-            },
-            "sections": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "heading": { "type": "string" },
-                  "content": { "type": "string" },
-                  "codeExamples": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "description": { "type": "string" },
-                        "code": { "type": "string" },
-                        "language": { "type": "string" }
-                      },
-                      "required": ["code"]
-                    }
-                  }
-                },
-                "required": ["heading","content"]
-              }
-            },
-            "pitfalls": { "type": "array", "items": { "type": "string" } },
-            "relatedTopics": { "type": "array", "items": { "type": "string" } },
-            "metadata": { "type": "object", "additionalProperties": true }
-          },
-          "required": ["topicId","topicName","intro","syntax","sections"]
-        }
-        """.trimIndent(),
-    )
-
-    private val functionDef = FunctionDefinition(
-        name = "generate_kotlin_topic_details",
-        description = "Return a fully-featured Kotlin documentation object for a given topic",
-        parameters = functionSchema,
-    )
-
-    /**
-     * Calls the OpenAI ChatCompletion with function-calling to get topic details.
-     * @param topicId the topic identifier, e.g. "variables".
-     * @param apiKey your OpenAI API key.
-     */
     suspend fun generateTopicDetails(
         topicId: String,
         apiKey: String,
     ): KotlinTopicDetails {
-        // Prepare messages
-        val messages = listOf(
-            ChatMessage("system", "You are a Kotlin documentation generator."),
-            ChatMessage("user", "Generate full Kotlin documentation for topic \"$topicId\"."),
-        )
+        // Gemini-style prompt
+        val prompt = """
+            You are a Kotlin documentation generator.
+            Generate a JSON object for the topic "$topicId" with the following structure:
+            
+            {
+              "topicId": "...",
+              "topicName": "...",
+              "intro": "...",
+              "syntax": {
+                "signature": "...",
+                "notes": "..."
+              },
+              "sections": [
+                {
+                  "heading": "...",
+                  "content": "...",
+                  "codeExamples": [
+                    {
+                      "description": "...",
+                      "code": "...",
+                      "language": "kotlin"
+                    }
+                  ]
+                }
+              ],
+              "pitfalls": ["..."],
+              "relatedTopics": ["..."],
+              "metadata": {}
+            }
 
-        // Build request body
-        val request = ChatCompletionRequest(
-            model = "gpt-4o-mini",
-            messages = messages,
-            functions = listOf(functionDef),
-            functionCall = mapOf("name" to functionDef.name),
-        )
+            Respond only with pure JSON. No explanation or markdown.
+        """.trimIndent()
 
-        // Execute HTTP request
-        val response: HttpResponse = client.post("https://api.openai.com/v1/chat/completions") {
-            header(HttpHeaders.Authorization, "Bearer $apiKey")
-            contentType(ContentType.Application.Json)
-            setBody(json.encodeToString(ChatCompletionRequest.serializer(), request))
+        val requestBody = buildJsonObject {
+            putJsonArray("contents") {
+                addJsonObject {
+                    putJsonArray("parts") {
+                        addJsonObject {
+                            put("text", prompt)
+                        }
+                    }
+                }
+            }
         }
 
-        val text = response.bodyAsText()
-        Log.i("RawResponse", "RAW RESPONSE:\n$text")
+        val response = client.post("https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=$apiKey") {
+            contentType(ContentType.Application.Json)
+            setBody(requestBody)
+        }
 
-        // Parse response
-        val chatResp = json.decodeFromString(ChatCompletionResponse.serializer(), text)
-        Log.i("ChatResponse", "$chatResp")
-        val funcCall = chatResp.choices?.first()?.message?.functionCall ?: error("No function call in response")
+        val responseBody = response.bodyAsText()
+        Log.i("GeminiRawResponse", responseBody)
 
-        // The arguments field is a JSON string: parse and decode into our DTO
-        val argsJson = json.parseToJsonElement(funcCall.arguments)
-        return json.decodeFromJsonElement(argsJson.jsonObject)
+        // Parse root object
+        val root = json.parseToJsonElement(responseBody).jsonObject
+        val candidates = root["candidates"]?.jsonArray ?: error("Missing candidates")
+        val firstCandidate = candidates.first().jsonObject
+        val content = firstCandidate["content"]?.jsonObject ?: error("Missing content")
+        val partsArray = content["parts"]?.jsonArray ?: error("Missing parts array")
+        val part = partsArray.first().jsonObject
+        val rawJson = part["text"]?.jsonPrimitive?.content ?: error("Missing text in part")
+        Log.i("RawJson", rawJson)
+
+        // Trim whitespace, remove code fences if any
+        val cleanJson = rawJson.trim()
+            .removePrefix("```json\n")
+            .removePrefix("```json")
+            .removePrefix("json\n")
+            .removePrefix("json")
+            .removeSuffix("```")
+            .trim()
+
+        return json.decodeFromString(KotlinTopicDetails.serializer(), cleanJson)
     }
 }
