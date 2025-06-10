@@ -16,6 +16,7 @@ compose-multiplatform = "1.7.3"
 generativeai = "0.9.0"
 junit = "4.13.2"
 kermit = "2.0.4"
+konsist = "0.17.3"
 kotlin = "2.1.10"
 kotlinx-coroutines = "1.10.2"
 kotlinx-serialization-json = "1.7.3"
@@ -35,6 +36,7 @@ arrow-core = { module = "io.arrow-kt:arrow-core", version.ref = "arrowFxCoroutin
 arrow-fx-coroutines = { module = "io.arrow-kt:arrow-fx-coroutines", version.ref = "arrowFxCoroutines" }
 generativeai = { module = "com.google.ai.client.generativeai:generativeai", version.ref = "generativeai" }
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
+konsist = { module = "com.lemonappdev:konsist", version.ref = "konsist" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }

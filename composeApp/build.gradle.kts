@@ -71,6 +71,15 @@ kotlin {
 
     sourceSets {
         val desktopMain by getting
+        val commonMain by getting
+        val commonTest by getting
+
+        val desktopTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(libs.konsist)
+            }
+        }
 
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)
