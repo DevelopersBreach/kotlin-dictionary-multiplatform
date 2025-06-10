@@ -14,3 +14,23 @@ data class KotlinTopicDetails(
     val relatedTopics: List<String> = emptyList(),
     val metadata: Map<String, JsonElement> = emptyMap(),
 )
+
+@Serializable
+data class CodeExample(
+    val description: String? = null,
+    val code: String,
+    val language: String = "kotlin",
+)
+
+@Serializable
+data class Section(
+    val heading: String? = null,
+    val content: String? = null,
+    val codeExamples: List<CodeExample> = emptyList(),
+)
+
+@Serializable
+data class Syntax(
+    val signature: String,
+    val notes: String? = null,
+)
