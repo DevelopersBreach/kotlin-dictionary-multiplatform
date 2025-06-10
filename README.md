@@ -65,7 +65,7 @@ This is an educational project developed by students. Expect rapid changes, expe
 - [ ] Introduce common @Preview annotations for reusable Composable previews.
 - [ ] Implement section-wise scroll behavior on the `Detail Screen` for better navigation.
 - [ ] Add inline code formatting support for syntax display on the `Detail Screen`.
-- [ ] Replace the search icon on the `Topic Card` to improve visual consistency.
+- [x] Replace the search icon on the `Topic Card` to improve visual consistency.
 - [ ] Implement caching on the `Detail Screen` to store previously viewed topic data.
-- [ ] Switch AI integration from OpenAI to Gemini.
+- [x] Switch AI integration from OpenAI to Gemini.
 - [ ] Refactor network layer for cleaner architecture.
