@@ -30,3 +30,4 @@ dependencyResolutionManagement {
 
 include(":composeApp")
 include(":custom-ktlint-rules")
+include(":konsistTest")

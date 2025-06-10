@@ -9,4 +9,5 @@ plugins {
     alias(libs.plugins.serialization) apply false
     alias(libs.plugins.googleSecrets) apply false
     alias(libs.plugins.jetbrainsKotlinJvm) apply false
+    alias(libs.plugins.androidKotlinMultiplatformLibrary) apply false
 }
