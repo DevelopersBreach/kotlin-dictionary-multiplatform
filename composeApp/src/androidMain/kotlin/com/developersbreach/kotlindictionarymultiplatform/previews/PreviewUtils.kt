@@ -5,9 +5,9 @@ import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.Kotl
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.Section
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.Syntax
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
-import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.TopicUi
+import com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.ItemTopic
 
-fun sampleCodeSnippet(): String {
+internal fun sampleCodeSnippet(): String {
     return """
         fun greet(name: String): String {
             return "Hello, Sam!"
@@ -15,15 +15,7 @@ fun sampleCodeSnippet(): String {
         """.trimIndent()
 }
 
-fun topic(): String {
-    return "Smart Casts"
-}
-
-fun subtitle(): String {
-    return "Automatic casting of immutable values"
-}
-
-fun fakeTopicDetails(): KotlinTopicDetails {
+internal fun fakeTopicDetails(): KotlinTopicDetails {
     return KotlinTopicDetails(
         topicId = "smart-cast",
         topicName = "Smart Cast",
@@ -59,7 +51,7 @@ fun fakeTopicDetails(): KotlinTopicDetails {
     )
 }
 
-fun sampleTopicList(): List<Topic> {
+private fun sampleTopicList(): List<Topic> {
     return listOf(
         Topic("Smart Casts"),
         Topic("Null Safety"),
@@ -69,9 +61,9 @@ fun sampleTopicList(): List<Topic> {
     )
 }
 
-fun sampleTopicUiList(): List<TopicUi> {
+internal fun sampleTopicUiList(): List<ItemTopic> {
     return sampleTopicList().map { topic ->
-        TopicUi(
+        ItemTopic(
             name = topic.name,
             initial = topic.name.firstOrNull()?.uppercase() ?: "",
             isBookmarked = true,

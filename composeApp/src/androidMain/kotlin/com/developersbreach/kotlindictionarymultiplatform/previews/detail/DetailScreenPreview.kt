@@ -9,7 +9,7 @@ import com.developersbreach.kotlindictionarymultiplatform.ui.theme.KotlinDiction
 
 @PreviewLightDark
 @Composable
-fun DetailScreenPreview() {
+private fun DetailScreenPreview() {
     KotlinDictionaryTheme {
         DetailScreenUI(
             detailUiState = fakeTopicDetails().toDetailUi(),

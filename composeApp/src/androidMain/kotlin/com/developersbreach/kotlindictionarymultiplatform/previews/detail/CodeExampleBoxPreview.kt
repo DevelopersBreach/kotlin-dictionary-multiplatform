@@ -11,7 +11,7 @@ import com.developersbreach.kotlindictionarymultiplatform.ui.theme.KotlinDiction
 
 @PreviewLightDark
 @Composable
-fun CodeExampleBoxPreview() {
+private fun CodeExampleBoxPreview() {
     KotlinDictionaryTheme {
         CodeExampleBox(
             code = sampleCodeSnippet(),
