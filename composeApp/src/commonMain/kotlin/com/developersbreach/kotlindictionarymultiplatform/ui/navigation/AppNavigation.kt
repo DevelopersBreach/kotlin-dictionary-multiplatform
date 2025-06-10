@@ -34,7 +34,10 @@ fun AppNavigation(
 
         composable<AppDestinations.Detail> {
             val viewModel: DetailViewModel = koinViewModel()
-            DetailScreen(viewModel = viewModel)
+            DetailScreen(
+                viewModel = viewModel,
+                navigateUp = { navController.navigateUp() },
+            )
         }
     }
 }

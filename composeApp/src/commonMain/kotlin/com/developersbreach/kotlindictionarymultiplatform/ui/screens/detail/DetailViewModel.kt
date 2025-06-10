@@ -5,13 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import com.developersbreach.kotlindictionarymultiplatform.Log
-import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.KotlinTopicDetails
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.repository.DetailRepository
 import com.developersbreach.kotlindictionarymultiplatform.ui.components.UiState
 import com.developersbreach.kotlindictionarymultiplatform.ui.navigation.AppDestinations
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import kotlinx.io.IOException
 
 class DetailViewModel(
@@ -21,8 +20,8 @@ class DetailViewModel(
 
     private val topicId = savedStateHandle.toRoute<AppDestinations.Detail>().topicId
 
-    private val _state = MutableStateFlow<UiState<KotlinTopicDetails>>(UiState.Loading)
-    val state: StateFlow<UiState<KotlinTopicDetails>> = _state
+    private val _state = MutableStateFlow<UiState<DetailUiState>>(UiState.Loading)
+    val state: StateFlow<UiState<DetailUiState>> = _state
 
     init {
         viewModelScope.launch {
@@ -37,7 +36,7 @@ class DetailViewModel(
     private suspend fun fetchTopic() {
         _state.value = repository.fetchTopic(topicId).fold(
             ifLeft = { UiState.Error(it) },
-            ifRight = { UiState.Success(it) },
+            ifRight = { UiState.Success(it.toDetailUi()) },
         )
     }
 }

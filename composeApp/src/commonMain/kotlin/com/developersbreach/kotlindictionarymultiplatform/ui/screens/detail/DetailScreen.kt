@@ -8,10 +8,14 @@ import com.developersbreach.kotlindictionarymultiplatform.ui.components.UiStateH
 @Composable
 fun DetailScreen(
     viewModel: DetailViewModel,
+    navigateUp: () -> Unit,
 ) {
     val topicState by viewModel.state.collectAsState()
 
-    UiStateHandler(uiState = topicState) { topic ->
-        DetailScreenUI(topic)
+    UiStateHandler(uiState = topicState) { detailUiState ->
+        DetailScreenUI(
+            detailUiState = detailUiState,
+            navigateUp = navigateUp,
+        )
     }
 }
