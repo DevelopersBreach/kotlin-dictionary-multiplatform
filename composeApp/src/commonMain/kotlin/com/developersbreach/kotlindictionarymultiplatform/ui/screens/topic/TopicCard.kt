@@ -27,7 +27,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.TopicUi
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
 import kotlindictionarymultiplatform.composeapp.generated.resources.add_bookmark
 import kotlindictionarymultiplatform.composeapp.generated.resources.remove_bookmark
@@ -35,7 +34,7 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun TopicCard(
-    topicUi: TopicUi,
+    itemTopic: ItemTopic,
     topic: String,
     subtitle: String,
     isBookmarked: Boolean,
@@ -70,7 +69,7 @@ fun TopicCard(
                     ),
                 contentAlignment = Alignment.Center,
             ) {
-                Text(text = topicUi.initial)
+                Text(text = itemTopic.initial)
             }
 
             Spacer(modifier = Modifier.width(12.dp))

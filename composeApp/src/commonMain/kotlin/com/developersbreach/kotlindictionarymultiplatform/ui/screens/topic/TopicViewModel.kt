@@ -2,65 +2,36 @@ package com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.developersbreach.kotlindictionarymultiplatform.Log
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
-import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.TopicUi
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.repository.TopicRepository
 import com.developersbreach.kotlindictionarymultiplatform.ui.components.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.io.IOException
 
 class TopicViewModel(
     private val repository: TopicRepository,
 ) : ViewModel() {
 
-    private val _topics = MutableStateFlow<UiState<List<Topic>>>(UiState.Loading)
-    val topics: StateFlow<UiState<List<Topic>>> = _topics
+    private val _uiState: MutableStateFlow<UiState<TopicUi>> = MutableStateFlow(UiState.Loading)
+    val uiState: StateFlow<UiState<TopicUi>> = _uiState
 
-    private val _searchQuery = MutableStateFlow("")
-    val searchQuery: StateFlow<String> = _searchQuery
-
-    private val _bookmarkedStates = MutableStateFlow<List<Boolean>>(emptyList())
-    val bookmarkedStates: StateFlow<List<Boolean>> = _bookmarkedStates
-
-    val filteredTopics: StateFlow<List<TopicUi>> = combine(_topics, _searchQuery, _bookmarkedStates) { uiState, query, bookmarks ->
-        val allTopics = (uiState as? UiState.Success)?.data ?: return@combine emptyList()
-
-        allTopics
-            .withIndex()
-            .map { (index, topic) ->
-                TopicUi(
-                    name = topic.name,
-                    initial = topic.name.first().uppercase(),
-                    isBookmarked = bookmarks.getOrNull(index) ?: false,
-                )
-            }
-    }.stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
+    private var rawTopics: List<Topic> = emptyList()
 
     init {
         viewModelScope.launch {
-            try {
-                fetchTopicList()
-            } catch (e: IOException) {
-                Log.e("TopicViewModel", "Error fetching topics: ${e.message}", e)
-            }
+            fetchTopicList()
         }
     }
 
     private fun fetchTopicList() {
-        val result = repository.getTopics()
-        _topics.value = result.fold(
+        _uiState.value = UiState.Success(TopicUi(isLoading = true))
+        repository.getTopics().fold(
             ifLeft = { UiState.Error(it) },
             ifRight = { list ->
-                val sortedList = list.sortedBy { it.name.lowercase() }
-                _bookmarkedStates.value = List(sortedList.size) { true }
-                UiState.Success(sortedList)
+                rawTopics = list.sortedBy { it.name.lowercase() }
+                val initialBookmarks = List(rawTopics.size) { true }
+                applyFilters(rawTopics, (_uiState.value as UiState.Success).data.searchQuery, initialBookmarks)
             },
         )
     }
@@ -68,18 +39,45 @@ class TopicViewModel(
     fun updateSearchQuery(
         newQuery: String,
     ) {
-        _searchQuery.value = newQuery
+        val bookmarks = (_uiState.value as UiState.Success).data.bookmarkedStates
+        applyFilters(rawTopics, newQuery, bookmarks)
     }
 
     fun toggleBookmark(
         index: Int,
     ) {
-        _bookmarkedStates.update { current ->
-            if (index in current.indices) {
-                current.toMutableList().apply { this[index] = !this[index] }
-            } else {
-                current
+        val current = (_uiState.value as UiState.Success).data.bookmarkedStates
+        if (index !in current.indices) return
+        val updated = current.toMutableList().apply { this[index] = !this[index] }
+        applyFilters(rawTopics, (_uiState.value as UiState.Success).data.searchQuery, updated)
+    }
+
+    private fun applyFilters(
+        topics: List<Topic>,
+        query: String,
+        bookmarks: List<Boolean>,
+    ) {
+        val filtered = topics
+            .withIndex()
+            .filter { (_, topic) ->
+                topic.name.contains(query, ignoreCase = true)
             }
-        }
+            .map { (index, topic) ->
+                ItemTopic(
+                    name = topic.name,
+                    initial = topic.name.first().uppercase(),
+                    isBookmarked = bookmarks.getOrNull(index) ?: false,
+                )
+            }
+
+        _uiState.value = (_uiState.value as UiState.Success).copy(
+            TopicUi(
+                isLoading = false,
+                searchQuery = query,
+                topics = topics,
+                bookmarkedStates = bookmarks,
+                filteredTopics = filtered,
+            ),
+        )
     }
 }

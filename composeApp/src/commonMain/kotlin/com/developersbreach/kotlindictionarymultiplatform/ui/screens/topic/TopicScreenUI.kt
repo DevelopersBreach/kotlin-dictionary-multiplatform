@@ -9,11 +9,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.TopicUi
 
 @Composable
 fun TopicScreenUI(
-    topics: List<TopicUi>,
+    topics: List<ItemTopic>,
     bookmarkedStates: List<Boolean>,
     searchQuery: String,
     onQueryChange: (String) -> Unit,

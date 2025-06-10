@@ -10,16 +10,15 @@ fun TopicScreen(
     viewModel: TopicViewModel,
     onTopicClick: (String) -> Unit,
 ) {
-    val topicState by viewModel.topics.collectAsState()
-    val filteredTopics by viewModel.filteredTopics.collectAsState()
-    val searchQuery by viewModel.searchQuery.collectAsState()
-    val bookmarkedStates by viewModel.bookmarkedStates.collectAsState()
+    val uiState by viewModel.uiState.collectAsState()
 
-    UiStateHandler(uiState = topicState) {
+    UiStateHandler(
+        uiState = uiState,
+    ) { data ->
         TopicScreenUI(
-            topics = filteredTopics,
-            bookmarkedStates = bookmarkedStates,
-            searchQuery = searchQuery,
+            topics = data.filteredTopics,
+            bookmarkedStates = data.bookmarkedStates,
+            searchQuery = data.searchQuery,
             onQueryChange = viewModel::updateSearchQuery,
             onBookmarkClick = viewModel::toggleBookmark,
             onTopicClick = onTopicClick,
