@@ -5,13 +5,15 @@ import com.developersbreach.kotlindictionarymultiplatform.core.network.api.Gemin
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.KotlinTopicDetails
 import com.developersbreach.kotlindictionarymultiplatform.getOpenApiKey
 
-class DetailRepository {
+class DetailRepository(
+    private val service: GeminiApiService,
+) {
 
     suspend fun fetchTopic(
         topicId: String,
     ): Either<Throwable, KotlinTopicDetails> {
         return Either.catch {
-            GeminiApiService.generateTopicDetails(
+            service.generateTopicDetails(
                 topicId = topicId,
                 apiKey = getOpenApiKey(),
             )
