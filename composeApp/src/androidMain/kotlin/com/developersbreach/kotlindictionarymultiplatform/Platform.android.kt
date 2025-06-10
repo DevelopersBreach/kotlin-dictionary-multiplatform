@@ -11,5 +11,5 @@ actual fun getPlatform(): Platform {
 }
 
 actual fun getOpenApiKey(): String {
-    return BuildConfig.OPEN_API_KEY
+    return BuildConfig.GEMINI_API_KEY
 }

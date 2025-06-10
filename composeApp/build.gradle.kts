@@ -14,6 +14,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.serialization)
     alias(libs.plugins.ktlint)
+    alias(libs.plugins.googleSecrets)
 }
 
 ktlint {
@@ -75,6 +76,7 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
+            implementation(libs.generativeai)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -177,14 +179,14 @@ fun ApplicationDefaultConfig.setupBuildConfigFields(
         )
     }
 
-    if (secret("OPEN_API_KEY").isEmpty()) {
-        error("OPEN_API_KEY not set in local.properties")
+    if (secret("GEMINI_API_KEY").isEmpty()) {
+        error("GEMINI_API_KEY not set in local.properties")
     }
 
     buildConfigField(
         type = "String",
-        name = "OPEN_API_KEY",
-        value = "\"${secret("OPEN_API_KEY")}\"",
+        name = "GEMINI_API_KEY",
+        value = "\"${secret("GEMINI_API_KEY")}\"",
     )
 }
 
