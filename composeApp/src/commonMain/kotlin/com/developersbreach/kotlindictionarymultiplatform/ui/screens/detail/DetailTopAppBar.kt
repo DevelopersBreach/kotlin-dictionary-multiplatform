@@ -20,6 +20,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun DetailTopBar(
     title: String,
+    navigateUp: () -> Unit,
 ) {
     TopAppBar(
         title = {
@@ -31,7 +32,7 @@ fun DetailTopBar(
             )
         },
         navigationIcon = {
-            IconButton(onClick = { /* TODO: Navigate back */ }) {
+            IconButton(onClick = navigateUp) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = stringResource(Res.string.back),
