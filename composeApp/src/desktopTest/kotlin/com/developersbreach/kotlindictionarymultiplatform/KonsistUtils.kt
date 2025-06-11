@@ -1,17 +1,7 @@
-import kotlin.test.Test
-import kotlin.test.assertTrue
+package com.developersbreach.kotlindictionarymultiplatform
+
 import com.lemonappdev.konsist.api.Konsist
-
-class SampleKonsistTest {
-
-    @Test
-    fun `no direct usage of androidx compose text should be allowed except designSystem`() {
-        checkNoDirectUsageExceptAllowed(
-            componentName = "androidx.compose.material3.Text",
-            excludePaths = arrayOf(),
-        )
-    }
-}
+import kotlin.test.assertTrue
 
 fun checkNoDirectUsageExceptAllowed(
     componentName: String,

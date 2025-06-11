@@ -114,6 +114,7 @@ kotlin {
             implementation(libs.kermit)
             implementation(libs.arrow.core)
             implementation(libs.arrow.fx.coroutines)
+            implementation(project(":design-system"))
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
