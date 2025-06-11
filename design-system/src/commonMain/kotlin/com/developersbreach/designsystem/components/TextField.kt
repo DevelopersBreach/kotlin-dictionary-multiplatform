@@ -35,6 +35,5 @@ fun KdTextField(
         singleLine = singleLine,
         keyboardOptions = keyboardOptions,
         colors = colors,
-
     )
 }

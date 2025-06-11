@@ -100,12 +100,14 @@ fun CodeExampleBox(
                             .padding(4.dp),
                     ) {
                         KdIcon(
+                            modifier = Modifier,
                             imageVector = if (copied) Icons.Default.Check else Icons.Default.ContentCopy,
                             contentDescription = stringResource(Res.string.copy),
                             tint = MaterialTheme.colorScheme.onPrimary,
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         KdText(
+                            modifier = Modifier,
                             text = if (copied) stringResource(Res.string.copied) else stringResource(Res.string.copy),
                             fontSize = 12.sp,
                             color = MaterialTheme.colorScheme.onPrimary,

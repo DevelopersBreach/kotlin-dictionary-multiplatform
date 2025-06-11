@@ -5,13 +5,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import com.developersbreach.designsystem.components.KdIconButton
 import com.developersbreach.designsystem.components.KdText
+import com.developersbreach.designsystem.components.KdTopAppBar
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
 import kotlindictionarymultiplatform.composeapp.generated.resources.back
 import kotlindictionarymultiplatform.composeapp.generated.resources.topics
@@ -20,7 +20,7 @@ import org.jetbrains.compose.resources.stringResource
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopicTopBar() {
-    TopAppBar(
+    KdTopAppBar(
         title = {
             KdText(
                 text = stringResource(Res.string.topics),
@@ -31,6 +31,8 @@ fun TopicTopBar() {
         },
         navigationIcon = {
             KdIconButton(
+                modifier = Modifier,
+                iconModifier = Modifier,
                 onClick = {},
                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                 contentDescription = stringResource(Res.string.back),

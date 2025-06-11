@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.androidKotlinMultiplatformLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.ktlint)
 }
 
 kotlin {
@@ -14,9 +15,6 @@ kotlin {
         namespace = "com.example.design_system"
         compileSdk = 35
         minSdk = 24
-
-        withHostTestBuilder {
-        }
 
         withDeviceTestBuilder {
             sourceSetTreeName = "test"
@@ -102,5 +100,8 @@ kotlin {
             }
         }
     }
+}
 
+dependencies {
+    ktlint(project(":custom-ktlint-rules"))
 }

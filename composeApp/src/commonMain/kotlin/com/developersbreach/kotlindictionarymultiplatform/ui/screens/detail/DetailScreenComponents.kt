@@ -38,12 +38,14 @@ fun IntroductionSection(
     intro: String,
 ) {
     KdText(
+        modifier = Modifier,
         text = stringResource(resource = Res.string.introduction),
         style = MaterialTheme.typography.headlineLarge,
         color = MaterialTheme.colorScheme.onPrimary,
     )
     Spacer(Modifier.height(4.dp))
     KdText(
+        modifier = Modifier,
         text = intro,
         style = MaterialTheme.typography.bodyMedium,
     )
@@ -55,18 +57,21 @@ fun SyntaxSection(
     syntax: Syntax,
 ) {
     KdText(
+        modifier = Modifier,
         text = stringResource(resource = Res.string.syntax),
         style = MaterialTheme.typography.headlineLarge,
         color = MaterialTheme.colorScheme.onPrimary,
     )
     Spacer(Modifier.height(4.dp))
     KdText(
+        modifier = Modifier,
         text = syntax.signature,
         style = MaterialTheme.typography.bodyMedium,
     )
     syntax.notes?.let {
         Spacer(Modifier.height(4.dp))
         KdText(
+            modifier = Modifier,
             text = stringResource(
                 Res.string.notes_with_value,
                 it,
@@ -83,6 +88,7 @@ fun SectionBlock(
 ) {
     section.heading?.let {
         KdText(
+            modifier = Modifier,
             text = it,
             style = MaterialTheme.typography.headlineLarge,
             color = MaterialTheme.colorScheme.onPrimary,
@@ -92,6 +98,7 @@ fun SectionBlock(
 
     section.content?.let {
         KdText(
+            modifier = Modifier,
             text = it,
             style = MaterialTheme.typography.bodyMedium,
         )
@@ -101,6 +108,7 @@ fun SectionBlock(
     section.codeExamples.forEach { example ->
         example.description?.let {
             KdText(
+                modifier = Modifier,
                 text = it,
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.bodyMedium,
@@ -117,6 +125,7 @@ fun PitfallsSection(
     pitfalls: List<String>,
 ) {
     KdText(
+        modifier = Modifier,
         text = stringResource(resource = Res.string.pitfalls),
         style = MaterialTheme.typography.headlineLarge,
         color = MaterialTheme.colorScheme.onPrimary,
@@ -124,6 +133,7 @@ fun PitfallsSection(
     Spacer(Modifier.height(4.dp))
     pitfalls.forEach {
         KdText(
+            modifier = Modifier,
             text = stringResource(
                 Res.string.bullet_item,
                 it,
@@ -139,6 +149,7 @@ fun RelatedTopicsSection(
     relatedTopics: List<String>,
 ) {
     KdText(
+        modifier = Modifier,
         text = stringResource(resource = Res.string.related_topics),
         style = MaterialTheme.typography.headlineLarge,
         color = MaterialTheme.colorScheme.onPrimary,
@@ -146,6 +157,7 @@ fun RelatedTopicsSection(
     Spacer(Modifier.height(4.dp))
     relatedTopics.forEach {
         KdText(
+            modifier = Modifier,
             text = stringResource(
                 Res.string.bullet_item,
                 it,

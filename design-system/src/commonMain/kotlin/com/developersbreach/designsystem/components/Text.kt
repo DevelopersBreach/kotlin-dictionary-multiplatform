@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.TextUnit
 @Composable
 fun KdText(
     text: String,
-    modifier: Modifier = Modifier,
+    modifier: Modifier,
     style: TextStyle = LocalTextStyle.current,
     textAlign: TextAlign? = null,
     maxLines: Int = Int.MAX_VALUE,
@@ -25,7 +25,7 @@ fun KdText(
     fontSize: TextUnit = TextUnit.Unspecified,
     fontFamily: FontFamily? = null,
     lineHeight: TextUnit = TextUnit.Unspecified,
-){
+) {
     Text(
         text = text,
         modifier = modifier,
@@ -33,10 +33,10 @@ fun KdText(
         textAlign = textAlign,
         maxLines = maxLines,
         overflow = overflow,
-        color=color,
+        color = color,
         fontWeight = fontWeight,
         fontSize = fontSize,
         fontFamily = fontFamily,
-        lineHeight = lineHeight
+        lineHeight = lineHeight,
     )
 }

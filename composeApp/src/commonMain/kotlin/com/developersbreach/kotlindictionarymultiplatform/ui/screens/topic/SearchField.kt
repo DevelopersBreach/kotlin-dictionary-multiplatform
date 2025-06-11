@@ -43,10 +43,12 @@ fun SearchField(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 color = MaterialTheme.colorScheme.onBackground,
+                modifier = Modifier,
             )
         },
         leadingIcon = {
             KdIcon(
+                modifier = Modifier,
                 imageVector = Icons.Filled.Search,
                 contentDescription = stringResource(Res.string.search),
                 tint = MaterialTheme.colorScheme.onBackground,

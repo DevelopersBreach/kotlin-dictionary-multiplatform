@@ -19,6 +19,7 @@ fun TopicScreenUI(
     onTopicClick: (String) -> Unit,
 ) {
     KdScaffold(
+        modifier = Modifier,
         topBar = { TopicTopBar() },
         content = { paddingValues ->
             Column(

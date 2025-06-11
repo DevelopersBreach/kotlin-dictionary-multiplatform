@@ -25,6 +25,7 @@ fun DetailScreenUI(
     navigateUp: () -> Unit,
 ) {
     KdScaffold(
+        modifier = Modifier,
         topBar = {
             DetailTopBar(
                 title = detailUiState.topicName,
@@ -56,6 +57,7 @@ private fun DetailContent(
     ) {
         item {
             KdText(
+                modifier = Modifier,
                 text = stringResource(Res.string.table_of_contents),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onPrimary,

@@ -1,3 +1,4 @@
+@file:Suppress("ktlint")
 package com.example.design_system
 
 import androidx.test.platform.app.InstrumentationRegistry

@@ -68,7 +68,10 @@ fun TopicCard(
                         ),
                     contentAlignment = Alignment.Center,
                 ) {
-                    KdText(text = itemTopic.initial)
+                    KdText(
+                        modifier = Modifier, 
+                        text = itemTopic.initial,
+                    )
                 }
 
                 Spacer(modifier = Modifier.width(12.dp))
@@ -77,6 +80,7 @@ fun TopicCard(
                     modifier = Modifier.weight(1f),
                 ) {
                     KdText(
+                        modifier = Modifier,
                         text = topic,
                         style = MaterialTheme.typography.headlineMedium.copy(
                             color = MaterialTheme.colorScheme.onPrimary,
@@ -86,6 +90,7 @@ fun TopicCard(
                     )
                     Spacer(modifier = Modifier.height(6.dp))
                     KdText(
+                        modifier = Modifier,
                         text = subtitle,
                         style = MaterialTheme.typography.labelMedium.copy(
                             color = MaterialTheme.colorScheme.onBackground,
@@ -96,6 +101,8 @@ fun TopicCard(
                 }
 
                 KdIconButton(
+                    modifier = Modifier,
+                    iconModifier = Modifier,
                     onClick = onBookmarkClick,
                     imageVector = if (isBookmarked) {
                         Icons.Outlined.BookmarkBorder
