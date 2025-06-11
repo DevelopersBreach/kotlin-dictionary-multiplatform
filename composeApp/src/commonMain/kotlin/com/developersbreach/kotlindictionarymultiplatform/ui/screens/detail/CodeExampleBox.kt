@@ -16,7 +16,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.ContentCopy
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,6 +31,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.developersbreach.designsystem.components.CaIcon
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
 import kotlindictionarymultiplatform.composeapp.generated.resources.copied
 import kotlindictionarymultiplatform.composeapp.generated.resources.copy
@@ -99,7 +99,7 @@ fun CodeExampleBox(
                             }
                             .padding(4.dp),
                     ) {
-                        Icon(
+                        CaIcon(
                             imageVector = if (copied) Icons.Default.Check else Icons.Default.ContentCopy,
                             contentDescription = stringResource(Res.string.copy),
                             tint = MaterialTheme.colorScheme.onPrimary,

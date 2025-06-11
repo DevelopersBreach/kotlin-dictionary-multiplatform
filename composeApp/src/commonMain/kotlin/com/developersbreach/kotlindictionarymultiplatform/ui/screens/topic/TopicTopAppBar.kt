@@ -4,8 +4,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -13,6 +11,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import com.developersbreach.designsystem.components.CaIconButton
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
 import kotlindictionarymultiplatform.composeapp.generated.resources.back
 import kotlindictionarymultiplatform.composeapp.generated.resources.topics
@@ -31,12 +30,11 @@ fun TopicTopBar() {
             )
         },
         navigationIcon = {
-            IconButton(onClick = { /* Optional Back Logic */ }) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = stringResource(Res.string.back),
-                )
-            }
+            CaIconButton(
+                onClick = {},
+                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                contentDescription = stringResource(Res.string.back),
+            )
         },
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.background,

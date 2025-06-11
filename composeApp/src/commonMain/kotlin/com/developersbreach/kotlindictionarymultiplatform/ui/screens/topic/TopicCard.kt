@@ -16,10 +16,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.outlined.BookmarkBorder
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -27,6 +24,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.developersbreach.designsystem.components.CaIconButton
+import com.developersbreach.designsystem.components.CaSurface
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
 import kotlindictionarymultiplatform.composeapp.generated.resources.add_bookmark
 import kotlindictionarymultiplatform.composeapp.generated.resources.remove_bookmark
@@ -41,7 +40,7 @@ fun TopicCard(
     onBookmarkClick: () -> Unit,
     onCardClick: () -> Unit,
 ) {
-    Surface(
+    CaSurface(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
@@ -51,58 +50,66 @@ fun TopicCard(
                 clip = true,
             )
             .clickable { onCardClick() },
-        shape = RoundedCornerShape(16.dp),
         color = MaterialTheme.colorScheme.surface,
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(12.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Box(
+        shape = RoundedCornerShape(16.dp),
+        content = {
+            Row(
                 modifier = Modifier
-                    .size(36.dp)
-                    .background(
-                        color = MaterialTheme.colorScheme.primary,
-                        shape = CircleShape,
-                    ),
-                contentAlignment = Alignment.Center,
+                    .fillMaxWidth()
+                    .padding(12.dp),
+                verticalAlignment = Alignment.CenterVertically,
             ) {
-                Text(text = itemTopic.initial)
-            }
+                Box(
+                    modifier = Modifier
+                        .size(36.dp)
+                        .background(
+                            color = MaterialTheme.colorScheme.primary,
+                            shape = CircleShape,
+                        ),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(text = itemTopic.initial)
+                }
 
-            Spacer(modifier = Modifier.width(12.dp))
+                Spacer(modifier = Modifier.width(12.dp))
 
-            Column(
-                modifier = Modifier.weight(1f),
-            ) {
-                Text(
-                    text = topic,
-                    style = MaterialTheme.typography.headlineMedium.copy(
-                        color = MaterialTheme.colorScheme.onPrimary,
-                    ),
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
-                Spacer(modifier = Modifier.height(6.dp))
-                Text(
-                    text = subtitle,
-                    style = MaterialTheme.typography.labelMedium.copy(
-                        color = MaterialTheme.colorScheme.onBackground,
-                    ),
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
-            }
+                Column(
+                    modifier = Modifier.weight(1f),
+                ) {
+                    Text(
+                        text = topic,
+                        style = MaterialTheme.typography.headlineMedium.copy(
+                            color = MaterialTheme.colorScheme.onPrimary,
+                        ),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Text(
+                        text = subtitle,
+                        style = MaterialTheme.typography.labelMedium.copy(
+                            color = MaterialTheme.colorScheme.onBackground,
+                        ),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                }
 
-            IconButton(onClick = onBookmarkClick) {
-                Icon(
-                    imageVector = if (isBookmarked) Icons.Outlined.BookmarkBorder else Icons.Filled.Bookmark,
-                    contentDescription = if (isBookmarked) stringResource(Res.string.remove_bookmark) else stringResource(Res.string.add_bookmark),
+                CaIconButton(
+                    onClick = onBookmarkClick,
+                    imageVector = if (isBookmarked) {
+                        Icons.Outlined.BookmarkBorder
+                    } else {
+                        Icons.Filled.Bookmark
+                    },
+                    contentDescription = if (isBookmarked) {
+                        stringResource(Res.string.remove_bookmark)
+                    } else {
+                        stringResource(Res.string.add_bookmark)
+                    },
                     tint = MaterialTheme.colorScheme.primary,
                 )
             }
-        }
-    }
+        },
+    )
 }

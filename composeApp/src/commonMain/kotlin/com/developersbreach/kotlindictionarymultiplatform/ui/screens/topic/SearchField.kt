@@ -7,10 +7,8 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -20,6 +18,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.developersbreach.designsystem.components.CaIcon
+import com.developersbreach.designsystem.components.CaTextField
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
 import kotlindictionarymultiplatform.composeapp.generated.resources.search
 import kotlindictionarymultiplatform.composeapp.generated.resources.search_kotlin_terms
@@ -30,7 +30,7 @@ fun SearchField(
     searchQuery: String,
     onQueryChange: (String) -> Unit,
 ) {
-    TextField(
+    CaTextField(
         value = searchQuery,
         onValueChange = onQueryChange,
         modifier = Modifier
@@ -46,7 +46,7 @@ fun SearchField(
             )
         },
         leadingIcon = {
-            Icon(
+            CaIcon(
                 imageVector = Icons.Filled.Search,
                 contentDescription = stringResource(Res.string.search),
                 tint = MaterialTheme.colorScheme.onBackground,
