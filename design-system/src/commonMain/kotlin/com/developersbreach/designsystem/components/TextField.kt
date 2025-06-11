@@ -10,7 +10,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 
 @Composable
-fun CaTextField(
+fun KdTextField(
     modifier: Modifier,
     value: String,
     onValueChange: (String) -> Unit,

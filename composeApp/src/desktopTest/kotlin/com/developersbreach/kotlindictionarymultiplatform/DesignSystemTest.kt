@@ -53,4 +53,14 @@ class DesignSystemTest {
             ),
         )
     }
+
+    @Test
+    fun `no direct usage of androidx compose text should be allowed except designSystem`() {
+        checkNoDirectUsageExceptAllowed(
+            componentName = "androidx.compose.material3.Text",
+            excludePaths = arrayOf(
+                "design-system/src/commonMain/kotlin/com/developersbreach/designsystem/components/Text.kt",
+            ),
+        )
+    }
 }

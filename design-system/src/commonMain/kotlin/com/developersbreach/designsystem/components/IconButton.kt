@@ -7,7 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 
 @Composable
-fun CaIconButton(
+fun KdIconButton(
     onClick: () -> Unit,
     imageVector: ImageVector,
     contentDescription: String?,
@@ -16,7 +16,7 @@ fun CaIconButton(
     IconButton(
         onClick = onClick,
         content = {
-            CaIcon(
+            KdIcon(
                 imageVector = imageVector,
                 contentDescription = contentDescription,
                 tint = tint

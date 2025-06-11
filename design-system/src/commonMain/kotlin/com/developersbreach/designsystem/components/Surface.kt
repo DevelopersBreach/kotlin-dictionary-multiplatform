@@ -7,7 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 
 @Composable
-fun CaSurface(
+fun KdSurface(
     modifier: Modifier,
     content: @Composable () -> Unit,
     color: Color,

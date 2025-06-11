@@ -17,15 +17,15 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.developersbreach.designsystem.components.CaIconButton
-import com.developersbreach.designsystem.components.CaSurface
+import com.developersbreach.designsystem.components.KdIconButton
+import com.developersbreach.designsystem.components.KdSurface
+import com.developersbreach.designsystem.components.KdText
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
 import kotlindictionarymultiplatform.composeapp.generated.resources.add_bookmark
 import kotlindictionarymultiplatform.composeapp.generated.resources.remove_bookmark
@@ -40,7 +40,7 @@ fun TopicCard(
     onBookmarkClick: () -> Unit,
     onCardClick: () -> Unit,
 ) {
-    CaSurface(
+    KdSurface(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
@@ -68,7 +68,7 @@ fun TopicCard(
                         ),
                     contentAlignment = Alignment.Center,
                 ) {
-                    Text(text = itemTopic.initial)
+                    KdText(text = itemTopic.initial)
                 }
 
                 Spacer(modifier = Modifier.width(12.dp))
@@ -76,7 +76,7 @@ fun TopicCard(
                 Column(
                     modifier = Modifier.weight(1f),
                 ) {
-                    Text(
+                    KdText(
                         text = topic,
                         style = MaterialTheme.typography.headlineMedium.copy(
                             color = MaterialTheme.colorScheme.onPrimary,
@@ -85,7 +85,7 @@ fun TopicCard(
                         overflow = TextOverflow.Ellipsis,
                     )
                     Spacer(modifier = Modifier.height(6.dp))
-                    Text(
+                    KdText(
                         text = subtitle,
                         style = MaterialTheme.typography.labelMedium.copy(
                             color = MaterialTheme.colorScheme.onBackground,
@@ -95,7 +95,7 @@ fun TopicCard(
                     )
                 }
 
-                CaIconButton(
+                KdIconButton(
                     onClick = onBookmarkClick,
                     imageVector = if (isBookmarked) {
                         Icons.Outlined.BookmarkBorder

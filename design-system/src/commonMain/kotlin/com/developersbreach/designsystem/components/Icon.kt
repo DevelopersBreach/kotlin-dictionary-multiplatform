@@ -7,7 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 
 @Composable
-fun CaIcon(
+fun KdIcon(
     imageVector: ImageVector,
     contentDescription: String?,
     tint: Color= LocalContentColor.current

@@ -17,7 +17,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,7 +30,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.developersbreach.designsystem.components.CaIcon
+import com.developersbreach.designsystem.components.KdIcon
+import com.developersbreach.designsystem.components.KdText
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
 import kotlindictionarymultiplatform.composeapp.generated.resources.copied
 import kotlindictionarymultiplatform.composeapp.generated.resources.copy
@@ -78,7 +78,7 @@ fun CodeExampleBox(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Text(
+                    KdText(
                         text = stringResource(Res.string.kotlin),
                         color = MaterialTheme.colorScheme.onPrimary,
                         fontWeight = FontWeight.Bold,
@@ -99,13 +99,13 @@ fun CodeExampleBox(
                             }
                             .padding(4.dp),
                     ) {
-                        CaIcon(
+                        KdIcon(
                             imageVector = if (copied) Icons.Default.Check else Icons.Default.ContentCopy,
                             contentDescription = stringResource(Res.string.copy),
                             tint = MaterialTheme.colorScheme.onPrimary,
                         )
                         Spacer(modifier = Modifier.width(4.dp))
-                        Text(
+                        KdText(
                             text = if (copied) stringResource(Res.string.copied) else stringResource(Res.string.copy),
                             fontSize = 12.sp,
                             color = MaterialTheme.colorScheme.onPrimary,
@@ -116,7 +116,7 @@ fun CodeExampleBox(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            Text(
+            KdText(
                 text = code,
                 modifier = Modifier.padding(
                     start = 12.dp,

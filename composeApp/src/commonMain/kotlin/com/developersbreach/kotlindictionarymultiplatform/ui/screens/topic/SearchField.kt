@@ -8,7 +8,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -18,8 +17,9 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.developersbreach.designsystem.components.CaIcon
-import com.developersbreach.designsystem.components.CaTextField
+import com.developersbreach.designsystem.components.KdIcon
+import com.developersbreach.designsystem.components.KdText
+import com.developersbreach.designsystem.components.KdTextField
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
 import kotlindictionarymultiplatform.composeapp.generated.resources.search
 import kotlindictionarymultiplatform.composeapp.generated.resources.search_kotlin_terms
@@ -30,7 +30,7 @@ fun SearchField(
     searchQuery: String,
     onQueryChange: (String) -> Unit,
 ) {
-    CaTextField(
+    KdTextField(
         value = searchQuery,
         onValueChange = onQueryChange,
         modifier = Modifier
@@ -38,7 +38,7 @@ fun SearchField(
             .clip(RoundedCornerShape(25.dp))
             .padding(4.dp),
         placeholder = {
-            Text(
+            KdText(
                 stringResource(Res.string.search_kotlin_terms),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -46,7 +46,7 @@ fun SearchField(
             )
         },
         leadingIcon = {
-            CaIcon(
+            KdIcon(
                 imageVector = Icons.Filled.Search,
                 contentDescription = stringResource(Res.string.search),
                 tint = MaterialTheme.colorScheme.onBackground,

@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.developersbreach.designsystem.components.CaScaffold
+import com.developersbreach.designsystem.components.KdScaffold
 
 @Composable
 fun TopicScreenUI(
@@ -18,7 +18,7 @@ fun TopicScreenUI(
     onBookmarkClick: (Int) -> Unit,
     onTopicClick: (String) -> Unit,
 ) {
-    CaScaffold(
+    KdScaffold(
         topBar = { TopicTopBar() },
         content = { paddingValues ->
             Column(
