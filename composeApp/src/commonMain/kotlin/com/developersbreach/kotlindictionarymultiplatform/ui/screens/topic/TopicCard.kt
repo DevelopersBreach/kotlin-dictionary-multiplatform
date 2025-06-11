@@ -69,7 +69,7 @@ fun TopicCard(
                     contentAlignment = Alignment.Center,
                 ) {
                     KdText(
-                        modifier = Modifier, 
+                        modifier = Modifier,
                         text = itemTopic.initial,
                     )
                 }
