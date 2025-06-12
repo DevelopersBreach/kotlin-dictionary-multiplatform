@@ -8,12 +8,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.developersbreach.designsystem.components.KdScaffold
+import com.developersbreach.designsystem.components.KdText
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
 import kotlindictionarymultiplatform.composeapp.generated.resources.table_of_contents
 import kotlinx.coroutines.launch
@@ -24,20 +24,21 @@ fun DetailScreenUI(
     detailUiState: DetailUiState,
     navigateUp: () -> Unit,
 ) {
-    Scaffold(
+    KdScaffold(
+        modifier = Modifier,
         topBar = {
             DetailTopBar(
                 title = detailUiState.topicName,
                 navigateUp = navigateUp,
             )
         },
-        containerColor = MaterialTheme.colorScheme.background,
-    ) { innerPadding ->
-        DetailContent(
-            detailUiState = detailUiState,
-            modifier = Modifier.padding(innerPadding),
-        )
-    }
+        content = { innerPadding ->
+            DetailContent(
+                detailUiState = detailUiState,
+                modifier = Modifier.padding(innerPadding),
+            )
+        },
+    )
 }
 
 @Composable
@@ -55,7 +56,8 @@ private fun DetailContent(
             .padding(horizontal = 16.dp),
     ) {
         item {
-            Text(
+            KdText(
+                modifier = Modifier,
                 text = stringResource(Res.string.table_of_contents),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onPrimary,

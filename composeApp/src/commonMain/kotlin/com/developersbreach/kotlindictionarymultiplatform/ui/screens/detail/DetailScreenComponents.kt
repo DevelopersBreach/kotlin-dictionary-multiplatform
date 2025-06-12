@@ -4,11 +4,11 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.developersbreach.designsystem.components.KdText
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.Section
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.Syntax
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
@@ -25,7 +25,7 @@ fun TableOfContents(
     item: String,
     onClick: () -> Unit,
 ) {
-    Text(
+    KdText(
         text = item,
         modifier = Modifier.clickable { onClick() },
         color = MaterialTheme.colorScheme.onSurface,
@@ -37,13 +37,15 @@ fun TableOfContents(
 fun IntroductionSection(
     intro: String,
 ) {
-    Text(
+    KdText(
+        modifier = Modifier,
         text = stringResource(resource = Res.string.introduction),
         style = MaterialTheme.typography.headlineLarge,
         color = MaterialTheme.colorScheme.onPrimary,
     )
     Spacer(Modifier.height(4.dp))
-    Text(
+    KdText(
+        modifier = Modifier,
         text = intro,
         style = MaterialTheme.typography.bodyMedium,
     )
@@ -54,19 +56,22 @@ fun IntroductionSection(
 fun SyntaxSection(
     syntax: Syntax,
 ) {
-    Text(
+    KdText(
+        modifier = Modifier,
         text = stringResource(resource = Res.string.syntax),
         style = MaterialTheme.typography.headlineLarge,
         color = MaterialTheme.colorScheme.onPrimary,
     )
     Spacer(Modifier.height(4.dp))
-    Text(
+    KdText(
+        modifier = Modifier,
         text = syntax.signature,
         style = MaterialTheme.typography.bodyMedium,
     )
     syntax.notes?.let {
         Spacer(Modifier.height(4.dp))
-        Text(
+        KdText(
+            modifier = Modifier,
             text = stringResource(
                 Res.string.notes_with_value,
                 it,
@@ -82,7 +87,8 @@ fun SectionBlock(
     section: Section,
 ) {
     section.heading?.let {
-        Text(
+        KdText(
+            modifier = Modifier,
             text = it,
             style = MaterialTheme.typography.headlineLarge,
             color = MaterialTheme.colorScheme.onPrimary,
@@ -91,7 +97,8 @@ fun SectionBlock(
     }
 
     section.content?.let {
-        Text(
+        KdText(
+            modifier = Modifier,
             text = it,
             style = MaterialTheme.typography.bodyMedium,
         )
@@ -100,7 +107,8 @@ fun SectionBlock(
 
     section.codeExamples.forEach { example ->
         example.description?.let {
-            Text(
+            KdText(
+                modifier = Modifier,
                 text = it,
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.bodyMedium,
@@ -116,14 +124,16 @@ fun SectionBlock(
 fun PitfallsSection(
     pitfalls: List<String>,
 ) {
-    Text(
+    KdText(
+        modifier = Modifier,
         text = stringResource(resource = Res.string.pitfalls),
         style = MaterialTheme.typography.headlineLarge,
         color = MaterialTheme.colorScheme.onPrimary,
     )
     Spacer(Modifier.height(4.dp))
     pitfalls.forEach {
-        Text(
+        KdText(
+            modifier = Modifier,
             text = stringResource(
                 Res.string.bullet_item,
                 it,
@@ -138,14 +148,16 @@ fun PitfallsSection(
 fun RelatedTopicsSection(
     relatedTopics: List<String>,
 ) {
-    Text(
+    KdText(
+        modifier = Modifier,
         text = stringResource(resource = Res.string.related_topics),
         style = MaterialTheme.typography.headlineLarge,
         color = MaterialTheme.colorScheme.onPrimary,
     )
     Spacer(Modifier.height(4.dp))
     relatedTopics.forEach {
-        Text(
+        KdText(
+            modifier = Modifier,
             text = stringResource(
                 Res.string.bullet_item,
                 it,

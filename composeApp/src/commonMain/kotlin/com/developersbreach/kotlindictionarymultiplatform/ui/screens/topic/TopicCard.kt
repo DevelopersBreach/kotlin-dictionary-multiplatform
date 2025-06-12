@@ -16,17 +16,16 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.outlined.BookmarkBorder
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.developersbreach.designsystem.components.KdIconButton
+import com.developersbreach.designsystem.components.KdSurface
+import com.developersbreach.designsystem.components.KdText
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
 import kotlindictionarymultiplatform.composeapp.generated.resources.add_bookmark
 import kotlindictionarymultiplatform.composeapp.generated.resources.remove_bookmark
@@ -41,7 +40,7 @@ fun TopicCard(
     onBookmarkClick: () -> Unit,
     onCardClick: () -> Unit,
 ) {
-    Surface(
+    KdSurface(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
@@ -51,8 +50,8 @@ fun TopicCard(
                 clip = true,
             )
             .clickable { onCardClick() },
-        shape = RoundedCornerShape(16.dp),
         color = MaterialTheme.colorScheme.surface,
+        shape = RoundedCornerShape(16.dp),
     ) {
         Row(
             modifier = Modifier
@@ -69,7 +68,10 @@ fun TopicCard(
                     ),
                 contentAlignment = Alignment.Center,
             ) {
-                Text(text = itemTopic.initial)
+                KdText(
+                    modifier = Modifier,
+                    text = itemTopic.initial,
+                )
             }
 
             Spacer(modifier = Modifier.width(12.dp))
@@ -77,7 +79,8 @@ fun TopicCard(
             Column(
                 modifier = Modifier.weight(1f),
             ) {
-                Text(
+                KdText(
+                    modifier = Modifier,
                     text = topic,
                     style = MaterialTheme.typography.headlineMedium.copy(
                         color = MaterialTheme.colorScheme.onPrimary,
@@ -86,7 +89,8 @@ fun TopicCard(
                     overflow = TextOverflow.Ellipsis,
                 )
                 Spacer(modifier = Modifier.height(6.dp))
-                Text(
+                KdText(
+                    modifier = Modifier,
                     text = subtitle,
                     style = MaterialTheme.typography.labelMedium.copy(
                         color = MaterialTheme.colorScheme.onBackground,
@@ -96,13 +100,22 @@ fun TopicCard(
                 )
             }
 
-            IconButton(onClick = onBookmarkClick) {
-                Icon(
-                    imageVector = if (isBookmarked) Icons.Outlined.BookmarkBorder else Icons.Filled.Bookmark,
-                    contentDescription = if (isBookmarked) stringResource(Res.string.remove_bookmark) else stringResource(Res.string.add_bookmark),
-                    tint = MaterialTheme.colorScheme.primary,
-                )
-            }
+            KdIconButton(
+                modifier = Modifier,
+                iconModifier = Modifier,
+                onClick = onBookmarkClick,
+                imageVector = if (isBookmarked) {
+                    Icons.Outlined.BookmarkBorder
+                } else {
+                    Icons.Filled.Bookmark
+                },
+                contentDescription = if (isBookmarked) {
+                    stringResource(Res.string.remove_bookmark)
+                } else {
+                    stringResource(Res.string.add_bookmark)
+                },
+                tint = MaterialTheme.colorScheme.primary,
+            )
         }
     }
 }

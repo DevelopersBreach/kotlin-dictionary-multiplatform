@@ -4,11 +4,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.developersbreach.designsystem.components.KdScaffold
 
 @Composable
 fun TopicScreenUI(
@@ -19,8 +18,8 @@ fun TopicScreenUI(
     onBookmarkClick: (Int) -> Unit,
     onTopicClick: (String) -> Unit,
 ) {
-    Scaffold(
-        containerColor = MaterialTheme.colorScheme.background,
+    KdScaffold(
+        modifier = Modifier,
         topBar = { TopicTopBar() },
     ) { paddingValues ->
         Column(

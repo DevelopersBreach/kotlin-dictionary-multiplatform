@@ -18,7 +18,7 @@
 - [x] Hide API key from code by using expect/actual for OpenAPI key
 - [x] Switch AI integration from OpenAI to Gemini
 - [x] Refactor network layer for cleaner architecture
-- [ ] Create a separate module for reusable UI components
+- [x] Create a separate module for reusable UI components
 
 ---
 
