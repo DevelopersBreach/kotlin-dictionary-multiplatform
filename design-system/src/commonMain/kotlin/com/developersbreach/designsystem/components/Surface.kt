@@ -9,9 +9,9 @@ import androidx.compose.ui.graphics.Shape
 @Composable
 fun KdSurface(
     modifier: Modifier,
-    content: @Composable () -> Unit,
     color: Color,
     shape: Shape,
+    content: @Composable () -> Unit,
 ) {
     Surface(
         modifier = modifier,

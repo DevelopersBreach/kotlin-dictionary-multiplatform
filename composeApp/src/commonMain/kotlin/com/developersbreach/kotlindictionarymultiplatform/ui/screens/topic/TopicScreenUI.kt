@@ -21,24 +21,23 @@ fun TopicScreenUI(
     KdScaffold(
         modifier = Modifier,
         topBar = { TopicTopBar() },
-        content = { paddingValues ->
-            Column(
-                modifier = Modifier
-                    .padding(horizontal = 16.dp)
-                    .padding(top = paddingValues.calculateTopPadding()),
-            ) {
-                SearchField(
-                    searchQuery = searchQuery,
-                    onQueryChange = onQueryChange,
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-                TopicList(
-                    topics = topics,
-                    bookmarkedStates = bookmarkedStates,
-                    onBookmarkClick = onBookmarkClick,
-                    onTopicClick = onTopicClick,
-                )
-            }
-        },
-    )
+    ) { paddingValues ->
+        Column(
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .padding(top = paddingValues.calculateTopPadding()),
+        ) {
+            SearchField(
+                searchQuery = searchQuery,
+                onQueryChange = onQueryChange,
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            TopicList(
+                topics = topics,
+                bookmarkedStates = bookmarkedStates,
+                onBookmarkClick = onBookmarkClick,
+                onTopicClick = onTopicClick,
+            )
+        }
+    }
 }

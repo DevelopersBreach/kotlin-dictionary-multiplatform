@@ -20,3 +20,45 @@ fun KdAlertDialog(
         confirmButton = confirmButton,
     )
 }
+
+@Composable
+fun KdAlertDialog(
+    onDismissRequest: () -> Unit,
+    modifier: Modifier,
+    title: String,
+    description: String,
+    buttonTitle: String,
+    onButtonClick: () -> Unit,
+) {
+    KdAlertDialog(
+        onDismissRequest = onDismissRequest,
+        title = {
+            KdText(
+                modifier = Modifier,
+                text = title,
+            )
+        },
+        text = {
+            KdText(
+                modifier = Modifier,
+                text = description,
+            )
+        },
+        confirmButton = {
+            KdTextButton(
+                modifier = Modifier,
+                onClick = {
+                    onDismissRequest()
+                    onButtonClick()
+                },
+                content = {
+                    KdText(
+                        modifier = Modifier,
+                        text = buttonTitle,
+                    )
+                },
+            )
+        },
+        modifier = modifier,
+    )
+}

@@ -52,71 +52,70 @@ fun TopicCard(
             .clickable { onCardClick() },
         color = MaterialTheme.colorScheme.surface,
         shape = RoundedCornerShape(16.dp),
-        content = {
-            Row(
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(12.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Box(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(12.dp),
-                verticalAlignment = Alignment.CenterVertically,
+                    .size(36.dp)
+                    .background(
+                        color = MaterialTheme.colorScheme.primary,
+                        shape = CircleShape,
+                    ),
+                contentAlignment = Alignment.Center,
             ) {
-                Box(
-                    modifier = Modifier
-                        .size(36.dp)
-                        .background(
-                            color = MaterialTheme.colorScheme.primary,
-                            shape = CircleShape,
-                        ),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    KdText(
-                        modifier = Modifier,
-                        text = itemTopic.initial,
-                    )
-                }
-
-                Spacer(modifier = Modifier.width(12.dp))
-
-                Column(
-                    modifier = Modifier.weight(1f),
-                ) {
-                    KdText(
-                        modifier = Modifier,
-                        text = topic,
-                        style = MaterialTheme.typography.headlineMedium.copy(
-                            color = MaterialTheme.colorScheme.onPrimary,
-                        ),
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                    )
-                    Spacer(modifier = Modifier.height(6.dp))
-                    KdText(
-                        modifier = Modifier,
-                        text = subtitle,
-                        style = MaterialTheme.typography.labelMedium.copy(
-                            color = MaterialTheme.colorScheme.onBackground,
-                        ),
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                    )
-                }
-
-                KdIconButton(
+                KdText(
                     modifier = Modifier,
-                    iconModifier = Modifier,
-                    onClick = onBookmarkClick,
-                    imageVector = if (isBookmarked) {
-                        Icons.Outlined.BookmarkBorder
-                    } else {
-                        Icons.Filled.Bookmark
-                    },
-                    contentDescription = if (isBookmarked) {
-                        stringResource(Res.string.remove_bookmark)
-                    } else {
-                        stringResource(Res.string.add_bookmark)
-                    },
-                    tint = MaterialTheme.colorScheme.primary,
+                    text = itemTopic.initial,
                 )
             }
-        },
-    )
+
+            Spacer(modifier = Modifier.width(12.dp))
+
+            Column(
+                modifier = Modifier.weight(1f),
+            ) {
+                KdText(
+                    modifier = Modifier,
+                    text = topic,
+                    style = MaterialTheme.typography.headlineMedium.copy(
+                        color = MaterialTheme.colorScheme.onPrimary,
+                    ),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+                Spacer(modifier = Modifier.height(6.dp))
+                KdText(
+                    modifier = Modifier,
+                    text = subtitle,
+                    style = MaterialTheme.typography.labelMedium.copy(
+                        color = MaterialTheme.colorScheme.onBackground,
+                    ),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            }
+
+            KdIconButton(
+                modifier = Modifier,
+                iconModifier = Modifier,
+                onClick = onBookmarkClick,
+                imageVector = if (isBookmarked) {
+                    Icons.Outlined.BookmarkBorder
+                } else {
+                    Icons.Filled.Bookmark
+                },
+                contentDescription = if (isBookmarked) {
+                    stringResource(Res.string.remove_bookmark)
+                } else {
+                    stringResource(Res.string.add_bookmark)
+                },
+                tint = MaterialTheme.colorScheme.primary,
+            )
+        }
+    }
 }

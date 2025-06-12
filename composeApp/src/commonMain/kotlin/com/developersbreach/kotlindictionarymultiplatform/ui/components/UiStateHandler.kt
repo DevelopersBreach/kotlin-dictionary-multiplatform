@@ -2,17 +2,18 @@ package com.developersbreach.kotlindictionarymultiplatform.ui.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.developersbreach.designsystem.components.KdAlertDialog
 import com.developersbreach.designsystem.components.KdCircularProgressIndicator
 import kotlindictionarymultiplatform.composeapp.generated.resources.Res
 import kotlindictionarymultiplatform.composeapp.generated.resources.error_info_unavailable
 import kotlindictionarymultiplatform.composeapp.generated.resources.error_occurred
+import kotlindictionarymultiplatform.composeapp.generated.resources.ok
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -32,18 +33,21 @@ fun <T> UiStateHandler(
             is UiState.Loading -> {
                 KdCircularProgressIndicator(
                     modifier = Modifier.align(Alignment.Center),
-                    color = MaterialTheme.colorScheme.onBackground,
                 )
             }
 
             is UiState.Error -> {
                 if (!shouldDismissErrorDialog.value) {
                     val errorDetails = uiState.throwable
-                    ShowAlertDialog(
-                        onButtonClick = { shouldDismissErrorDialog.value = true },
+                    KdAlertDialog(
+                        onDismissRequest = { shouldDismissErrorDialog.value = true },
                         modifier = Modifier,
                         title = stringResource(Res.string.error_occurred),
                         description = errorDetails.message ?: stringResource(Res.string.error_info_unavailable),
+                        buttonTitle = stringResource(Res.string.ok),
+                        onButtonClick = {
+                            shouldDismissErrorDialog.value = true
+                        },
                     )
                 }
             }
@@ -54,7 +58,6 @@ fun <T> UiStateHandler(
         if (isLoading) {
             KdCircularProgressIndicator(
                 modifier = Modifier.align(Alignment.Center),
-                color = MaterialTheme.colorScheme.onBackground,
             )
         }
     }
