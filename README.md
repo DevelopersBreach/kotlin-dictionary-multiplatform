@@ -27,7 +27,7 @@
 - [ ] Assign unique IDs to objects and enforce consistent ordering logic
 - [ ] Correct usage of visibility modifiers across the codebase
 - [ ] Introduce common `@Preview` annotations for reusable Composable previews
-- [ ] Add inline code formatting support for syntax display on the `Detail Screen`
+- [x] Add code block for syntax display on the `Detail Screen`
 - [ ] Implement caching on the `Detail Screen` to store previously viewed topic data
 - [ ] Implement dynamic topic loading in `TopicRepository` to support scalability
 - [ ] Integrate Room database to persist bookmark states
