@@ -2,6 +2,11 @@
 
 ![Kotlin Dictionary Banner](assets/banner.png)
 
+## Download the APK
+Access the latest APK for Kotlin Dictionary from the link below.
+
+[![Get APK](https://img.shields.io/badge/Get%20APK-maroon?style=for-the-badge&logo=android&logoColor=white)](https://github.com/DevelopersBreach/kotlin-dictionary-multiplatform/releases/download/v0.1.0/app-release-v0.1.0.apk)
+
 ---
 
 ## 🎯 Roadmap
