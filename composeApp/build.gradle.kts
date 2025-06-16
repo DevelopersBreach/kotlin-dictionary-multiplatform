@@ -86,6 +86,7 @@ kotlin {
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
             implementation(libs.generativeai)
+            implementation(compose.uiTooling)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -157,7 +158,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.ui.tooling.preview.android)
     debugImplementation(compose.uiTooling)
     ktlint(project(":custom-ktlint-rules"))
 }
