@@ -74,10 +74,9 @@ Here’s an early concept image illustrating the app’s design:
 
 Here are a couple of early previews from the Android version of the app:
 
-<p>
-  <img src="assets/img_topic_screen.png" alt="Topic Screen" width="150"/>
-  <img src="assets/img_detail_screen_variables.png" alt="Detail Screen" width="150"/>
-</p>
+| Topic | Detail |
+| :---: | :----: |
+| <img src="assets/img_topic_screen.png" alt="Topic Screen" width="200"/> | <img src="assets/img_detail_screen_variables.png" alt="Detail Screen" width="200" /> |
 
 > *More previews coming soon as the UI progresses!*
 
