@@ -3,6 +3,7 @@ package com.developersbreach.kotlindictionarymultiplatform.ui.screens.detail
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -63,10 +64,9 @@ fun SyntaxSection(
         color = MaterialTheme.colorScheme.onPrimary,
     )
     Spacer(Modifier.height(4.dp))
-    KdText(
-        modifier = Modifier,
-        text = syntax.signature,
-        style = MaterialTheme.typography.bodyMedium,
+    CodeExampleBox(
+        code = syntax.signature,
+        modifier = Modifier.padding(bottom = 8.dp),
     )
     syntax.notes?.let {
         Spacer(Modifier.height(4.dp))
