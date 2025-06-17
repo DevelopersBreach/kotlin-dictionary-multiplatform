@@ -35,7 +35,7 @@ import org.jetbrains.compose.resources.stringResource
 fun TopicCard(
     itemTopic: ItemTopic,
     topic: String,
-    subtitle: String,
+    description: String,
     isBookmarked: Boolean,
     onBookmarkClick: () -> Unit,
     onCardClick: () -> Unit,
@@ -91,7 +91,7 @@ fun TopicCard(
                 Spacer(modifier = Modifier.height(6.dp))
                 KdText(
                     modifier = Modifier,
-                    text = subtitle,
+                    text = description,
                     style = MaterialTheme.typography.labelMedium.copy(
                         color = MaterialTheme.colorScheme.onBackground,
                     ),

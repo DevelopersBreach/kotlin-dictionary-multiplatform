@@ -24,7 +24,7 @@ class TopicViewModel(
         }
     }
 
-    private fun fetchTopicList() {
+    private suspend fun fetchTopicList() {
         _uiState.value = UiState.Success(TopicUi(isLoading = true))
         repository.getTopics().fold(
             ifLeft = { UiState.Error(it) },
@@ -67,6 +67,7 @@ class TopicViewModel(
                     name = topic.name,
                     initial = topic.name.first().uppercase(),
                     isBookmarked = bookmarks.getOrNull(index) ?: false,
+                    description = topic.description,
                 )
             }
 

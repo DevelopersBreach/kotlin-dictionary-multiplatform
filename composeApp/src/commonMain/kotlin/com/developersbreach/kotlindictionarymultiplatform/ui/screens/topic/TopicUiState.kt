@@ -14,4 +14,5 @@ data class ItemTopic(
     val name: String,
     val initial: String,
     val isBookmarked: Boolean,
+    val description: String,
 )

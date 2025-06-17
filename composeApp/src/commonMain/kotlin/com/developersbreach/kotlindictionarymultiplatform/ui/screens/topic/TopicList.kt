@@ -7,9 +7,6 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import kotlindictionarymultiplatform.composeapp.generated.resources.Res
-import kotlindictionarymultiplatform.composeapp.generated.resources.description_subtitle
-import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun TopicList(
@@ -27,7 +24,7 @@ fun TopicList(
             TopicCard(
                 topic = topic.name,
                 itemTopic = topic,
-                subtitle = stringResource(Res.string.description_subtitle),
+                description = topic.description,
                 isBookmarked = isBookmarked,
                 onBookmarkClick = { onBookmarkClick(index) },
                 onCardClick = { onTopicClick(topic.name) },
