@@ -79,9 +79,9 @@ private fun sampleTopicList(): List<Topic> {
 internal fun sampleTopicUiList(): List<ItemTopic> {
     return sampleTopicList().map { topic ->
         ItemTopic(
-            name = topic.name,
-            initial = topic.name.firstOrNull()?.uppercase() ?: "",
-            description = topic.description,
+            name = topic.name ?: "",
+            initial = topic.name?.firstOrNull()?.uppercase() ?: "",
+            description = topic.description ?: "",
         )
     }
 }

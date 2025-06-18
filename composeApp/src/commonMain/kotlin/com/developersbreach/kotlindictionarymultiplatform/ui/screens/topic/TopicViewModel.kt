@@ -29,7 +29,7 @@ class TopicViewModel(
         repository.getTopics().fold(
             ifLeft = { UiState.Error(it) },
             ifRight = { list ->
-                rawTopics = list.sortedBy { it.name.lowercase() }
+                rawTopics = list.sortedBy { it.name?.lowercase() ?: "" }
                 applyFilters(rawTopics, (_uiState.value as UiState.Success).data.searchQuery)
             },
         )
@@ -46,15 +46,14 @@ class TopicViewModel(
         query: String,
     ) {
         val filtered = topics
-            .withIndex()
-            .filter { (_, topic) ->
-                topic.name.contains(query, ignoreCase = true)
+            .filter { topic ->
+                topic.name?.contains(query, ignoreCase = true) == true
             }
-            .map { (index, topic) ->
+            .map { topic ->
                 ItemTopic(
-                    name = topic.name,
-                    initial = topic.name.first().uppercase(),
-                    description = topic.description,
+                    name = topic.name ?: "",
+                    initial = topic.name?.firstOrNull()?.uppercase() ?: "",
+                    description = topic.description ?: "",
                 )
             }
 
