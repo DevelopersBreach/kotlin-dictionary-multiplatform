@@ -1,4 +1,4 @@
-package com.developersbreach.kotlindictionarymultiplatform.core.network.parser
+package com.developersbreach.kotlindictionarymultiplatform.core.network.detailsGenerator.parser
 
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject

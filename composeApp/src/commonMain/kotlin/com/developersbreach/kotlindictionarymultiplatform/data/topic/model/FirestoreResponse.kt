@@ -17,3 +17,10 @@ data class RawField(
 data class Response(
     @SerialName("documents") val topics: List<RawTopic>,
 )
+
+fun RawTopic.toTopic(): Topic {
+    return Topic(
+        name = fields["name"]?.value.orEmpty(),
+        description = fields["description"]?.value.orEmpty(),
+    )
+}
