@@ -4,16 +4,16 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class FirestoreDocument(
-    @SerialName("fields") val fields: Map<String, FirestoreField>,
+data class RawTopic(
+    @SerialName("fields") val fields: Map<String, RawField>,
 )
 
 @Serializable
-data class FirestoreField(
-    @SerialName("stringValue") val stringValue: String,
+data class RawField(
+    @SerialName("stringValue") val value: String,
 )
 
 @Serializable
-data class FirestoreResponse(
-    @SerialName("documents") val documents: List<FirestoreDocument>,
+data class Response(
+    @SerialName("documents") val topics: List<RawTopic>,
 )

@@ -1,7 +1,7 @@
 package com.developersbreach.kotlindictionarymultiplatform.data.topic.repository
 
 import arrow.core.Either
-import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.FirestoreResponse
+import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Response
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.utils.FirestoreConstants
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.utils.toTopic
@@ -22,8 +22,8 @@ object TopicRepository {
 
     suspend fun getTopics(): Either<Throwable, List<Topic>> {
         return Either.catch {
-            val response: FirestoreResponse = client.get(FirestoreConstants.TOPICS_URL).body()
-            response.documents.map { it.toTopic() }
+            val response: Response = client.get(FirestoreConstants.TOPICS_URL).body()
+            response.topics.map { it.toTopic() }
         }
     }
 }
