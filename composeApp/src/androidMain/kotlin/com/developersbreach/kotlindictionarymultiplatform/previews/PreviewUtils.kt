@@ -81,7 +81,6 @@ internal fun sampleTopicUiList(): List<ItemTopic> {
         ItemTopic(
             name = topic.name,
             initial = topic.name.firstOrNull()?.uppercase() ?: "",
-            isBookmarked = true,
             description = topic.description,
         )
     }

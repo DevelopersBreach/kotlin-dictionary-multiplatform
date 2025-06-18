@@ -17,10 +17,8 @@ fun TopicScreen(
     ) { data ->
         TopicScreenUI(
             topics = data.filteredTopics,
-            bookmarkedStates = data.bookmarkedStates,
             searchQuery = data.searchQuery,
             onQueryChange = viewModel::updateSearchQuery,
-            onBookmarkClick = viewModel::toggleBookmark,
             onTopicClick = onTopicClick,
         )
     }

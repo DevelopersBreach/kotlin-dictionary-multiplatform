@@ -6,13 +6,11 @@ data class TopicUi(
     val isLoading: Boolean = false,
     val topics: List<Topic> = emptyList(),
     val searchQuery: String = "",
-    val bookmarkedStates: List<Boolean> = emptyList(),
     val filteredTopics: List<ItemTopic> = emptyList(),
 )
 
 data class ItemTopic(
     val name: String,
     val initial: String,
-    val isBookmarked: Boolean,
     val description: String,
 )
