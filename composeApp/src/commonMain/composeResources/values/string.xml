@@ -23,8 +23,6 @@
     <string name="topics">Topics</string>
     <string name="description_subtitle">Description need to be added</string>
     <string name="icon">Icon</string>
-    <string name="remove_bookmark">Remove bookmark</string>
-    <string name="add_bookmark">Add bookmark</string>
     <string name="search_kotlin_terms">Search Kotlin terms...</string>
     <string name="search">Search</string>
 </resources>
