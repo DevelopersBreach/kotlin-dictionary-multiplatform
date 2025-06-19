@@ -29,6 +29,7 @@ jetbrainsKotlinJvm = "2.1.10"
 kotlinStdlib = "2.1.10"
 runner = "1.6.2"
 core = "1.6.1"
+uiToolingPreviewAndroid = "1.8.2"
 
 [libraries]
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
@@ -56,6 +57,7 @@ ktor-client-android = { module = "io.ktor:ktor-client-android" }
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation" }
 ktor-client-logging = { module = "io.ktor:ktor-client-logging" }
 ktor-client-mock = { module = "io.ktor:ktor-client-mock" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor-bom" }
 ktor-client-serialization = { module = "io.ktor:ktor-client-serialization" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json" }
 koin-android = { module = "io.insert-koin:koin-android" }
@@ -67,6 +69,7 @@ koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlinStdlib" }
 androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
 androidx-core = { group = "androidx.test", name = "core", version.ref = "core" }
+androidx-ui-tooling-preview-android = { group = "androidx.compose.ui", name = "ui-tooling-preview-android", version.ref = "uiToolingPreviewAndroid" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

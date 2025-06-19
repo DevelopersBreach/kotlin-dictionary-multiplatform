@@ -12,10 +12,8 @@ import com.developersbreach.designsystem.components.KdScaffold
 @Composable
 fun TopicScreenUI(
     topics: List<ItemTopic>,
-    bookmarkedStates: List<Boolean>,
     searchQuery: String,
     onQueryChange: (String) -> Unit,
-    onBookmarkClick: (Int) -> Unit,
     onTopicClick: (String) -> Unit,
 ) {
     KdScaffold(
@@ -34,8 +32,6 @@ fun TopicScreenUI(
             Spacer(modifier = Modifier.height(8.dp))
             TopicList(
                 topics = topics,
-                bookmarkedStates = bookmarkedStates,
-                onBookmarkClick = onBookmarkClick,
                 onTopicClick = onTopicClick,
             )
         }

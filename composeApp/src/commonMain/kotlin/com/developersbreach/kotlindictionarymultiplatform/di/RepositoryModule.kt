@@ -9,6 +9,6 @@ internal val repositoryModule = module {
         DetailRepository(get())
     }
     single {
-        TopicRepository
+        TopicRepository(get())
     }
 }

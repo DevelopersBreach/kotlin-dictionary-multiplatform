@@ -53,20 +53,35 @@ internal fun fakeTopicDetails(): KotlinTopicDetails {
 
 private fun sampleTopicList(): List<Topic> {
     return listOf(
-        Topic("Smart Casts"),
-        Topic("Null Safety"),
-        Topic("Coroutines"),
-        Topic("Lambdas"),
-        Topic("Sealed Classes"),
+        Topic(
+            name = "Smart Casts",
+            description = "Automatic casting by the compiler after type checks.",
+        ),
+        Topic(
+            name = "Null Safety",
+            description = "Kotlin's system to eliminate null pointer exceptions at compile time.",
+        ),
+        Topic(
+            name = "Coroutines",
+            description = "Lightweight threads for asynchronous and non-blocking programming.",
+        ),
+        Topic(
+            name = "Lambdas",
+            description = "Anonymous functions used to pass behavior as data.",
+        ),
+        Topic(
+            name = "Sealed Classes",
+            description = "Classes used to represent restricted class hierarchies for type safety.",
+        ),
     )
 }
 
 internal fun sampleTopicUiList(): List<ItemTopic> {
     return sampleTopicList().map { topic ->
         ItemTopic(
-            name = topic.name,
-            initial = topic.name.firstOrNull()?.uppercase() ?: "",
-            isBookmarked = true,
+            name = topic.name ?: "",
+            initial = topic.name?.firstOrNull()?.uppercase() ?: "",
+            description = topic.description ?: "",
         )
     }
 }

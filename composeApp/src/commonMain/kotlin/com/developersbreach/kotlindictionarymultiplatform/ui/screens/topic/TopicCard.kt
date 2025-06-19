@@ -13,9 +13,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Bookmark
-import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,21 +20,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.developersbreach.designsystem.components.KdIconButton
 import com.developersbreach.designsystem.components.KdSurface
 import com.developersbreach.designsystem.components.KdText
-import kotlindictionarymultiplatform.composeapp.generated.resources.Res
-import kotlindictionarymultiplatform.composeapp.generated.resources.add_bookmark
-import kotlindictionarymultiplatform.composeapp.generated.resources.remove_bookmark
-import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun TopicCard(
     itemTopic: ItemTopic,
     topic: String,
-    subtitle: String,
-    isBookmarked: Boolean,
-    onBookmarkClick: () -> Unit,
+    description: String,
     onCardClick: () -> Unit,
 ) {
     KdSurface(
@@ -91,7 +81,7 @@ fun TopicCard(
                 Spacer(modifier = Modifier.height(6.dp))
                 KdText(
                     modifier = Modifier,
-                    text = subtitle,
+                    text = description,
                     style = MaterialTheme.typography.labelMedium.copy(
                         color = MaterialTheme.colorScheme.onBackground,
                     ),
@@ -99,23 +89,6 @@ fun TopicCard(
                     overflow = TextOverflow.Ellipsis,
                 )
             }
-
-            KdIconButton(
-                modifier = Modifier,
-                iconModifier = Modifier,
-                onClick = onBookmarkClick,
-                imageVector = if (isBookmarked) {
-                    Icons.Outlined.BookmarkBorder
-                } else {
-                    Icons.Filled.Bookmark
-                },
-                contentDescription = if (isBookmarked) {
-                    stringResource(Res.string.remove_bookmark)
-                } else {
-                    stringResource(Res.string.add_bookmark)
-                },
-                tint = MaterialTheme.colorScheme.primary,
-            )
         }
     }
 }

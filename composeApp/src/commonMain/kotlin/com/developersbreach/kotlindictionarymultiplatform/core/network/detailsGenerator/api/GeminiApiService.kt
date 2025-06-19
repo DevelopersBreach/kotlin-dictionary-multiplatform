@@ -1,8 +1,8 @@
-package com.developersbreach.kotlindictionarymultiplatform.core.network.api
+package com.developersbreach.kotlindictionarymultiplatform.core.network.detailsGenerator.api
 
 import com.developersbreach.kotlindictionarymultiplatform.Log
-import com.developersbreach.kotlindictionarymultiplatform.core.network.parser.GeminiJsonParser
-import com.developersbreach.kotlindictionarymultiplatform.core.network.request.GeminiPromptBuilder
+import com.developersbreach.kotlindictionarymultiplatform.core.network.detailsGenerator.parser.GeminiJsonParser
+import com.developersbreach.kotlindictionarymultiplatform.core.network.detailsGenerator.request.GeminiPromptBuilder
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.KotlinTopicDetails
 import io.ktor.client.HttpClient
 import io.ktor.client.request.post

@@ -87,6 +87,7 @@ kotlin {
             implementation(libs.koin.androidx.compose)
             implementation(libs.generativeai)
             implementation(compose.uiTooling)
+            implementation(libs.ktor.client.okhttp)
         }
         commonMain.dependencies {
             implementation(compose.runtime)

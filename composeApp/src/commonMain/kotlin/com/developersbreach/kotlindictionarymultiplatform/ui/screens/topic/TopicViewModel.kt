@@ -24,14 +24,13 @@ class TopicViewModel(
         }
     }
 
-    private fun fetchTopicList() {
+    private suspend fun fetchTopicList() {
         _uiState.value = UiState.Success(TopicUi(isLoading = true))
         repository.getTopics().fold(
             ifLeft = { UiState.Error(it) },
             ifRight = { list ->
-                rawTopics = list.sortedBy { it.name.lowercase() }
-                val initialBookmarks = List(rawTopics.size) { true }
-                applyFilters(rawTopics, (_uiState.value as UiState.Success).data.searchQuery, initialBookmarks)
+                rawTopics = list.sortedBy { it.name?.lowercase() ?: "" }
+                applyFilters(rawTopics, (_uiState.value as UiState.Success).data.searchQuery)
             },
         )
     }
@@ -39,34 +38,22 @@ class TopicViewModel(
     fun updateSearchQuery(
         newQuery: String,
     ) {
-        val bookmarks = (_uiState.value as UiState.Success).data.bookmarkedStates
-        applyFilters(rawTopics, newQuery, bookmarks)
-    }
-
-    fun toggleBookmark(
-        index: Int,
-    ) {
-        val current = (_uiState.value as UiState.Success).data.bookmarkedStates
-        if (index !in current.indices) return
-        val updated = current.toMutableList().apply { this[index] = !this[index] }
-        applyFilters(rawTopics, (_uiState.value as UiState.Success).data.searchQuery, updated)
+        applyFilters(rawTopics, newQuery)
     }
 
     private fun applyFilters(
         topics: List<Topic>,
         query: String,
-        bookmarks: List<Boolean>,
     ) {
         val filtered = topics
-            .withIndex()
-            .filter { (_, topic) ->
-                topic.name.contains(query, ignoreCase = true)
+            .filter { topic ->
+                topic.name?.contains(query, ignoreCase = true) == true
             }
-            .map { (index, topic) ->
+            .map { topic ->
                 ItemTopic(
-                    name = topic.name,
-                    initial = topic.name.first().uppercase(),
-                    isBookmarked = bookmarks.getOrNull(index) ?: false,
+                    name = topic.name ?: "",
+                    initial = topic.name?.firstOrNull()?.uppercase() ?: "",
+                    description = topic.description ?: "",
                 )
             }
 
@@ -75,7 +62,6 @@ class TopicViewModel(
                 isLoading = false,
                 searchQuery = query,
                 topics = topics,
-                bookmarkedStates = bookmarks,
                 filteredTopics = filtered,
             ),
         )

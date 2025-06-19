@@ -5,7 +5,7 @@
 ## Download the APK
 Access the latest APK for Kotlin Dictionary from the link below.
 
-[![Get APK](https://img.shields.io/badge/Get%20APK-maroon?style=for-the-badge&logo=android&logoColor=white)](https://github.com/DevelopersBreach/kotlin-dictionary-multiplatform/releases/download/v0.1.0/app-release-v0.1.0.apk)
+[![Get APK](https://img.shields.io/badge/Get%20APK-%23B125EA?style=for-the-badge&logo=android&logoColor=white)](https://github.com/DevelopersBreach/kotlin-dictionary-multiplatform/releases/download/v0.1.0/app-release-v0.1.0.apk)
 
 ---
 
@@ -29,13 +29,13 @@ Access the latest APK for Kotlin Dictionary from the link below.
 
 ### Roadmap v0.2.0
 
-- [ ] Assign unique IDs to objects and enforce consistent ordering logic
+- [x] Assign unique IDs to objects and enforce consistent ordering logic
 - [ ] Correct usage of visibility modifiers across the codebase
 - [ ] Introduce common `@Preview` annotations for reusable Composable previews
 - [x] Add code block for syntax display on the `Detail Screen`
 - [ ] Implement caching on the `Detail Screen` to store previously viewed topic data
-- [ ] Implement dynamic topic loading in `TopicRepository` to support scalability
-- [ ] Integrate Room database to persist bookmark states
+- [x] Implement dynamic topic loading in `TopicRepository` to support scalability
+- [ ] Add bookmark feature for topic cards to allow users to save and revisit important topics
 - [ ] Add a `Home Page` for navigation
 - [ ] Add a `Quiz Page` to host topic-based quizzes
 - [ ] Add a button in `DetailScreen` to attempt a quiz for that topic

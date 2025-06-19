@@ -12,10 +12,8 @@ private fun TopicScreenPreview() {
     KotlinDictionaryTheme {
         TopicScreenUI(
             topics = sampleTopicUiList(),
-            bookmarkedStates = listOf(),
             searchQuery = "Search",
             onQueryChange = { },
-            onBookmarkClick = { },
             onTopicClick = { },
         )
     }
