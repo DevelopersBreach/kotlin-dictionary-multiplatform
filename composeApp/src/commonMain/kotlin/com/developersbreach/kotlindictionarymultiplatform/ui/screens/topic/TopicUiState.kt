@@ -7,6 +7,8 @@ data class TopicUi(
     val topics: List<Topic> = emptyList(),
     val searchQuery: String = "",
     val filteredTopics: List<ItemTopic> = emptyList(),
+    val page: Int = 0,
+    val hasMore: Boolean = true,
 )
 
 data class ItemTopic(

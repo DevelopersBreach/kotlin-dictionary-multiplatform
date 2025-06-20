@@ -15,6 +15,7 @@ fun TopicScreenUI(
     searchQuery: String,
     onQueryChange: (String) -> Unit,
     onTopicClick: (String) -> Unit,
+    onLoadMore: () -> Unit,
 ) {
     KdScaffold(
         modifier = Modifier,
@@ -30,9 +31,11 @@ fun TopicScreenUI(
                 onQueryChange = onQueryChange,
             )
             Spacer(modifier = Modifier.height(8.dp))
+
             TopicList(
                 topics = topics,
                 onTopicClick = onTopicClick,
+                onLoadMore = onLoadMore,
             )
         }
     }
