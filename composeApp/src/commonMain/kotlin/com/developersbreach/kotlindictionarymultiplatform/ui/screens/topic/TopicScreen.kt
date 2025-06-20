@@ -15,7 +15,7 @@ fun TopicScreen(
 
     UiStateHandler(
         uiState = uiState,
-        isLoading = (uiState as? UiState.Success)?.data?.isLoading == true && (uiState as? UiState.Success)?.data?.page == 0
+        isLoading = (uiState as? UiState.Success)?.data?.isLoading == true && (uiState as? UiState.Success)?.data?.page == 0,
     ) { data ->
         TopicScreenUI(
             topics = data.filteredTopics,
@@ -26,4 +26,3 @@ fun TopicScreen(
         )
     }
 }
-
