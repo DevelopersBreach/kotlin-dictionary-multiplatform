@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
+
 class TopicViewModel(
     private val repository: TopicRepository,
 ) : ViewModel() {
@@ -16,54 +17,93 @@ class TopicViewModel(
     private val _uiState: MutableStateFlow<UiState<TopicUi>> = MutableStateFlow(UiState.Loading)
     val uiState: StateFlow<UiState<TopicUi>> = _uiState
 
-    private var rawTopics: List<Topic> = emptyList()
+    private var allTopics: List<Topic> = emptyList()
+    private val pageSize = 8
 
     init {
         viewModelScope.launch {
-            fetchTopicList()
+            fetchTopics()
         }
     }
 
-    private suspend fun fetchTopicList() {
-        _uiState.value = UiState.Success(TopicUi(isLoading = true))
+    private suspend fun fetchTopics() {
+        _uiState.value = UiState.Loading
+
         repository.getTopics().fold(
-            ifLeft = { UiState.Error(it) },
-            ifRight = { list ->
-                rawTopics = list.sortedBy { it.name?.lowercase() ?: "" }
-                applyFilters(rawTopics, (_uiState.value as UiState.Success).data.searchQuery)
+            ifLeft = {
+                _uiState.value = UiState.Error(it)
             },
+            ifRight = { topics ->
+                allTopics = topics.sortedBy { it.name?.lowercase() ?: "" }
+
+                _uiState.value = UiState.Success(
+                    TopicUi(isLoading = false)
+                )
+                loadNextPage()
+            }
         )
     }
 
-    fun updateSearchQuery(
-        newQuery: String,
-    ) {
-        applyFilters(rawTopics, newQuery)
+    private fun getPagedTopics(page: Int): List<Topic> {
+        val start = page * pageSize
+        val end = minOf(start + pageSize, allTopics.size)
+        return if (start >= allTopics.size) emptyList() else allTopics.subList(start, end)
     }
+
+
+    fun loadNextPage() {
+        val state = (_uiState.value as? UiState.Success)?.data ?: return
+        if (state.isLoading || !state.hasMore) {
+            return
+        }
+
+        _uiState.value = UiState.Success(state.copy(isLoading = true))
+
+        val newTopics = getPagedTopics(state.page)
+
+        val combined = state.topics + newTopics
+        val nextPage = state.page + 1
+        val hasMore = newTopics.size == pageSize
+
+        applyFilters(
+            topics = combined,
+            query = state.searchQuery,
+            currentPage = nextPage,
+            hasMore = hasMore
+        )
+    }
+
+
+    fun updateSearchQuery(newQuery: String) {
+        val state = (_uiState.value as? UiState.Success)?.data ?: return
+        applyFilters(state.topics, newQuery, state.page, state.hasMore)
+    }
+
+    private fun Topic.toItemTopic(): ItemTopic = ItemTopic(
+        name = this.name ?: "",
+        initial = this.name?.firstOrNull()?.uppercase() ?: "",
+        description = this.description ?: ""
+    )
+
 
     private fun applyFilters(
         topics: List<Topic>,
         query: String,
+        currentPage: Int,
+        hasMore: Boolean
     ) {
-        val filtered = topics
-            .filter { topic ->
-                topic.name?.contains(query, ignoreCase = true) == true
-            }
-            .map { topic ->
-                ItemTopic(
-                    name = topic.name ?: "",
-                    initial = topic.name?.firstOrNull()?.uppercase() ?: "",
-                    description = topic.description ?: "",
-                )
-            }
 
-        _uiState.value = (_uiState.value as UiState.Success).copy(
+        val filtered = topics.filter { it.name?.contains(query, ignoreCase = true) == true }.map { it.toItemTopic() }
+
+        _uiState.value = UiState.Success(
             TopicUi(
                 isLoading = false,
                 searchQuery = query,
                 topics = topics,
                 filteredTopics = filtered,
-            ),
+                page = currentPage,
+                hasMore = hasMore
+            )
         )
     }
 }

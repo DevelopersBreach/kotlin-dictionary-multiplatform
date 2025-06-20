@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
@@ -12,6 +13,7 @@ import androidx.compose.ui.unit.dp
 fun TopicList(
     topics: List<ItemTopic>,
     onTopicClick: (String) -> Unit,
+    onLoadMore: () -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -24,6 +26,13 @@ fun TopicList(
                 description = topic.description,
                 onCardClick = { onTopicClick(topic.name) },
             )
+        }
+
+        item {
+            // Trigger load more when reaching end
+            LaunchedEffect(Unit) {
+                onLoadMore()
+            }
         }
     }
 }
