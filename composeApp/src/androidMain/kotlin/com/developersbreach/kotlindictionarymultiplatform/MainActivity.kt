@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.developersbreach.kotlindictionarymultiplatform.di.appModules
+import com.developersbreach.kotlindictionarymultiplatform.paging.androidPlatformModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -18,6 +19,7 @@ class MainActivity : ComponentActivity() {
         startKoin {
             androidContext(this@MainActivity)
             appModules()
+            androidPlatformModules()
         }
 
         setContent {

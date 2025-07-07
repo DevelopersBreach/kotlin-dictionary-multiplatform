@@ -7,7 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.developersbreach.kotlindictionarymultiplatform.ui.screens.detail.DetailScreen
 import com.developersbreach.kotlindictionarymultiplatform.ui.screens.detail.DetailViewModel
-import com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.TopicScreen
+import com.developersbreach.kotlindictionarymultiplatform.paging.TopicScreen
 import com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.TopicViewModel
 import org.koin.compose.viewmodel.koinViewModel
 
