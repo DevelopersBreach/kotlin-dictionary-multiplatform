@@ -88,6 +88,10 @@ kotlin {
             implementation(libs.generativeai)
             implementation(compose.uiTooling)
             implementation(libs.ktor.client.okhttp)
+            implementation("androidx.paging:paging-runtime:3.3.0")
+            implementation("com.google.firebase:firebase-firestore-ktx:24.10.0")
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.1")
+            implementation("com.google.firebase:firebase-bom:33.0.0")
         }
         commonMain.dependencies {
             implementation(compose.runtime)

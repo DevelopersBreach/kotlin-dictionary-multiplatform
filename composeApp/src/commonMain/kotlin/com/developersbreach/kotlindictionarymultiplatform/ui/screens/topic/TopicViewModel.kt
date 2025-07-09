@@ -3,36 +3,29 @@ package com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
-import com.developersbreach.kotlindictionarymultiplatform.data.topic.repository.TopicRepository
+import com.developersbreach.kotlindictionarymultiplatform.paging.TopicPager
 import com.developersbreach.kotlindictionarymultiplatform.ui.components.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class TopicViewModel(
-    private val repository: TopicRepository,
+    private val pager: TopicPager,
 ) : ViewModel() {
 
     private val _uiState: MutableStateFlow<UiState<TopicUi>> = MutableStateFlow(UiState.Loading)
     val uiState: StateFlow<UiState<TopicUi>> = _uiState
 
-    private var rawTopics: List<Topic> = emptyList()
+    private var rawTopics: MutableList<Topic> = mutableListOf()
 
     init {
         viewModelScope.launch {
-            fetchTopicList()
-        }
-    }
-
-    private suspend fun fetchTopicList() {
-        _uiState.value = UiState.Success(TopicUi(isLoading = true))
-        repository.getTopics().fold(
-            ifLeft = { UiState.Error(it) },
-            ifRight = { list ->
-                rawTopics = list.sortedBy { it.name?.lowercase() ?: "" }
+            _uiState.value = UiState.Success(TopicUi(isLoading = true))
+            pager.pages().collect { page ->
+                rawTopics += page.items
                 applyFilters(rawTopics, (_uiState.value as UiState.Success).data.searchQuery)
-            },
-        )
+            }
+        }
     }
 
     fun updateSearchQuery(
@@ -57,7 +50,7 @@ class TopicViewModel(
                 )
             }
 
-        _uiState.value = (_uiState.value as UiState.Success).copy(
+        _uiState.value = UiState.Success(
             TopicUi(
                 isLoading = false,
                 searchQuery = query,

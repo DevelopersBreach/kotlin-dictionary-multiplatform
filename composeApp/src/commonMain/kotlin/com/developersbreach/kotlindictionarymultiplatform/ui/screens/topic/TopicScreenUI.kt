@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.developersbreach.designsystem.components.KdScaffold
+import com.developersbreach.kotlindictionarymultiplatform.paging.TopicList
 
 @Composable
 fun TopicScreenUI(
@@ -29,7 +30,9 @@ fun TopicScreenUI(
                 searchQuery = searchQuery,
                 onQueryChange = onQueryChange,
             )
+
             Spacer(modifier = Modifier.height(8.dp))
+
             TopicList(
                 topics = topics,
                 onTopicClick = onTopicClick,
