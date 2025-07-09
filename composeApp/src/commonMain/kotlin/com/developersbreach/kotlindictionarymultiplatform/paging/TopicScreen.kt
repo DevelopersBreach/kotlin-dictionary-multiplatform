@@ -1,28 +1,27 @@
 package com.developersbreach.kotlindictionarymultiplatform.paging
 
-import androidx.compose.runtime.*
-import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import com.developersbreach.kotlindictionarymultiplatform.ui.components.UiStateHandler
 import com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.TopicScreenUI
-import kotlinx.coroutines.flow.collectLatest
+import com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.TopicViewModel
 
 @Composable
 fun TopicScreen(
+    viewModel: TopicViewModel,
     onTopicClick: (String) -> Unit,
 ) {
-    val pager = remember { createTopicPager() }
-    val topicList = remember { mutableStateListOf<Topic>() }
+    val uiState by viewModel.uiState.collectAsState()
 
-    LaunchedEffect(Unit) {
-        pager.pages().collectLatest { page ->
-            topicList.clear()
-            topicList.addAll(page.items)
-        }
+    UiStateHandler(
+        uiState = uiState,
+    ) { data ->
+        TopicScreenUI(
+            topics = data.filteredTopics,
+            searchQuery = data.searchQuery,
+            onQueryChange = viewModel::updateSearchQuery,
+            onTopicClick = onTopicClick,
+        )
     }
-
-    TopicScreenUI(
-        topics = topicList,
-        searchQuery = "",
-        onQueryChange = {},
-        onTopicClick = onTopicClick,
-    )
 }

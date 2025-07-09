@@ -1,6 +1,5 @@
 package com.developersbreach.kotlindictionarymultiplatform.paging
 
-import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
 import kotlinx.coroutines.flow.Flow
 
 interface TopicPager {

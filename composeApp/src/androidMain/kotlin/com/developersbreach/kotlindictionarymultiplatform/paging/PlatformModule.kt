@@ -1,9 +1,7 @@
 package com.developersbreach.kotlindictionarymultiplatform.paging
 
-import org.koin.core.KoinApplication
+import org.koin.dsl.module
 
-fun KoinApplication.androidPlatformModules(): KoinApplication {
-    return modules(
-        androidPagingModule,
-    )
+val androidModule = module {
+    single<TopicPager> { createTopicPager() }
 }
