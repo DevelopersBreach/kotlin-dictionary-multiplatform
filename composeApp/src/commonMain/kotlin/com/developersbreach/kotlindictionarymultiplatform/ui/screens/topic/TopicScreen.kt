@@ -2,7 +2,6 @@ package com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import app.cash.paging.compose.collectAsLazyPagingItems
 
 @Composable
