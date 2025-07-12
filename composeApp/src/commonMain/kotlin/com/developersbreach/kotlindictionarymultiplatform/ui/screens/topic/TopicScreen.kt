@@ -3,23 +3,20 @@ package com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.developersbreach.kotlindictionarymultiplatform.ui.components.UiStateHandler
+import app.cash.paging.compose.collectAsLazyPagingItems
 
 @Composable
 fun TopicScreen(
     viewModel: TopicViewModel,
     onTopicClick: (String) -> Unit,
 ) {
-    val uiState by viewModel.uiState.collectAsState()
+    val pagingItems = viewModel.pagingDataFlow.collectAsLazyPagingItems()
+    val searchQuery = viewModel.searchQuery.collectAsState().value
 
-    UiStateHandler(
-        uiState = uiState,
-    ) { data ->
-        TopicScreenUI(
-            topics = data.filteredTopics,
-            searchQuery = data.searchQuery,
-            onQueryChange = viewModel::updateSearchQuery,
-            onTopicClick = onTopicClick,
-        )
-    }
+    TopicScreenUI(
+        topics = pagingItems,
+        searchQuery = searchQuery,
+        onQueryChange = viewModel::updateSearchQuery,
+        onTopicClick = onTopicClick,
+    )
 }

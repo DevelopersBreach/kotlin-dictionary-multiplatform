@@ -1,11 +1,14 @@
 package com.developersbreach.kotlindictionarymultiplatform.previews
 
+import app.cash.paging.PagingData
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.CodeExample
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.KotlinTopicDetails
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.Section
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.Syntax
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
 import com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.ItemTopic
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 
 internal fun sampleCodeSnippet(): String {
     return """
@@ -84,4 +87,8 @@ internal fun sampleTopicUiList(): List<ItemTopic> {
             description = topic.description ?: "",
         )
     }
+}
+
+internal fun samplePagingData(): Flow<PagingData<ItemTopic>> {
+    return flowOf(PagingData.from(sampleTopicUiList()))
 }
