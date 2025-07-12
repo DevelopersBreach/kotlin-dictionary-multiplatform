@@ -30,6 +30,7 @@ kotlinStdlib = "2.1.10"
 runner = "1.6.2"
 core = "1.6.1"
 uiToolingPreviewAndroid = "1.8.2"
+cashapp-paging = "3.3.0-alpha02-0.5.1"
 
 [libraries]
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
@@ -70,6 +71,8 @@ kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", versio
 androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
 androidx-core = { group = "androidx.test", name = "core", version.ref = "core" }
 androidx-ui-tooling-preview-android = { group = "androidx.compose.ui", name = "ui-tooling-preview-android", version.ref = "uiToolingPreviewAndroid" }
+cashapp-paging-common = { module = "app.cash.paging:paging-common", version.ref = "cashapp-paging" }
+cashapp-paging-compose-common = { module = "app.cash.paging:paging-compose-common", version.ref = "cashapp-paging" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

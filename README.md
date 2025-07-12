@@ -42,6 +42,7 @@ Access the latest APK for Kotlin Dictionary from the link below.
 - [ ] Add a `Contributors Page` to showcase project contributors
 - [ ] Add a `Settings Page` with basic preferences
 - [ ] Implement a `Splash Screen`
+- [x] Integrate multiplatform paging for `Topic Screen`
 
 ---
 

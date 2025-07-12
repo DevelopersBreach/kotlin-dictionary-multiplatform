@@ -2,7 +2,8 @@ package com.developersbreach.kotlindictionarymultiplatform.previews.topic
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.developersbreach.kotlindictionarymultiplatform.previews.sampleTopicUiList
+import app.cash.paging.compose.collectAsLazyPagingItems
+import com.developersbreach.kotlindictionarymultiplatform.previews.samplePagingData
 import com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.TopicScreenUI
 import com.developersbreach.kotlindictionarymultiplatform.ui.theme.KotlinDictionaryTheme
 
@@ -10,8 +11,9 @@ import com.developersbreach.kotlindictionarymultiplatform.ui.theme.KotlinDiction
 @Composable
 private fun TopicScreenPreview() {
     KotlinDictionaryTheme {
+        val pagingItems = samplePagingData().collectAsLazyPagingItems()
         TopicScreenUI(
-            topics = sampleTopicUiList(),
+            topics = pagingItems,
             searchQuery = "Search",
             onQueryChange = { },
             onTopicClick = { },

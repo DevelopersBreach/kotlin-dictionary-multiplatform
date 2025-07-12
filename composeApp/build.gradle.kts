@@ -88,6 +88,7 @@ kotlin {
             implementation(libs.generativeai)
             implementation(compose.uiTooling)
             implementation(libs.ktor.client.okhttp)
+            implementation("androidx.paging:paging-compose:3.3.0-alpha02")
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -117,6 +118,8 @@ kotlin {
             implementation(libs.arrow.core)
             implementation(libs.arrow.fx.coroutines)
             implementation(project(":design-system"))
+            implementation(libs.cashapp.paging.common)
+            implementation(libs.cashapp.paging.compose.common)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
