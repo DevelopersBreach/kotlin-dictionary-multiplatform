@@ -88,7 +88,6 @@ kotlin {
             implementation(libs.generativeai)
             implementation(compose.uiTooling)
             implementation(libs.ktor.client.okhttp)
-            implementation("androidx.paging:paging-compose:3.3.0-alpha02")
         }
         commonMain.dependencies {
             implementation(compose.runtime)

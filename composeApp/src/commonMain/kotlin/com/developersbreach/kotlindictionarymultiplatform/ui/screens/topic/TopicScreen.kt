@@ -9,7 +9,7 @@ fun TopicScreen(
     viewModel: TopicViewModel,
     onTopicClick: (String) -> Unit,
 ) {
-    val pagingItems = viewModel.pagingDataFlow.collectAsLazyPagingItems()
+    val pagingItems = viewModel.topics.collectAsLazyPagingItems()
     val searchQuery = viewModel.searchQuery.collectAsState().value
 
     TopicScreenUI(

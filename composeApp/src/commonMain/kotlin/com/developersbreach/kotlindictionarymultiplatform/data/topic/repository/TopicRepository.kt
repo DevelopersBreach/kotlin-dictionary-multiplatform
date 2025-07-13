@@ -6,7 +6,6 @@ import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.toTopic
 import com.developersbreach.kotlindictionarymultiplatform.core.network.topicSource.FirestoreConstants
-import com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.TopicUi
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -25,13 +24,13 @@ class TopicRepository(
         page: Int,
         pageSize: Int,
         query: String,
-    ): List<TopicUi> {
+    ): List<com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.Topic> {
         val allTopics = getTopics().getOrElse { emptyList() }
         val filteredTopics = allTopics
             .filter { it.name?.contains(query, ignoreCase = true) == true }
             .sortedBy { it.name?.lowercase() ?: "" }
             .map { topic ->
-                TopicUi(
+                com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.Topic(
                     name = topic.name ?: "",
                     initial = topic.name?.firstOrNull()?.uppercase() ?: "",
                     description = topic.description ?: "",

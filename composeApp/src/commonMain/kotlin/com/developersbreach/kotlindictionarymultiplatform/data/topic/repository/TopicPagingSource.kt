@@ -1,17 +1,17 @@
-package com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic
+package com.developersbreach.kotlindictionarymultiplatform.data.topic.repository
 
 import app.cash.paging.PagingSource
 import app.cash.paging.PagingState
-import com.developersbreach.kotlindictionarymultiplatform.data.topic.repository.TopicRepository
+import com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.Topic
 
 class TopicPagingSource(
     private val repository: TopicRepository,
     private val query: String,
-) : PagingSource<Int, TopicUi>() {
+) : PagingSource<Int, Topic>() {
 
     override suspend fun load(
         params: LoadParams<Int>,
-    ): LoadResult<Int, TopicUi> {
+    ): LoadResult<Int, Topic> {
         val page = params.key ?: 1
         val pageSize = params.loadSize
         return try {
@@ -27,8 +27,11 @@ class TopicPagingSource(
     }
 
     override fun getRefreshKey(
-        state: PagingState<Int, TopicUi>,
-    ): Int {
-        return 1
+        state: PagingState<Int, Topic>,
+    ): Int? {
+        return state.anchorPosition?.let { anchorPosition ->
+            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
+                ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
+        }
     }
 }

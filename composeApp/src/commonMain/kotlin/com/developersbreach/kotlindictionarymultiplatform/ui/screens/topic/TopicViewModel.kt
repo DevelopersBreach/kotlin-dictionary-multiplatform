@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import app.cash.paging.Pager
 import app.cash.paging.PagingConfig
 import app.cash.paging.PagingData
+import com.developersbreach.kotlindictionarymultiplatform.data.topic.repository.TopicPagingSource
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.repository.TopicRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -23,7 +24,7 @@ class TopicViewModel(
     val searchQuery: StateFlow<String> = _searchQuery.asStateFlow()
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val pagingDataFlow: Flow<PagingData<TopicUi>> = searchQuery
+    val topics: Flow<PagingData<Topic>> = searchQuery
         .flatMapLatest { query ->
             Pager(
                 config = PagingConfig(pageSize = 8),

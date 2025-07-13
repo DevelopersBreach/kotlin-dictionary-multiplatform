@@ -25,7 +25,7 @@ import com.developersbreach.designsystem.components.KdText
 
 @Composable
 fun TopicCard(
-    topicUI: TopicUi,
+    topicUI: Topic,
     topic: String,
     description: String,
     onCardClick: () -> Unit,

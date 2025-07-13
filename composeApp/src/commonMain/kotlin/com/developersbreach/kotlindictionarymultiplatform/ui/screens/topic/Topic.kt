@@ -1,6 +1,6 @@
 package com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic
 
-data class TopicUi(
+data class Topic(
     val name: String,
     val initial: String,
     val description: String,
