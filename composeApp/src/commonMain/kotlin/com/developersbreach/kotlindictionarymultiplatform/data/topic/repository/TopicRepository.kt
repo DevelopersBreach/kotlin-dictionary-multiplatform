@@ -2,10 +2,11 @@ package com.developersbreach.kotlindictionarymultiplatform.data.topic.repository
 
 import arrow.core.Either
 import arrow.core.getOrElse
+import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.TopicsResponse
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.TopicResponse
-import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.toTopic
 import com.developersbreach.kotlindictionarymultiplatform.core.network.topicSource.FirestoreConstants
+import com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.Topic
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -13,10 +14,10 @@ import io.ktor.client.request.get
 class TopicRepository(
     private val httpClient: HttpClient,
 ) {
-    private suspend fun getTopics(): Either<Throwable, List<Topic>> {
+    private suspend fun getTopics(): Either<Throwable, List<TopicResponse>> {
         return Either.catch {
-            val topicResponse: TopicResponse = httpClient.get(FirestoreConstants.TOPICS_URL).body()
-            topicResponse.topics.map { it.toTopic() }
+            val topicsResponse: TopicsResponse = httpClient.get(FirestoreConstants.TOPICS_URL).body()
+            topicsResponse.topics.map { it.toTopic() }
         }
     }
 
@@ -24,13 +25,13 @@ class TopicRepository(
         page: Int,
         pageSize: Int,
         query: String,
-    ): List<com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.Topic> {
+    ): List<Topic> {
         val allTopics = getTopics().getOrElse { emptyList() }
         val filteredTopics = allTopics
             .filter { it.name?.contains(query, ignoreCase = true) == true }
             .sortedBy { it.name?.lowercase() ?: "" }
             .map { topic ->
-                com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.Topic(
+                Topic(
                     name = topic.name ?: "",
                     initial = topic.name?.firstOrNull()?.uppercase() ?: "",
                     description = topic.description ?: "",

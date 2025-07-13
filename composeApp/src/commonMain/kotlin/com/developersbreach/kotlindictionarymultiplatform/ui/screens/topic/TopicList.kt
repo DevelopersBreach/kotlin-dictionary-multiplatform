@@ -21,9 +21,7 @@ fun TopicList(
             val topic = topics[index]
             topic?.let {
                 TopicCard(
-                    topic = it.name,
-                    topicUI = it,
-                    description = it.description,
+                    topic = it,
                     onCardClick = { onTopicClick(it.name) },
                 )
             }
