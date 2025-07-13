@@ -13,7 +13,7 @@ import app.cash.paging.compose.LazyPagingItems
 
 @Composable
 fun TopicScreenUI(
-    topics: LazyPagingItems<ItemTopic>,
+    topics: LazyPagingItems<TopicUi>,
     searchQuery: String,
     onQueryChange: (String) -> Unit,
     onTopicClick: (String) -> Unit,

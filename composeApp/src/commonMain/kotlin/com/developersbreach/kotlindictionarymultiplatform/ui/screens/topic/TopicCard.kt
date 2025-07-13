@@ -25,7 +25,7 @@ import com.developersbreach.designsystem.components.KdText
 
 @Composable
 fun TopicCard(
-    itemTopic: ItemTopic,
+    topicUI: TopicUi,
     topic: String,
     description: String,
     onCardClick: () -> Unit,
@@ -60,7 +60,7 @@ fun TopicCard(
             ) {
                 KdText(
                     modifier = Modifier,
-                    text = itemTopic.initial,
+                    text = topicUI.initial,
                 )
             }
 

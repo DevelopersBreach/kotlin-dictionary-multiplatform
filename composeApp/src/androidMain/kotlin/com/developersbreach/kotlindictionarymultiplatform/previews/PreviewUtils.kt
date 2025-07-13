@@ -6,7 +6,7 @@ import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.Kotl
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.Section
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.Syntax
 import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
-import com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.ItemTopic
+import com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.TopicUi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
@@ -79,9 +79,9 @@ private fun sampleTopicList(): List<Topic> {
     )
 }
 
-internal fun sampleTopicUiList(): List<ItemTopic> {
+internal fun sampleTopicUiList(): List<TopicUi> {
     return sampleTopicList().map { topic ->
-        ItemTopic(
+        TopicUi(
             name = topic.name ?: "",
             initial = topic.name?.firstOrNull()?.uppercase() ?: "",
             description = topic.description ?: "",
@@ -89,6 +89,6 @@ internal fun sampleTopicUiList(): List<ItemTopic> {
     }
 }
 
-internal fun samplePagingData(): Flow<PagingData<ItemTopic>> {
+internal fun samplePagingData(): Flow<PagingData<TopicUi>> {
     return flowOf(PagingData.from(sampleTopicUiList()))
 }

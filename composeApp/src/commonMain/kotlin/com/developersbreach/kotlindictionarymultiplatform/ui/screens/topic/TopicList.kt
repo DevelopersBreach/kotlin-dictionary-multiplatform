@@ -10,7 +10,7 @@ import app.cash.paging.compose.LazyPagingItems
 
 @Composable
 fun TopicList(
-    topics: LazyPagingItems<ItemTopic>,
+    topics: LazyPagingItems<TopicUi>,
     onTopicClick: (String) -> Unit,
 ) {
     LazyColumn(
@@ -22,7 +22,7 @@ fun TopicList(
             topic?.let {
                 TopicCard(
                     topic = it.name,
-                    itemTopic = it,
+                    topicUI = it,
                     description = it.description,
                     onCardClick = { onTopicClick(it.name) },
                 )
