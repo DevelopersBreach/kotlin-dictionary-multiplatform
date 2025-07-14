@@ -1,11 +1,14 @@
 package com.developersbreach.kotlindictionarymultiplatform.previews
 
+import app.cash.paging.PagingData
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.CodeExample
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.KotlinTopicDetails
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.Section
 import com.developersbreach.kotlindictionarymultiplatform.data.detail.model.Syntax
-import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.Topic
-import com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.ItemTopic
+import com.developersbreach.kotlindictionarymultiplatform.data.topic.model.TopicResponse
+import com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.Topic
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 
 internal fun sampleCodeSnippet(): String {
     return """
@@ -51,37 +54,41 @@ internal fun fakeTopicDetails(): KotlinTopicDetails {
     )
 }
 
-private fun sampleTopicList(): List<Topic> {
+private fun sampleTopicList(): List<TopicResponse> {
     return listOf(
-        Topic(
+        TopicResponse(
             name = "Smart Casts",
             description = "Automatic casting by the compiler after type checks.",
         ),
-        Topic(
+        TopicResponse(
             name = "Null Safety",
             description = "Kotlin's system to eliminate null pointer exceptions at compile time.",
         ),
-        Topic(
+        TopicResponse(
             name = "Coroutines",
             description = "Lightweight threads for asynchronous and non-blocking programming.",
         ),
-        Topic(
+        TopicResponse(
             name = "Lambdas",
             description = "Anonymous functions used to pass behavior as data.",
         ),
-        Topic(
+        TopicResponse(
             name = "Sealed Classes",
             description = "Classes used to represent restricted class hierarchies for type safety.",
         ),
     )
 }
 
-internal fun sampleTopicUiList(): List<ItemTopic> {
+internal fun sampleTopicUiList(): List<Topic> {
     return sampleTopicList().map { topic ->
-        ItemTopic(
+        Topic(
             name = topic.name ?: "",
             initial = topic.name?.firstOrNull()?.uppercase() ?: "",
             description = topic.description ?: "",
         )
     }
+}
+
+internal fun samplePagingData(): Flow<PagingData<Topic>> {
+    return flowOf(PagingData.from(sampleTopicUiList()))
 }

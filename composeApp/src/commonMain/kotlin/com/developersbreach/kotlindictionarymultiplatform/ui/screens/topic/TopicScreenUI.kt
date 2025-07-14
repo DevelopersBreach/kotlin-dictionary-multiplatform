@@ -8,10 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.developersbreach.designsystem.components.KdScaffold
+import app.cash.paging.compose.LazyPagingItems
 
 @Composable
 fun TopicScreenUI(
-    topics: List<ItemTopic>,
+    topics: LazyPagingItems<Topic>,
     searchQuery: String,
     onQueryChange: (String) -> Unit,
     onTopicClick: (String) -> Unit,

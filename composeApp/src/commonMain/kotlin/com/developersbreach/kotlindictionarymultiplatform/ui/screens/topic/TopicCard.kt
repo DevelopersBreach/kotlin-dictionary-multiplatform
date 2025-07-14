@@ -25,9 +25,7 @@ import com.developersbreach.designsystem.components.KdText
 
 @Composable
 fun TopicCard(
-    itemTopic: ItemTopic,
-    topic: String,
-    description: String,
+    topic: Topic,
     onCardClick: () -> Unit,
 ) {
     KdSurface(
@@ -60,7 +58,7 @@ fun TopicCard(
             ) {
                 KdText(
                     modifier = Modifier,
-                    text = itemTopic.initial,
+                    text = topic.initial,
                 )
             }
 
@@ -71,7 +69,7 @@ fun TopicCard(
             ) {
                 KdText(
                     modifier = Modifier,
-                    text = topic,
+                    text = topic.name,
                     style = MaterialTheme.typography.headlineMedium.copy(
                         color = MaterialTheme.colorScheme.onPrimary,
                     ),
@@ -81,7 +79,7 @@ fun TopicCard(
                 Spacer(modifier = Modifier.height(6.dp))
                 KdText(
                     modifier = Modifier,
-                    text = description,
+                    text = topic.description,
                     style = MaterialTheme.typography.labelMedium.copy(
                         color = MaterialTheme.colorScheme.onBackground,
                     ),

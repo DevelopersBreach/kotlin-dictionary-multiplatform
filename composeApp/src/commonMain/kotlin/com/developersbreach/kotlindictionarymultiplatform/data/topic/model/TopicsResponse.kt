@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class TopicResponse(
+data class TopicsResponse(
     @SerialName("documents") val topics: List<RawTopic>,
 )
 
@@ -24,8 +24,14 @@ data class RawField(
     @SerialName("stringValue") val value: String,
 )
 
-fun RawTopic.toTopic(): Topic {
-    return Topic(
+@Serializable
+data class TopicResponse(
+    val name: String?,
+    val description: String?,
+)
+
+fun RawTopic.toTopic(): TopicResponse {
+    return TopicResponse(
         name = fields.name.value,
         description = fields.description.value,
     )

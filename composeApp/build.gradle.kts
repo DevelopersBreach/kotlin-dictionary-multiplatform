@@ -117,6 +117,8 @@ kotlin {
             implementation(libs.arrow.core)
             implementation(libs.arrow.fx.coroutines)
             implementation(project(":design-system"))
+            implementation(libs.cashapp.paging.common)
+            implementation(libs.cashapp.paging.compose.common)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
