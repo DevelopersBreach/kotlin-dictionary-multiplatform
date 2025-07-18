@@ -11,8 +11,7 @@ import com.developersbreach.kotlindictionarymultiplatform.ui.theme.KotlinDiction
 private fun HomeScreenPreview() {
     KotlinDictionaryTheme {
         HomeScreenUI(
-            topics = sampleTopicUiList(), 
-            
+            topics = sampleTopicUiList(),
             onViewAllClick = {},
         )
     }

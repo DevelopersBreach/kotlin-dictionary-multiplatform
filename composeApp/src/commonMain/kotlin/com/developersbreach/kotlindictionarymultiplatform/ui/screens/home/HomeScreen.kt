@@ -11,9 +11,7 @@ fun HomeScreen(
     val topicsState = viewModel.topics.collectAsState()
 
     HomeScreenUI(
-        topics = topicsState.value, 
-        
-        
+        topics = topicsState.value,
         onViewAllClick = navigateToTopicList,
     )
 }
