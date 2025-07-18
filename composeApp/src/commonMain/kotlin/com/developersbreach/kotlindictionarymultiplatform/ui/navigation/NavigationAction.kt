@@ -9,4 +9,7 @@ class NavigationAction(
     val navigateToDetail: (String) -> Unit = { topicId ->
         navController.navigate(AppDestinations.Detail(topicId))
     }
+    val navigateToTopic: () -> Unit = {
+        navController.navigate(AppDestinations.TopicList)
+    }
 }

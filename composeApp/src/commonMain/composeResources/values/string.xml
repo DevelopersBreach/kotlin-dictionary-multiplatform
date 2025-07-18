@@ -25,4 +25,8 @@
     <string name="icon">Icon</string>
     <string name="search_kotlin_terms">Search Kotlin terms...</string>
     <string name="search">Search</string>
+    <string name="menu">Menu</string>
+    <string name="welcome">Welcome,\nKotlin Enthusiast!</string>
+    <string name="quizzes">Quizzes</string>
+    <string name="view_all">View all</string>
 </resources>
