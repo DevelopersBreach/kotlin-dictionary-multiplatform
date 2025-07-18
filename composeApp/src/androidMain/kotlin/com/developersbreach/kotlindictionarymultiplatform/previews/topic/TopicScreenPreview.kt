@@ -17,7 +17,7 @@ private fun TopicScreenPreview() {
             searchQuery = "Search",
             onQueryChange = { },
             onTopicClick = { },
-            onNavigateUp = {},
+            onNavigateUp = { },
         )
     }
 }
