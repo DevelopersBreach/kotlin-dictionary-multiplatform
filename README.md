@@ -36,13 +36,14 @@ Access the latest APK for Kotlin Dictionary from the link below.
 - [ ] Implement caching on the `Detail Screen` to store previously viewed topic data
 - [x] Implement dynamic topic loading in `TopicRepository` to support scalability
 - [ ] Add bookmark feature for topic cards to allow users to save and revisit important topics
-- [ ] Add a `Home Page` for navigation
+- [x] Add a `Home Page` for navigation
 - [ ] Add a `Quiz Page` to host topic-based quizzes
 - [ ] Add a button in `DetailScreen` to attempt a quiz for that topic
 - [ ] Add a `Contributors Page` to showcase project contributors
 - [ ] Add a `Settings Page` with basic preferences
 - [ ] Implement a `Splash Screen`
 - [x] Integrate multiplatform paging for `Topic Screen`
+- [ ] Add dark theme previews to the README
 
 ---
 

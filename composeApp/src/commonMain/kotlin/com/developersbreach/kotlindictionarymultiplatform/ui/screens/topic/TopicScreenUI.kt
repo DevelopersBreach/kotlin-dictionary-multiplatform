@@ -16,10 +16,11 @@ fun TopicScreenUI(
     searchQuery: String,
     onQueryChange: (String) -> Unit,
     onTopicClick: (String) -> Unit,
+    onNavigateUp: () -> Unit,
 ) {
     KdScaffold(
         modifier = Modifier,
-        topBar = { TopicTopBar() },
+        topBar = { TopicTopBar(onNavigateUp = onNavigateUp) },
     ) { paddingValues ->
         Column(
             modifier = Modifier

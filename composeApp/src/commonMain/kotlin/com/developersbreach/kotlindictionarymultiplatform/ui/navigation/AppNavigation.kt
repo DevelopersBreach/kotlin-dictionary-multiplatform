@@ -1,5 +1,6 @@
 package com.developersbreach.kotlindictionarymultiplatform.ui.navigation
 
+import HomeScreen
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.compose.NavHost
@@ -7,13 +8,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.developersbreach.kotlindictionarymultiplatform.ui.screens.detail.DetailScreen
 import com.developersbreach.kotlindictionarymultiplatform.ui.screens.detail.DetailViewModel
+import com.developersbreach.kotlindictionarymultiplatform.ui.screens.home.HomeViewModel
 import com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.TopicScreen
 import com.developersbreach.kotlindictionarymultiplatform.ui.screens.topic.TopicViewModel
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun AppNavigation(
-    startDestination: AppDestinations = AppDestinations.TopicList,
+    startDestination: AppDestinations = AppDestinations.Home,
 ) {
     val navController = rememberNavController()
     val actions = remember(navController) { NavigationAction(navController) }
@@ -29,6 +31,7 @@ fun AppNavigation(
                     actions.navigateToDetail(selectedTopicId)
                 },
                 viewModel = viewModel,
+                onNavigateUp = { navController.navigateUp() },
             )
         }
 
@@ -37,6 +40,13 @@ fun AppNavigation(
             DetailScreen(
                 viewModel = viewModel,
                 navigateUp = { navController.navigateUp() },
+            )
+        }
+        composable<AppDestinations.Home> {
+            val viewModel: HomeViewModel = koinViewModel()
+            HomeScreen(
+                viewModel = viewModel,
+                navigateToTopicList = actions.navigateToTopic,
             )
         }
     }

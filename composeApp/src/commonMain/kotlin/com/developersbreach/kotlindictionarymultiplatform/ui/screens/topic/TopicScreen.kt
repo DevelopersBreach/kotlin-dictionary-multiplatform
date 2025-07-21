@@ -8,6 +8,7 @@ import app.cash.paging.compose.collectAsLazyPagingItems
 fun TopicScreen(
     viewModel: TopicViewModel,
     onTopicClick: (String) -> Unit,
+    onNavigateUp: () -> Unit,
 ) {
     val pagingItems = viewModel.topics.collectAsLazyPagingItems()
     val searchQuery = viewModel.searchQuery.collectAsState().value
@@ -17,5 +18,6 @@ fun TopicScreen(
         searchQuery = searchQuery,
         onQueryChange = viewModel::updateSearchQuery,
         onTopicClick = onTopicClick,
+        onNavigateUp = onNavigateUp,
     )
 }

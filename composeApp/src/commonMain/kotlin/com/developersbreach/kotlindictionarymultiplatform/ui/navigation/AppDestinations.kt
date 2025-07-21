@@ -12,4 +12,7 @@ sealed interface AppDestinations {
     data class Detail(
         val topicId: String,
     ) : AppDestinations
+
+    @Serializable
+    data object Home : AppDestinations
 }

@@ -94,6 +94,14 @@ class DesignSystemTest {
         )
     }
 
+    @Test
+    fun `no direct usage of androidx compose card should be allowed except designSystem`() {
+        checkNoDirectUsageExceptAllowed(
+            componentName = "androidx.compose.material3.Card",
+            excludePaths = arrayOf("$DESIGN_SYSTEM_PATH/Card.kt"),
+        )
+    }
+
     companion object {
         private const val DESIGN_SYSTEM_PATH =
             "design-system/src/commonMain/kotlin/com/developersbreach/designsystem/components"
